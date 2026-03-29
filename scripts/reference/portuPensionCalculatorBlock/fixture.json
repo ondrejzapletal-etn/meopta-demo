@@ -1,0 +1,13 @@
+{
+  "id": "fixture-portuPensionCalculatorBlock",
+  "blockType": "portuPensionCalculatorBlock",
+  "title": "Pordu DIP",
+  "minMonthly": 500,
+  "maxMonthly": 10000,
+  "defaultMonthly": 3000,
+  "minYears": 5,
+  "maxYears": 40,
+  "defaultYears": 20,
+  "expectedReturn": 5,
+  "description": "magna nisi consectetur non exercitation"
+}

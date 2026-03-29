@@ -1,0 +1,30 @@
+{
+  "fields": [
+    {
+      "name": "title",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "subtitle",
+      "type": "text"
+    },
+    {
+      "name": "description",
+      "type": "textarea"
+    },
+    {
+      "name": "items",
+      "type": "array",
+      "children": [
+        {
+          "name": "title",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Detected 1 fields in repeated items"
+  ]
+}

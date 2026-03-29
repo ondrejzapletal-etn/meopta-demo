@@ -1,0 +1,26 @@
+{
+  "fields": [
+    {
+      "name": "title",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "textarea"
+    },
+    {
+      "name": "images",
+      "type": "array",
+      "children": [
+        {
+          "name": "image",
+          "type": "upload"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Found 2 inline SVGs — may need icon select field"
+  ]
+}

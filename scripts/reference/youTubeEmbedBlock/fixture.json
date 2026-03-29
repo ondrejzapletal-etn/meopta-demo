@@ -1,0 +1,5 @@
+{
+  "id": "fixture-youTubeEmbedBlock",
+  "blockType": "youTubeEmbedBlock",
+  "videoUrl": "Sample videoUrl"
+}

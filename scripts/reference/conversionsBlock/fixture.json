@@ -1,0 +1,27 @@
+{
+  "id": "fixture-conversionsBlock",
+  "blockType": "conversionsBlock",
+  "title": "CTA blok",
+  "description": "magna nisi consectetur non exercitation",
+  "items": [
+    {
+      "title": "officia amet Excepteur fugiat aliqua",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "linkLabel": "Mollit do dolor nisi",
+      "linkUrl": "/"
+    },
+    {
+      "title": "officia amet Excepteur fugiat aliqua",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "linkLabel": "Mollit do dolor nisi",
+      "linkUrl": "/"
+    },
+    {
+      "title": "officia amet Excepteur fugiat aliqua",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "linkLabel": "Mollit do dolor nisi",
+      "linkUrl": "/"
+    }
+  ],
+  "backgroundColor": "white"
+}

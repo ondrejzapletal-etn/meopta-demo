@@ -1,0 +1,14 @@
+{
+  "id": "fixture-pensionSavingsCalculatorBlock",
+  "blockType": "pensionSavingsCalculatorBlock",
+  "title": "DPS kalkulačka",
+  "minMonthly": 300,
+  "maxMonthly": 10000,
+  "defaultMonthly": 1000,
+  "minYears": 5,
+  "maxYears": 40,
+  "defaultYears": 20,
+  "expectedReturn": 4,
+  "stateContribution": 230,
+  "description": "magna nisi consectetur non exercitation"
+}

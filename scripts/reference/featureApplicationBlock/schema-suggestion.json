@@ -1,0 +1,20 @@
+{
+  "fields": [
+    {
+      "name": "title",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "subtitle",
+      "type": "text"
+    },
+    {
+      "name": "image",
+      "type": "upload"
+    }
+  ],
+  "notes": [
+    "Found 2 inline SVGs — may need icon select field"
+  ]
+}

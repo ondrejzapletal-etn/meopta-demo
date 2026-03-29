@@ -1,0 +1,30 @@
+diff --git a/node_modules/@payloadcms/ui/dist/elements/ClipboardAction/mergeFormStateFromClipboard.js b/node_modules/@payloadcms/ui/dist/elements/ClipboardAction/mergeFormStateFromClipboard.js
+index 1ceb5b2..4dbd83d 100644
+--- a/node_modules/@payloadcms/ui/dist/elements/ClipboardAction/mergeFormStateFromClipboard.js
++++ b/node_modules/@payloadcms/ui/dist/elements/ClipboardAction/mergeFormStateFromClipboard.js
+@@ -81,6 +81,7 @@ export function mergeFormStateFromClipboard({
+       }
+     }
+   }
++  const pastedTargetPaths = new Set();
+   for (const clipboardPath in dataFromClipboard) {
+     // Pasting a row id, skip overwriting
+     if (!pasteIntoField && clipboardPath.endsWith('.id') || !clipboardPath.startsWith(pathToReplace)) {
+@@ -94,6 +95,17 @@ export function mergeFormStateFromClipboard({
+       validate,
+       ...dataFromClipboard[clipboardPath]
+     };
++    pastedTargetPaths.add(newPath);
++  }
++  // Remove stale sub-paths in the target that were not overwritten by the paste.
++  // Without this cleanup, sub-fields from the previous target content (e.g. extra
++  // array rows) remain in the flat form state and get included in the data sent to
++  // the server, which then marks them as addedByServer:true and appends ghost rows.
++  const targetPrefix = targetSegment + '.';
++  for (const existingPath in formState) {
++    if (existingPath !== targetSegment && existingPath.startsWith(targetPrefix) && !pastedTargetPaths.has(existingPath)) {
++      delete formState[existingPath];
++    }
+   }
+   return formState;
+ }

@@ -1,0 +1,62 @@
+{
+  "id": "fixture-heroReasonsSimplifiedBlock",
+  "blockType": "heroReasonsSimplifiedBlock",
+  "title": "est cupidatat laborum",
+  "items": [
+    {
+      "number": 5,
+      "title": "Vše v aplikaci jednoduše",
+      "description": ""
+    },
+    {
+      "number": 98,
+      "title": "Více výhod pro věrné klienty",
+      "description": ""
+    },
+    {
+      "number": 61,
+      "title": "Účet a většina služeb zdarma",
+      "description": ""
+    },
+    {
+      "number": 38,
+      "title": "Založení účtu přes mobil",
+      "description": ""
+    },
+    {
+      "number": 36,
+      "title": "Až 10 účtů zdarma pro různé potřeby",
+      "description": ""
+    },
+    {
+      "number": 56,
+      "title": "Výhody navíc díky Unity",
+      "description": ""
+    },
+    {
+      "number": 17,
+      "title": "Virtuální karty pro platby bez obav",
+      "description": ""
+    },
+    {
+      "number": 41,
+      "title": "Snadné rozdělení společné útraty",
+      "description": ""
+    },
+    {
+      "number": 20,
+      "title": "Snadné spárování nového telefonu",
+      "description": ""
+    },
+    {
+      "number": 69,
+      "title": "Úspory díky Odměnám za placení",
+      "description": ""
+    },
+    {
+      "number": 66,
+      "title": "Tuzemské a SEPA platby zdarma",
+      "description": ""
+    }
+  ]
+}

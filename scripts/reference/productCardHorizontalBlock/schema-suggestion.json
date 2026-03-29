@@ -1,0 +1,16 @@
+{
+  "fields": [
+    {
+      "name": "title",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "textarea"
+    }
+  ],
+  "notes": [
+    "Found 4 inline SVGs — may need icon select field"
+  ]
+}

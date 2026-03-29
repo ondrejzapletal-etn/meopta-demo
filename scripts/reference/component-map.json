@@ -1,0 +1,672 @@
+[
+  {
+    "index": 0,
+    "name": "heroPlainBlock",
+    "slug": "heroPlainBlock",
+    "heading": "Hero bez obrázku",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 1,
+    "name": "heroWithImageBlock",
+    "slug": "heroWithImageBlock",
+    "heading": "Hero s obrázkem",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 2,
+    "name": "heroWithImageAndSearchBlock",
+    "slug": "heroWithImageAndSearchBlock",
+    "heading": "HERO s obrázkem a vyhledáváním",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 3,
+    "name": "heroWithImageCompactBlock",
+    "slug": "heroWithImageCompactBlock",
+    "heading": "Hero s obrázkem nízké",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 4,
+    "name": "heroSliderBlock",
+    "slug": "heroSliderBlock",
+    "heading": "HERO s obrázkem ve slideru",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 5,
+    "name": "benefitsBlock",
+    "slug": "benefitsBlock",
+    "heading": "Benefity (1–3 bloky)",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 6,
+    "name": "benefitsBlock",
+    "slug": "benefitsBlock",
+    "heading": "Benefity (1–4 bloky)",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 7,
+    "name": "benefitsWithImageBlock",
+    "slug": "benefitsWithImageBlock",
+    "heading": "Benefity s obrázky",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 8,
+    "name": "benefitsWithListBlock",
+    "slug": "benefitsWithListBlock",
+    "heading": "S kartou menších benefitů",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 9,
+    "name": "callbackBlock",
+    "slug": "callbackBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 10,
+    "name": "callbackSimplifiedBlock",
+    "slug": "callbackSimplifiedBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 11,
+    "name": "compareTableBlock",
+    "slug": "compareTableBlock",
+    "heading": "Tabulka",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 12,
+    "name": "exchangeTradedFundsTableBlock",
+    "slug": "exchangeTradedFundsTableBlock",
+    "heading": "ETF tabulka",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 13,
+    "name": "loyalCustomerBenefitsBlock",
+    "slug": "loyalCustomerBenefitsBlock",
+    "heading": "Můžete získat 2 různé balíčky výhod",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 14,
+    "name": "exchangeTradedFundsTableBlock",
+    "slug": "exchangeTradedFundsTableBlock",
+    "heading": "Tabulka s ceníkem",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 15,
+    "name": "discountsBlock",
+    "slug": "discountsBlock",
+    "heading": "",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 16,
+    "name": "exchangeRatesBlock",
+    "slug": "exchangeRatesBlock",
+    "heading": "",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 17,
+    "name": "unknown-17-",
+    "slug": null,
+    "heading": "",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 18,
+    "name": "contentCardsBlock",
+    "slug": "contentCardsBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 19,
+    "name": "contactStripBlock",
+    "slug": "contactStripBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 20,
+    "name": "callbackBlock",
+    "slug": "callbackBlock",
+    "heading": "CTA blok",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 21,
+    "name": "faqItemsBlock",
+    "slug": "faqItemsBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 22,
+    "name": "downloadSectionBlock",
+    "slug": "downloadSectionBlock",
+    "heading": "",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 23,
+    "name": "featureBlock",
+    "slug": "featureBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 24,
+    "name": "featureApplicationBlock",
+    "slug": "featureApplicationBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 25,
+    "name": "flashMessageBlock",
+    "slug": "flashMessageBlock",
+    "heading": "",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 26,
+    "name": "richTextBlock",
+    "slug": "richTextBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 27,
+    "name": "featureBlock",
+    "slug": "featureBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 28,
+    "name": "infoCardNarrowBlock",
+    "slug": "infoCardNarrowBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 29,
+    "name": "callbackBlock",
+    "slug": "callbackBlock",
+    "heading": "Banner jumbotron s nálepkou",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 30,
+    "name": "contentCardsBlock",
+    "slug": "contentCardsBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 31,
+    "name": "infoCenterFaqBlock",
+    "slug": "infoCenterFaqBlock",
+    "heading": "",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 32,
+    "name": "featureBlock",
+    "slug": "featureBlock",
+    "heading": "Obsah s obrázkem",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 33,
+    "name": "infoDoubleImageBlock",
+    "slug": "infoDoubleImageBlock",
+    "heading": "Obsah s dvojobrázkem",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 34,
+    "name": "featureBlock",
+    "slug": "featureBlock",
+    "heading": "Obsah s obrázkem bez odsazení",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 35,
+    "name": "infoImageBigBlock",
+    "slug": "infoImageBigBlock",
+    "heading": "Obsah s velkým obrázkem",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 36,
+    "name": "richTextBlock",
+    "slug": "richTextBlock",
+    "heading": "Obsah bez obrázku",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 37,
+    "name": "infoVideoBlock",
+    "slug": "infoVideoBlock",
+    "heading": "Obsah s videem",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 38,
+    "name": "callbackBlock",
+    "slug": "callbackBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 40,
+    "name": "contentCardsBlock",
+    "slug": "contentCardsBlock",
+    "heading": "Obsah — karty s odkazem",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 41,
+    "name": "featureApplicationBlock",
+    "slug": "featureApplicationBlock",
+    "heading": "Blok s tlačítky na aplikaci",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 42,
+    "name": "timelineBlock",
+    "slug": "timelineBlock",
+    "heading": "Časová osa",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 43,
+    "name": "contactStripBlock",
+    "slug": "contactStripBlock",
+    "heading": "",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 44,
+    "name": "pressCenterContactBlock",
+    "slug": "pressCenterContactBlock",
+    "heading": "PR sekce",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 45,
+    "name": "productCardHorizontalBlock",
+    "slug": "productCardHorizontalBlock",
+    "heading": "Benefity — karta horizontální",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 46,
+    "name": "productCardsVerticalBlock",
+    "slug": "productCardsVerticalBlock",
+    "heading": "Benefity — karty",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 47,
+    "name": "productCardHorizontalBlock",
+    "slug": "productCardHorizontalBlock",
+    "heading": "Benefity — karty horizontální",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 48,
+    "name": "unknown-48-est-cupidatat-laborum",
+    "slug": null,
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 49,
+    "name": "unknown-49-est-cupidatat-laborum",
+    "slug": null,
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 50,
+    "name": "timelineBlock",
+    "slug": "timelineBlock",
+    "heading": "Obsah s kroky",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 51,
+    "name": "timelineBlock",
+    "slug": "timelineBlock",
+    "heading": "Timeline",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 52,
+    "name": "topManagementCardsBlock",
+    "slug": "topManagementCardsBlock",
+    "heading": "Členové naší základní sestavy",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 53,
+    "name": "contentCardsBlock",
+    "slug": "contentCardsBlock",
+    "heading": "Obsah — karty s videem",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 54,
+    "name": "youtubeVideoBlock",
+    "slug": "youtubeVideoBlock",
+    "heading": "",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 55,
+    "name": "zoneInterestBlock",
+    "slug": "zoneInterestBlock",
+    "heading": "Graf spoření",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 56,
+    "name": "zonkyCalculatorBlock",
+    "slug": "zonkyCalculatorBlock",
+    "heading": "Zonky Rentiér",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 57,
+    "name": "inflationCalculatorBlock",
+    "slug": "inflationCalculatorBlock",
+    "heading": "Inflační kalkulačka",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 58,
+    "name": "loanCalculatorBlock",
+    "slug": "loanCalculatorBlock",
+    "heading": "Půjčková kalkulačka",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 59,
+    "name": "mortgageCalculatorBlock",
+    "slug": "mortgageCalculatorBlock",
+    "heading": "Hypoteční kalkulačka",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 60,
+    "name": "zonkyCalculatorBlock",
+    "slug": "zonkyCalculatorBlock",
+    "heading": "Portu kalkulačka",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 61,
+    "name": "zonkyCalculatorBlock",
+    "slug": "zonkyCalculatorBlock",
+    "heading": "Pordu DIP",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 62,
+    "name": "zonkyCalculatorBlock",
+    "slug": "zonkyCalculatorBlock",
+    "heading": "DPS kalkulačka",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 63,
+    "name": "compareBondsTableBlock",
+    "slug": "compareBondsTableBlock",
+    "heading": "Termínované vklady, ze kterých můžete vybírat",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 64,
+    "name": "compareTableBlock",
+    "slug": "compareTableBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 65,
+    "name": "infoCardNarrowBlock",
+    "slug": "infoCardNarrowBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 66,
+    "name": "logoCarouselBlock",
+    "slug": "logoCarouselBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  },
+  {
+    "index": 67,
+    "name": "faqItemsBlock",
+    "slug": "faqItemsBlock",
+    "heading": "est cupidatat laborum",
+    "hasScreenshot": true,
+    "hasStructure": true,
+    "hasSchemaSuggestion": true,
+    "hasFixture": true
+  }
+]

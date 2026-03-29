@@ -1,0 +1,349 @@
+name: Claude Auto-Estimate
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: 'Issue number to estimate'
+        required: true
+        type: number
+
+# Prevent concurrent runs for the same issue
+concurrency:
+  group: claude-estimate-${{ github.event.issue.number || inputs.issue_number }}
+  cancel-in-progress: true
+
+jobs:
+  estimate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Get issue data
+        id: issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+        run: |
+          ISSUE_DATA=$(gh issue view $ISSUE_NUMBER --json number,title,body,labels)
+          echo "number=$(echo "$ISSUE_DATA" | jq -r '.number')" >> $GITHUB_OUTPUT
+          echo "title=$(echo "$ISSUE_DATA" | jq -r '.title')" >> $GITHUB_OUTPUT
+          echo "labels=$(echo "$ISSUE_DATA" | jq -r '[.labels[].name] | join(", ")')" >> $GITHUB_OUTPUT
+          # Body needs special handling for multiline
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          echo "$ISSUE_DATA" | jq -r '.body // ""' >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Estimate Issue
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # SECURITY: Use toJSON() to sanitize user input and prevent injection
+          prompt: |
+            REPO: ${{ github.repository }}
+            ISSUE NUMBER: ${{ steps.issue.outputs.number }}
+            TITLE: ${{ toJSON(steps.issue.outputs.title) }}
+            BODY: ${{ toJSON(steps.issue.outputs.body) }}
+            LABELS: ${{ steps.issue.outputs.labels }}
+
+            ## CRITICAL INSTRUCTIONS
+
+            Analyze this issue and provide a time estimate for the Airbank Demo project.
+
+            **YOU MUST follow these steps IN ORDER.**
+
+            ### STEP 1: READ AND UNDERSTAND
+
+            a) Read CLAUDE.md completely to understand the project (Next.js + Payload CMS monorepo)
+            b) Analyze the issue description carefully
+            c) This is a monorepo with:
+               - CMS: Payload CMS backend (apps/cms/)
+               - Frontend: Next.js with Tailwind CSS v4 (apps/fe/)
+               - Shared: Auto-generated types (packages/shared/)
+               - Scripts: Content population utilities (scripts/)
+
+            ### STEP 2: CHECK CLARITY
+
+            **IMPORTANT:** Evaluate if the issue is clear enough to implement:
+
+            Ask yourself:
+            - Are the requirements specific and actionable?
+            - Is it clear WHAT exactly needs to change?
+            - Is it clear WHERE the changes should be made?
+            - Are there any ambiguous terms?
+
+            If the issue is UNCLEAR or VAGUE:
+            - Add a "Poznamky" section in your estimate
+            - List specific questions that need clarification
+            - Note assumptions you had to make
+            - Recommend the issue be clarified before implementation
+
+            ### STEP 3: SEARCH CODEBASE
+
+            Find and read ALL relevant files:
+            - Files that will be modified
+            - Similar implementations for reference
+            - Related components and dependencies
+
+            Key directories:
+            - CMS blocks: apps/cms/src/blocks/
+            - CMS collections: apps/cms/src/collections/
+            - Frontend blocks: apps/fe/src/blocks/
+            - Frontend components: apps/fe/src/components/
+            - API client: apps/fe/src/api/client.ts
+            - Scripts: scripts/
+
+            ### STEP 4: CALCULATE ESTIMATE
+
+            Base your estimate on:
+            - CMS schema work (blocks, collections, globals)
+            - Frontend component work (React, Tailwind)
+            - Type generation and integration
+            - Testing and verification
+
+            Size categories:
+            - XS: < 1 hour (trivial change, single file)
+            - S: 1-2 hours (simple change, few files)
+            - M: 2-4 hours (moderate complexity)
+            - L: 4-8 hours (significant feature)
+            - XL: > 8 hours (complex feature, many files)
+
+            ### STEP 5: POST ESTIMATE
+
+            ```bash
+            gh issue comment ${{ steps.issue.outputs.number }} --body "## Automaticky odhad
+
+            **Estimate:** X hodin
+            **Size:** [XS/S/M/L/XL]
+
+            ### Breakdown
+            | Cast | Hodiny |
+            |------|--------|
+            | CMS schema | Xh |
+            | Frontend | Xh |
+            | Testy | Xh |
+            | Review & fixes | Xh |
+
+            ### Soubory k uprave
+            - \`path/to/file1.tsx\` - [co se zmeni]
+            - \`path/to/file2.ts\` - [co se zmeni]
+
+            ### Reasoning
+            - [duvod 1]
+            - [duvod 2]
+
+            ### Poznamky (pokud je issue nejasne)
+            - [Otazky nebo upozorneni na nejasnosti]
+
+            ---
+            _Odhad vygenerovan automaticky. Muze se lisit na zaklade dalsich pozadavku._
+
+            <!-- ESTIMATE_DATA: {\"hours\": X, \"size\": \"[XS/S/M/L/XL]\"} -->
+
+            :robot: Claude"
+            ```
+
+            ### STEP 6: ADD LABEL
+
+            ```bash
+            gh issue edit ${{ steps.issue.outputs.number }} --add-label "estimated"
+            ```
+
+          claude_args: '--model sonnet --allowed-tools "Bash(gh issue comment:*),Bash(gh issue edit:*),Bash(gh issue view:*),Bash(gh label:*),Read,Glob,Grep"'
+
+      - name: Update Project Fields
+        uses: actions/github-script@v7
+        env:
+          PROJECT_NUMBER: "1"
+          PROJECT_OWNER: "etnetera"
+          PROJECT_OWNER_TYPE: "organization"
+          ISSUE_NUMBER: ${{ steps.issue.outputs.number }}
+        with:
+          github-token: ${{ secrets.PROJECT_TOKEN }}
+          script: |
+            const issueNumber = parseInt(process.env.ISSUE_NUMBER);
+            const projectNumber = parseInt(process.env.PROJECT_NUMBER);
+            const projectOwner = process.env.PROJECT_OWNER;
+            const ownerType = process.env.PROJECT_OWNER_TYPE;
+
+            // Get the latest comment to extract estimate data
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              per_page: 10
+            });
+
+            // Find Claude's estimate comment
+            const estimateComment = comments.data.reverse().find(c =>
+              c.body && c.body.includes('ESTIMATE_DATA:')
+            );
+
+            let estimateHours = 1;
+            let size = 'S';
+
+            if (estimateComment) {
+              const match = estimateComment.body.match(/ESTIMATE_DATA:\s*(\{[^}]+\})/);
+              if (match) {
+                try {
+                  const data = JSON.parse(match[1]);
+                  estimateHours = data.hours || 1;
+                  size = data.size || 'S';
+                } catch (e) {
+                  console.log('Failed to parse estimate data:', e);
+                }
+              }
+            }
+
+            console.log(`Estimate: ${estimateHours}h, Size: ${size}`);
+
+            // Get project and field IDs (organization project)
+            const projectQuery = `
+              query($owner: String!, $number: Int!) {
+                organization(login: $owner) {
+                  projectV2(number: $number) {
+                    id
+                    fields(first: 20) {
+                      nodes {
+                        ... on ProjectV2Field {
+                          id
+                          name
+                          dataType
+                        }
+                        ... on ProjectV2SingleSelectField {
+                          id
+                          name
+                          dataType
+                          options {
+                            id
+                            name
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            let projectData;
+            try {
+              projectData = await github.graphql(projectQuery, {
+                owner: projectOwner,
+                number: projectNumber
+              });
+            } catch (e) {
+              console.log('Failed to get project data. Make sure PROJECT_TOKEN has project scope.');
+              console.log('Error:', e.message);
+              return;
+            }
+
+            const project = projectData.organization.projectV2;
+            if (!project) {
+              console.log('Project not found');
+              return;
+            }
+
+            const fields = project.fields.nodes;
+            const estimateField = fields.find(f => f.name === 'Estimate');
+            const sizeField = fields.find(f => f.name === 'Size');
+
+            // Get the project item for this issue
+            const itemQuery = `
+              query($owner: String!, $repo: String!, $issueNumber: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  issue(number: $issueNumber) {
+                    projectItems(first: 10) {
+                      nodes {
+                        id
+                        project {
+                          id
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            const itemData = await github.graphql(itemQuery, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issueNumber: issueNumber
+            });
+
+            const projectItems = itemData.repository.issue.projectItems.nodes;
+            const projectItem = projectItems.find(item => item.project.id === project.id);
+
+            if (!projectItem) {
+              console.log('Issue is not in the project yet');
+              return;
+            }
+
+            // Update Estimate field (number)
+            if (estimateField) {
+              const updateEstimate = `
+                mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Float!) {
+                  updateProjectV2ItemFieldValue(
+                    input: {
+                      projectId: $projectId
+                      itemId: $itemId
+                      fieldId: $fieldId
+                      value: { number: $value }
+                    }
+                  ) {
+                    projectV2Item { id }
+                  }
+                }
+              `;
+
+              await github.graphql(updateEstimate, {
+                projectId: project.id,
+                itemId: projectItem.id,
+                fieldId: estimateField.id,
+                value: estimateHours
+              });
+              console.log(`Updated Estimate to ${estimateHours}h`);
+            }
+
+            // Update Size field (single select)
+            if (sizeField && sizeField.options) {
+              const sizeOption = sizeField.options.find(o => o.name === size);
+              if (sizeOption) {
+                const updateSize = `
+                  mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+                    updateProjectV2ItemFieldValue(
+                      input: {
+                        projectId: $projectId
+                        itemId: $itemId
+                        fieldId: $fieldId
+                        value: { singleSelectOptionId: $optionId }
+                      }
+                    ) {
+                      projectV2Item { id }
+                    }
+                  }
+                `;
+
+                await github.graphql(updateSize, {
+                  projectId: project.id,
+                  itemId: projectItem.id,
+                  fieldId: sizeField.id,
+                  optionId: sizeOption.id
+                });
+                console.log(`Updated Size to ${size}`);
+              }
+            }
+
+            console.log('Project fields updated successfully');

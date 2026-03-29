@@ -1,0 +1,32 @@
+{
+  "id": "fixture-compareBondsTableBlock",
+  "blockType": "compareBondsTableBlock",
+  "title": "Termínované vklady, ze kterých můžete vybírat",
+  "description": "Jaká úroková sazba a délka vkladu se vám hodí nejvíce.",
+  "rows": [
+    {
+      "period": "Vklad na 1 měsíc",
+      "interestRate": "2,7 %",
+      "minAmount": "30 000 Kč",
+      "highlighted": false
+    },
+    {
+      "period": "Vklad na 3 měsíce",
+      "interestRate": "3,0 %",
+      "minAmount": "30 000 Kč",
+      "highlighted": false
+    },
+    {
+      "period": "Vklad na 6 měsíců",
+      "interestRate": "3,0 %",
+      "minAmount": "30 000 Kč",
+      "highlighted": false
+    },
+    {
+      "period": "Vklad na 12 měsíců",
+      "interestRate": "3,0 %",
+      "minAmount": "30 000 Kč",
+      "highlighted": false
+    }
+  ]
+}

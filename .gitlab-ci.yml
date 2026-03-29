@@ -1,0 +1,122 @@
+---
+include:
+  - project: cicd/gitlab/gitlab-ci-templates/app-build
+    ref: 0.6.6
+    file:
+      - image/podman.yml
+      - npm/npm-project-vars.yml
+      - pipelines/npm/pipeline-npm-build.yml
+      - podman/podman-build.yml
+  - project: cicd/gitlab/gitlab-ci-templates/app-deploy
+    ref: 0.6.2
+    file:
+      - pipelines/pipeline-trigger.yml
+
+# Global variables
+variables:
+  RELEASE_BRANCH: master
+  TEST_SCRIPT_NAME: test
+
+# Stages
+stages:
+  - Build
+  - Quality Control
+  - Publish
+  - Deploy
+
+# Common job rules
+.run-manually-on-merge-request:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_DRAFT == "false"
+      when: manual
+      allow_failure: false
+
+.run-manually-on-release-branch-only:
+  rules:
+    - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_COMMIT_BRANCH == $RELEASE_BRANCH
+      when: manual
+      allow_failure: false
+
+.assemble-artifacts:
+  artifacts:
+    paths:
+      - "apps/*/dist/"
+
+.publish-app-image:
+  stage: Publish
+  extends:
+    - .podman
+    - .podman-build
+    - .builder-aks
+  before_script:
+    - !reference [.npm-project-vars, before_script]
+    - export VERSION="$NPM_PROJECT_VERSION"
+    - !reference [.podman-build, before_script]
+
+.deploy-app-trigger:
+  extends:
+    - .pipeline-trigger
+  variables:
+    ASSEMBLE_JOB_NAME: build
+
+.deploy-job-node:
+  extends:
+    - .deploy-app-trigger
+  variables:
+    COPY_DIR_REMOTE_PARENT_PATH: /srv/node/$RCNODE_INSTANCE/app
+    COPY_DIR_REMOTE_NAME_BASE: build
+    COPY_DIR_REMOTE_SYMLINK_NAME: app
+
+.deploy-job-cms:
+  extends:
+    - .deploy-job-node
+  variables:
+    RCNODE_INSTANCE: cms
+    COPY_DIR: apps/cms/dist/
+
+.deploy-job-frontend:
+  extends:
+    - .deploy-job-node
+  variables:
+    RCNODE_INSTANCE: fe
+    COPY_DIR: apps/fe/dist/
+
+# Publish stage
+#publish-app-image-cms:
+#  extends:
+#    - .publish-app-image
+#    - .run-manually-on-merge-request
+#  variables:
+#    EXTRA_BUILD_ARGS: |
+#      WORKSPACE=apps/cms
+#      LABEL_TITLE=cms
+#      LABEL_DESCRIPTION=payload-cms
+
+#publish-app-image-fe:
+#  extends:
+#    - .publish-app-image
+#    - .run-manually-on-release-branch-only
+#  variables:
+#    EXTRA_BUILD_ARGS: |
+#      WORKSPACE=apps/fe
+#      LABEL_TITLE=fe
+#      LABEL_DESCRIPTION=nextjs-fe
+
+# Deploy stage
+#.deploy-environment:
+#  extends:
+#    - .run-manually-on-release-branch-only
+#  variables:
+#    SSH_REMOTE: cicd@server.etn
+
+#deploy-cms-dev:
+#  stage: Deploy
+#  extends:
+#    - .deploy-environment
+#    - .deploy-job-cms
+
+#deploy-fe-dev:
+#  stage: Deploy
+#  extends:
+#    - .deploy-environment
+#    - .deploy-job-frontend

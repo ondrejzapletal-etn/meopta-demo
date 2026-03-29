@@ -1,0 +1,13 @@
+{
+  "id": "fixture-mortgageCalculatorBlock",
+  "blockType": "mortgageCalculatorBlock",
+  "title": "Hypoteční kalkulačka",
+  "minAmount": 500000,
+  "maxAmount": 10000000,
+  "defaultAmount": 3000000,
+  "minYears": 5,
+  "maxYears": 30,
+  "defaultYears": 20,
+  "interestRate": 5.49,
+  "description": "magna nisi consectetur non exercitation"
+}

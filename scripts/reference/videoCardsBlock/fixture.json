@@ -1,0 +1,34 @@
+{
+  "id": "fixture-videoCardsBlock",
+  "blockType": "videoCardsBlock",
+  "title": "Obsah — karty s videem",
+  "items": [
+    {
+      "title": "in nulla in et ipsum",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "in nulla in et ipsum",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "title": "sit velit ut",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "sit velit ut",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "title": "sed velit nostrud",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "sed velit nostrud",
+        "width": 800,
+        "height": 600
+      }
+    }
+  ]
+}

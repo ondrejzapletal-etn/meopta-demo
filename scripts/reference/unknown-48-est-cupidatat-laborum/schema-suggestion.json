@@ -1,0 +1,12 @@
+{
+  "fields": [
+    {
+      "name": "title",
+      "type": "text",
+      "required": true
+    }
+  ],
+  "notes": [
+    "Found 5 inline SVGs — may need icon select field"
+  ]
+}

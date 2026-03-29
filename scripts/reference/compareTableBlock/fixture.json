@@ -1,0 +1,229 @@
+{
+  "id": "fixture-compareTableBlock",
+  "blockType": "compareTableBlock",
+  "title": "est cupidatat laborum",
+  "banks": [
+    {
+      "name": "Air Bank"
+    },
+    {
+      "name": "Revolut"
+    },
+    {
+      "name": "Revolut"
+    },
+    {
+      "name": "Partners Banka"
+    },
+    {
+      "name": "Raiffeisenbank"
+    },
+    {
+      "name": "Česká Spořitelna"
+    },
+    {
+      "name": "Komerční banka"
+    }
+  ],
+  "features": [
+    {
+      "label": "Druh karty",
+      "values": [
+        {
+          "value": "Zahraniční karta",
+          "highlighted": true
+        },
+        {
+          "value": "Standard",
+          "highlighted": false
+        },
+        {
+          "value": "Plus",
+          "highlighted": false
+        },
+        {
+          "value": "Běžný účet",
+          "highlighted": false
+        },
+        {
+          "value": "Běžný účet",
+          "highlighted": false
+        },
+        {
+          "value": "Účet Standard",
+          "highlighted": false
+        },
+        {
+          "value": "Tarif Standard",
+          "highlighted": false
+        }
+      ]
+    },
+    {
+      "label": "Kurz EUR/CZK",
+      "values": [
+        {
+          "value": "25,02",
+          "highlighted": true
+        },
+        {
+          "value": "24,99",
+          "highlighted": false
+        },
+        {
+          "value": "24,99",
+          "highlighted": false
+        },
+        {
+          "value": "24,90",
+          "highlighted": false
+        },
+        {
+          "value": "25,80",
+          "highlighted": false
+        },
+        {
+          "value": "25,66",
+          "highlighted": false
+        },
+        {
+          "value": "25,84",
+          "highlighted": false
+        }
+      ]
+    },
+    {
+      "label": "Bez limitu pro směnu",
+      "values": [
+        {
+          "value": "✓",
+          "highlighted": true
+        },
+        {
+          "value": "25 000 Kč",
+          "highlighted": false
+        },
+        {
+          "value": "25 000 Kč",
+          "highlighted": false
+        },
+        {
+          "value": "25 000 Kč",
+          "highlighted": false
+        },
+        {
+          "value": "✓",
+          "highlighted": false
+        },
+        {
+          "value": "✓",
+          "highlighted": false
+        },
+        {
+          "value": "✓",
+          "highlighted": false
+        }
+      ]
+    },
+    {
+      "label": "Bez příplatku za směnu o víkendu",
+      "values": [
+        {
+          "value": "✓",
+          "highlighted": true
+        },
+        {
+          "value": "1%",
+          "highlighted": false
+        },
+        {
+          "value": "1%",
+          "highlighted": false
+        },
+        {
+          "value": "✓",
+          "highlighted": false
+        },
+        {
+          "value": "✓",
+          "highlighted": false
+        },
+        {
+          "value": "✓",
+          "highlighted": false
+        },
+        {
+          "value": "✓",
+          "highlighted": false
+        }
+      ]
+    },
+    {
+      "label": "Výběry bez poplatku\na omezení",
+      "values": [
+        {
+          "value": "✓",
+          "highlighted": true
+        },
+        {
+          "value": "‎ do 4 500 Kč nebo ‎ do 5 výběrů",
+          "highlighted": false
+        },
+        {
+          "value": "do 4 500 Kč",
+          "highlighted": false
+        },
+        {
+          "value": "✓",
+          "highlighted": false
+        },
+        {
+          "value": "✓",
+          "highlighted": false
+        },
+        {
+          "value": "40 Kč EU / 125 Kč svět",
+          "highlighted": false
+        },
+        {
+          "value": "2 výběry v EU",
+          "highlighted": false
+        }
+      ]
+    },
+    {
+      "label": "Cena za měsíc",
+      "values": [
+        {
+          "value": "0 Kč",
+          "subtitle": "pro aktivní klienty, jinak 100 Kč",
+          "highlighted": true
+        },
+        {
+          "value": "0 Kč",
+          "highlighted": false
+        },
+        {
+          "value": "115 Kč",
+          "highlighted": false
+        },
+        {
+          "value": "0 Kč",
+          "highlighted": false
+        },
+        {
+          "value": "0 Kč",
+          "highlighted": false
+        },
+        {
+          "value": "0 Kč",
+          "highlighted": false
+        },
+        {
+          "value": "39 Kč",
+          "highlighted": false
+        }
+      ]
+    }
+  ]
+}

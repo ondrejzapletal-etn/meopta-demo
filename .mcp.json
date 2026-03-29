@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "airbank-cms": {
+      "type": "streamable-http",
+      "url": "http://localhost:3001/api/mcp"
+    }
+  }
+}

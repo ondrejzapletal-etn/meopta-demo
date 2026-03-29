@@ -1,0 +1,17 @@
+{
+  "fields": [
+    {
+      "name": "title",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "richText"
+    }
+  ],
+  "notes": [
+    "Found 2 inline SVGs — may need icon select field",
+    "Form elements detected — may need special handling"
+  ]
+}

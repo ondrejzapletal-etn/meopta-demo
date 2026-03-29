@@ -1,0 +1,130 @@
+{
+  "id": "fixture-topManagementCardsBlock",
+  "blockType": "topManagementCardsBlock",
+  "title": "Členové naší základní sestavy",
+  "items": [
+    {
+      "name": "Michal Strcula",
+      "role": "Generální ředitel",
+      "linkedinUrl": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Michal Strcula",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Karel Horák",
+      "role": "Ředitel Péče o klienty",
+      "linkedinUrl": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Karel Horák",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Pavel Pfauser",
+      "role": "Finanční ředitel",
+      "linkedinUrl": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Pavel Pfauser",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Martin Popík",
+      "role": "Ředitel Řízení rizik",
+      "linkedinUrl": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Martin Popík",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Martina Kučerová",
+      "role": "Ředitelka právní divize",
+      "linkedinUrl": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Martina Kučerová",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Veronika Horáková",
+      "role": "Ředitelka péče o zaměstnance",
+      "linkedinUrl": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Veronika Horáková",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Markéta Skotnicová",
+      "role": "Ředitelka interního auditu",
+      "linkedinUrl": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Markéta Skotnicová",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Jiří Suchý",
+      "role": "Ředitel divize Produkty a inovace",
+      "linkedinUrl": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Jiří Suchý",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Oldřich Dostál",
+      "role": "Ředitel Marketingu",
+      "linkedinUrl": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Oldřich Dostál",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Ondřej Šňupárek",
+      "role": "Ředitel divize IT Provoz",
+      "linkedinUrl": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Ondřej Šňupárek",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Přemysl Semerád",
+      "role": "Ředitel divize IT Vývoj",
+      "linkedinUrl": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Přemysl Semerád",
+        "width": 800,
+        "height": 600
+      }
+    }
+  ],
+  "linkLabel": "Přidejte se k nám",
+  "linkUrl": "/pracujte-u-nas/"
+}

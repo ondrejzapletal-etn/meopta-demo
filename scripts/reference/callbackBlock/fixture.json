@@ -1,0 +1,17 @@
+{
+  "id": "fixture-callbackBlock",
+  "blockType": "callbackBlock",
+  "title": "est cupidatat laborum",
+  "description": "magna nisi consectetur non exercitation",
+  "linkLabel": "Tempor",
+  "linkUrl": "/",
+  "secondaryLinkLabel": "Occaecat sed ea Lorem",
+  "secondaryLinkUrl": "/",
+  "backgroundColor": "green",
+  "image": {
+    "url": "/placeholder.jpg",
+    "alt": "est cupidatat laborum",
+    "width": 800,
+    "height": 600
+  }
+}

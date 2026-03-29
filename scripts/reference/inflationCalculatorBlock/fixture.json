@@ -1,0 +1,11 @@
+{
+  "id": "fixture-inflationCalculatorBlock",
+  "blockType": "inflationCalculatorBlock",
+  "title": "Inflační kalkulačka",
+  "defaultAmount": 100000,
+  "minYears": 1,
+  "maxYears": 30,
+  "defaultYears": 10,
+  "defaultInflation": 3,
+  "description": "magna nisi consectetur non exercitation"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "fixture-omnichannelBannerBlock",
+  "blockType": "omnichannelBannerBlock",
+  "description": "magna nisi consectetur non exercitation",
+  "items": [
+    {
+      "icon": "chat",
+      "label": "tlačítko",
+      "linkUrl": "/"
+    }
+  ],
+  "backgroundColor": "green"
+}

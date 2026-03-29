@@ -1,0 +1,28 @@
+{
+  "greeting": "Ahoj světe!",
+  "welcome": "Vítejte na naší stránce.",
+  "changeLanguage": "Změnit jazyk",
+  "general": {
+    "siteTitle": "Moje stránka",
+    "menu": "Menu"
+  },
+  "errors": {
+    "404": {
+      "title": "Stránka nebyla nalezena",
+      "description": "Stránka, na kterou jste se snažili přejít, neexistuje."
+    },
+    "500": {
+      "title": "Vnitřní chyba serveru",
+      "description": "Vnitřní chyba serveru. Zkuste to znovu později."
+    }
+  },
+  "meta": {
+    "defaultTitle": "Moje stránka",
+    "defaultDescription": "Vítejte na naší stránce.",
+    "applicationName": "Moje stránka",
+    "etnetera": "Etnetera Core a.s.",
+    "siteName": "Moje stránka",
+    "twitterCreator": "@etnetera",
+    "defaultKeywords": "payload, nextjs, etnetera"
+  }
+}

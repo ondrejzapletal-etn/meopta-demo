@@ -1,0 +1,31 @@
+{
+  "id": "fixture-productCardHorizontalBlock",
+  "blockType": "productCardHorizontalBlock",
+  "title": "Benefity — karty horizontální",
+  "items": [
+    {
+      "title": "dolore ad eiusmod tempor est",
+      "description": "commodo deserunt sed",
+      "linkLabel": "Více informací",
+      "linkUrl": "/"
+    },
+    {
+      "title": "ut amet fugiat cillum",
+      "description": "in anim",
+      "linkLabel": "Více informací",
+      "linkUrl": "/"
+    },
+    {
+      "title": "est cupidatat laborum",
+      "description": "magna nisi consectetur non exercitation",
+      "linkLabel": "",
+      "linkUrl": ""
+    },
+    {
+      "title": "est cupidatat laborum",
+      "description": "magna nisi consectetur non exercitation",
+      "linkLabel": "",
+      "linkUrl": ""
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "fixture-tableCardCollapsibleBlock",
+  "blockType": "tableCardCollapsibleBlock",
+  "title": "Tabulka s ceníkem",
+  "sections": [
+    {
+      "sectionTitle": "sde",
+      "rows": [
+        {
+          "label": "Popisek řádku",
+          "value": "100 Kč"
+        },
+        {
+          "label": "Popisek řádku",
+          "value": "100 Kč"
+        },
+        {
+          "label": "Popisek řádku",
+          "value": "100 Kč"
+        }
+      ]
+    },
+    {
+      "sectionTitle": "wwww",
+      "rows": [
+        {
+          "label": "Popisek řádku",
+          "value": "100 Kč"
+        },
+        {
+          "label": "Popisek řádku",
+          "value": "100 Kč"
+        }
+      ]
+    }
+  ]
+}

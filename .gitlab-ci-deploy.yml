@@ -1,0 +1,18 @@
+include:
+  - project: cicd/gitlab/gitlab-ci-templates/app-deploy
+    ref: 0.6.1
+    file:
+      - pipelines/ssh/pipeline-ssh-rcnode-deploy.yml
+
+# Global variables
+variables:
+  DEPLOY_DATACENTER: dc_mit
+
+deploy-app:
+  extends:
+    - .deploy-app-job
+  script:
+    - !reference [ .ssh-deploy-rcnode, script ]
+    - ssh $SSH_REMOTE "chmod -R g+w $COPY_DIR_REMOTE_PARENT_PATH/$COPY_DIR_REMOTE_NAME"
+    - ssh $SSH_REMOTE "mkdir $COPY_DIR_REMOTE_PARENT_PATH/$COPY_DIR_REMOTE_NAME/.next/cache"
+    - ssh $SSH_REMOTE "chmod -R o+w $COPY_DIR_REMOTE_PARENT_PATH/$COPY_DIR_REMOTE_NAME/.next/cache"

@@ -1,0 +1,240 @@
+{
+  "id": "fixture-exchangeRatesBlock",
+  "blockType": "exchangeRatesBlock",
+  "title": "Kurzovní lístek",
+  "lastUpdated": "‹únor 2026›poútstčtpásone2627282930311234567891011121314151617181920212223242526272812345678",
+  "rates": [
+    {
+      "currencyCode": "26",
+      "currencyName": "26",
+      "country": "",
+      "buyRate": "27",
+      "sellRate": "28",
+      "midRate": "29"
+    },
+    {
+      "currencyCode": "2",
+      "currencyName": "2",
+      "country": "",
+      "buyRate": "3",
+      "sellRate": "4",
+      "midRate": "5"
+    },
+    {
+      "currencyCode": "9",
+      "currencyName": "9",
+      "country": "",
+      "buyRate": "10",
+      "sellRate": "11",
+      "midRate": "12"
+    },
+    {
+      "currencyCode": "16",
+      "currencyName": "16",
+      "country": "",
+      "buyRate": "17",
+      "sellRate": "18",
+      "midRate": "19"
+    },
+    {
+      "currencyCode": "23",
+      "currencyName": "23",
+      "country": "",
+      "buyRate": "24",
+      "sellRate": "25",
+      "midRate": "26"
+    },
+    {
+      "currencyCode": "2",
+      "currencyName": "2",
+      "country": "",
+      "buyRate": "3",
+      "sellRate": "4",
+      "midRate": "5"
+    },
+    {
+      "currencyCode": "AUS",
+      "currencyName": "Austrálie",
+      "country": "",
+      "buyRate": "AUD",
+      "sellRate": "1",
+      "midRate": "13,946"
+    },
+    {
+      "currencyCode": "ČÍN",
+      "currencyName": "Čína",
+      "country": "",
+      "buyRate": "CNY",
+      "sellRate": "1",
+      "midRate": "2,861"
+    },
+    {
+      "currencyCode": "DÁN",
+      "currencyName": "Dánsko",
+      "country": "",
+      "buyRate": "DKK",
+      "sellRate": "1",
+      "midRate": "3,138"
+    },
+    {
+      "currencyCode": "EVR",
+      "currencyName": "Evropská unie",
+      "country": "",
+      "buyRate": "EUR",
+      "sellRate": "1",
+      "midRate": "23,445"
+    },
+    {
+      "currencyCode": "IND",
+      "currencyName": "Indonésie",
+      "country": "",
+      "buyRate": "IDR",
+      "sellRate": "1000",
+      "midRate": "1,174"
+    },
+    {
+      "currencyCode": "ISL",
+      "currencyName": "Island",
+      "country": "",
+      "buyRate": "ISK",
+      "sellRate": "100",
+      "midRate": "16,145"
+    },
+    {
+      "currencyCode": "KAN",
+      "currencyName": "Kanada",
+      "country": "",
+      "buyRate": "CAD",
+      "sellRate": "1",
+      "midRate": "14,508"
+    },
+    {
+      "currencyCode": "MAĎ",
+      "currencyName": "Maďarsko",
+      "country": "",
+      "buyRate": "HUF",
+      "sellRate": "100",
+      "midRate": "6,188"
+    },
+    {
+      "currencyCode": "NOR",
+      "currencyName": "Norsko",
+      "country": "",
+      "buyRate": "NOK",
+      "sellRate": "1",
+      "midRate": "2,066"
+    },
+    {
+      "currencyCode": "NOV",
+      "currencyName": "Nový Zéland",
+      "country": "",
+      "buyRate": "NZD",
+      "sellRate": "1",
+      "midRate": "11,912"
+    },
+    {
+      "currencyCode": "POL",
+      "currencyName": "Polsko",
+      "country": "",
+      "buyRate": "PLN",
+      "sellRate": "1",
+      "midRate": "5,563"
+    },
+    {
+      "currencyCode": "RUM",
+      "currencyName": "Rumunsko",
+      "country": "",
+      "buyRate": "RON",
+      "sellRate": "1",
+      "midRate": "4,603"
+    },
+    {
+      "currencyCode": "RUS",
+      "currencyName": "Rusko",
+      "country": "",
+      "buyRate": "RUB",
+      "sellRate": "100",
+      "midRate": "25,599"
+    },
+    {
+      "currencyCode": "SPO",
+      "currencyName": "Spojené arabské emiráty",
+      "country": "",
+      "buyRate": "AED",
+      "sellRate": "1",
+      "midRate": "5,384"
+    },
+    {
+      "currencyCode": "SRB",
+      "currencyName": "Srbsko",
+      "country": "",
+      "buyRate": "RSD",
+      "sellRate": "100",
+      "midRate": "19,964"
+    },
+    {
+      "currencyCode": "ŠVÉ",
+      "currencyName": "Švédsko",
+      "country": "",
+      "buyRate": "SEK",
+      "sellRate": "1",
+      "midRate": "2,209"
+    },
+    {
+      "currencyCode": "ŠVÝ",
+      "currencyName": "Švýcarsko",
+      "country": "",
+      "buyRate": "CHF",
+      "sellRate": "1",
+      "midRate": "25,664"
+    },
+    {
+      "currencyCode": "THA",
+      "currencyName": "Thajsko",
+      "country": "",
+      "buyRate": "THB",
+      "sellRate": "100",
+      "midRate": "63,514"
+    },
+    {
+      "currencyCode": "TUR",
+      "currencyName": "Turecko",
+      "country": "",
+      "buyRate": "TRY",
+      "sellRate": "100",
+      "midRate": "45,219"
+    },
+    {
+      "currencyCode": "UKR",
+      "currencyName": "Ukrajina",
+      "country": "",
+      "buyRate": "UAH",
+      "sellRate": "1",
+      "midRate": "0,459"
+    },
+    {
+      "currencyCode": "USA",
+      "currencyName": "USA",
+      "country": "",
+      "buyRate": "USD",
+      "sellRate": "1",
+      "midRate": "19,778"
+    },
+    {
+      "currencyCode": "VEL",
+      "currencyName": "Velká Británie",
+      "country": "",
+      "buyRate": "GBP",
+      "sellRate": "1",
+      "midRate": "26,898"
+    },
+    {
+      "currencyCode": "VIE",
+      "currencyName": "Vietnam",
+      "country": "",
+      "buyRate": "VND",
+      "sellRate": "1000",
+      "midRate": "0,762"
+    }
+  ]
+}

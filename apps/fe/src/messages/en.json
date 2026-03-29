@@ -1,0 +1,28 @@
+{
+  "greeting": "Hello world!",
+  "welcome": "Welcome to our page.",
+  "changeLanguage": "Change language",
+  "general": {
+    "siteTitle": "My website",
+    "menu": "Menu"
+  },
+  "errors": {
+    "404": {
+      "title": "Page not found",
+      "description": "The page you are trying to access does not exist."
+    },
+    "500": {
+      "title": "Internal server error",
+      "description": "Internal server error. Please try again later."
+    }
+  },
+  "meta": {
+    "defaultTitle": "My website",
+    "defaultDescription": "Welcome to our page.",
+    "applicationName": "My website",
+    "etnetera": "Etnetera Core a.s.",
+    "siteName": "My website",
+    "twitterCreator": "@etnetera",
+    "defaultKeywords": "payload, nextjs, etnetera"
+  }
+}

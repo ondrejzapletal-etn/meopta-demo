@@ -1,0 +1,13 @@
+services:
+   postgres:
+      image: postgres:16
+      volumes:
+        - data:/var/lib/postgresql/data
+      ports:
+        - "5432:5432"
+      environment:
+        POSTGRES_PASSWORD: payload
+        POSTGRES_USER: payload
+
+volumes:
+  data:

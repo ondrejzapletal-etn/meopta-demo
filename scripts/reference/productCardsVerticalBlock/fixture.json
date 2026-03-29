@@ -1,0 +1,28 @@
+{
+  "id": "fixture-productCardsVerticalBlock",
+  "blockType": "productCardsVerticalBlock",
+  "title": "Benefity — karty",
+  "items": [
+    {
+      "icon": "creditCard",
+      "title": "dolore ad eiusmod tempor est",
+      "description": "",
+      "linkLabel": "",
+      "linkUrl": "/"
+    },
+    {
+      "icon": "creditCard",
+      "title": "ut amet fugiat cillum",
+      "description": "",
+      "linkLabel": "",
+      "linkUrl": "/"
+    },
+    {
+      "icon": "creditCard",
+      "title": "sed commodo dolo",
+      "description": "",
+      "linkLabel": "",
+      "linkUrl": "/"
+    }
+  ]
+}

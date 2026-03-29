@@ -1,0 +1,55 @@
+{
+  "id": "fixture-heroWithImageBlock",
+  "blockType": "heroWithImageBlock",
+  "backgroundColor": "lightGrey",
+  "imagePosition": "right",
+  "title": "Hero s obrázkem",
+  "description": {
+    "root": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "magna nisi consectetur non exercitation",
+              "version": 1
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "textFormat": 0,
+          "version": 1
+        }
+      ],
+      "direction": "ltr",
+      "format": "",
+      "indent": 0,
+      "version": 1
+    }
+  },
+  "links": [
+    {
+      "label": "Tempor",
+      "url": "/",
+      "appearance": "primary"
+    },
+    {
+      "label": "Occaecat sed ea Lorem",
+      "url": "/",
+      "appearance": "outline"
+    }
+  ],
+  "image": {
+    "url": "/placeholder.jpg",
+    "alt": "id esse laboris",
+    "width": 800,
+    "height": 600
+  }
+}

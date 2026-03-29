@@ -1,0 +1,34 @@
+{
+  "fields": [
+    {
+      "name": "description",
+      "type": "textarea"
+    },
+    {
+      "name": "items",
+      "type": "array",
+      "children": [
+        {
+          "name": "description",
+          "type": "textarea"
+        },
+        {
+          "name": "linkLabel",
+          "type": "text"
+        },
+        {
+          "name": "linkUrl",
+          "type": "text"
+        },
+        {
+          "name": "icon",
+          "type": "select"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Detected 4 fields in repeated items",
+    "Found 16 inline SVGs — may need icon select field"
+  ]
+}

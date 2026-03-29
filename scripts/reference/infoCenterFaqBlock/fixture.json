@@ -1,0 +1,46 @@
+{
+  "id": "fixture-infoCenterFaqBlock",
+  "blockType": "infoCenterFaqBlock",
+  "items": [
+    {
+      "icon": "info",
+      "question": "Spárování mobilní aplikace",
+      "url": "/co-vas-nejvic-zajima/sparovani-mobilni-aplikace/"
+    },
+    {
+      "icon": "info",
+      "question": "Doručení karty",
+      "url": "/co-vas-nejvic-zajima/doruceni-karty/"
+    },
+    {
+      "icon": "info",
+      "question": "Špatně odeslaná platba",
+      "url": "/co-vas-nejvic-zajima/spatne-odeslana-platba/"
+    },
+    {
+      "icon": "info",
+      "question": "Storno karetní blokace",
+      "url": "/co-vas-nejvic-zajima/storno-karetni-blokace/"
+    },
+    {
+      "icon": "info",
+      "question": "Apple Pay",
+      "url": "/co-vas-nejvic-zajima/apple-pay/"
+    },
+    {
+      "icon": "info",
+      "question": "Google Pay",
+      "url": "/co-vas-nejvic-zajima/google-pay/"
+    },
+    {
+      "icon": "info",
+      "question": "Exekuce a výplata životního minima",
+      "url": "/co-vas-nejvic-zajima/exekuce-a-vyplata-zivotniho-minima/"
+    },
+    {
+      "icon": "info",
+      "question": "Nepřišla mi odměna 300 korun",
+      "url": "/co-vas-nejvic-zajima/neprisla-mi-odmena-300-korun/"
+    }
+  ]
+}

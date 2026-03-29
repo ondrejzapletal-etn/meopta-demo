@@ -1,0 +1,27 @@
+{
+  "id": "fixture-timelineBlock",
+  "blockType": "timelineBlock",
+  "title": "Timeline",
+  "items": [
+    {
+      "year": "2016",
+      "title": "2016",
+      "description": "aute eiusmod irure minim velit"
+    },
+    {
+      "year": "2017",
+      "title": "2017",
+      "description": "officia dolore"
+    },
+    {
+      "year": "2018",
+      "title": "2018",
+      "description": "sunt dolore mollit veniam"
+    },
+    {
+      "year": "2019",
+      "title": "2019",
+      "description": "aliquip occaecat sunt ad"
+    }
+  ]
+}

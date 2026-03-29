@@ -1,0 +1,84 @@
+{
+  "id": "fixture-infoCardNarrowBlock",
+  "blockType": "infoCardNarrowBlock",
+  "title": "est cupidatat laborum",
+  "items": [
+    {
+      "number": 5,
+      "title": "Vše v aplikaci jednoduše",
+      "description": "",
+      "linkLabel": "Vše v aplikaci jednoduše",
+      "linkUrl": "/100-duvodu/5-vse-v-aplikaci-jednoduse/"
+    },
+    {
+      "number": 98,
+      "title": "Více výhod pro věrné klienty",
+      "description": "",
+      "linkLabel": "Více výhod pro věrné klienty",
+      "linkUrl": "/100-duvodu/98-vice-vyhod-pro-verne-klienty/"
+    },
+    {
+      "number": 61,
+      "title": "Účet a většina služeb zdarma",
+      "description": "",
+      "linkLabel": "Účet a většina služeb zdarma",
+      "linkUrl": "/100-duvodu/61-ucet-a-vetsina-sluzeb-zdarma/"
+    },
+    {
+      "number": 38,
+      "title": "Založení účtu přes mobil",
+      "description": "",
+      "linkLabel": "Založení účtu přes mobil",
+      "linkUrl": "/100-duvodu/38-zalozeni-uctu-pres-mobil/"
+    },
+    {
+      "number": 36,
+      "title": "Až 10 účtů zdarma pro různé potřeby",
+      "description": "",
+      "linkLabel": "Až 10 účtů zdarma pro různé potřeby",
+      "linkUrl": "https://www.airbank.cz/produkty/bezny-ucet/vice-uctu/"
+    },
+    {
+      "number": 56,
+      "title": "Výhody navíc díky Unity",
+      "description": "",
+      "linkLabel": "Výhody navíc díky Unity",
+      "linkUrl": "/100-duvodu/56-vyhody-navic-diky-unity/"
+    },
+    {
+      "number": 17,
+      "title": "Virtuální karty pro platby bez obav",
+      "description": "",
+      "linkLabel": "Virtuální karty pro platby bez obav",
+      "linkUrl": "/100-duvodu/17-virtualni-karty-pro-platby-bez-obav/"
+    },
+    {
+      "number": 41,
+      "title": "Snadné rozdělení společné útraty",
+      "description": "",
+      "linkLabel": "Snadné rozdělení společné útraty",
+      "linkUrl": "/100-duvodu/41-snadne-rozdeleni-spolecne-utraty/"
+    },
+    {
+      "number": 20,
+      "title": "Snadné spárování nového telefonu",
+      "description": "",
+      "linkLabel": "Snadné spárování nového telefonu",
+      "linkUrl": "/100-duvodu/20-snadne-sparovani-noveho-telefonu/"
+    },
+    {
+      "number": 69,
+      "title": "Úspory díky Odměnám za placení",
+      "description": "",
+      "linkLabel": "Úspory díky Odměnám za placení",
+      "linkUrl": "/100-duvodu/69-uspory-diky-odmenam-za-placeni/"
+    },
+    {
+      "number": 66,
+      "title": "Tuzemské a SEPA platby zdarma",
+      "description": "",
+      "linkLabel": "Tuzemské a SEPA platby zdarma",
+      "linkUrl": "/100-duvodu/66-tuzemske-a-sepa-platby-zdarma/"
+    }
+  ]
+}

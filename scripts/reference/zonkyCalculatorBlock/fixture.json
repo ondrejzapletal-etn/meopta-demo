@@ -1,0 +1,13 @@
+{
+  "id": "fixture-zonkyCalculatorBlock",
+  "blockType": "zonkyCalculatorBlock",
+  "title": "DPS kalkulačka",
+  "minAmount": 10000,
+  "maxAmount": 5000000,
+  "defaultAmount": 500000,
+  "minYears": 1,
+  "maxYears": 30,
+  "defaultYears": 10,
+  "expectedReturn": 7,
+  "description": "magna nisi consectetur non exercitation"
+}

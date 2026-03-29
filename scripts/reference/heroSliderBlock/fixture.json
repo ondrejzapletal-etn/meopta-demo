@@ -1,0 +1,36 @@
+{
+  "id": "fixture-heroSliderBlock",
+  "blockType": "heroSliderBlock",
+  "slides": [
+    {
+      "title": "HERO s obrázkem ve slideru",
+      "description": "Staňte se v září naším klientem, propojte si účet s naší mobilní aplikací a my vám dáme na její vyzkoušení 500 Kč.",
+      "backgroundColor": "green",
+      "linkLabel": "Chci účet",
+      "linkUrl": "/",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "id esse laboris",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "title": "est cupidatat laborum",
+      "description": "magna nisi consectetur non exercitation",
+      "backgroundColor": "green",
+      "linkLabel": "Tempor",
+      "linkUrl": "/",
+      "secondaryLinkLabel": "Occaecat sed ea Lorem",
+      "secondaryLinkUrl": "/",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "id esse laboris",
+        "width": 800,
+        "height": 600
+      }
+    }
+  ],
+  "autoPlay": true,
+  "autoPlayInterval": 5000
+}

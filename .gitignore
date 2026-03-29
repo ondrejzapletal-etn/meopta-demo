@@ -1,0 +1,35 @@
+# IDE specific files
+.idea
+.vscode
+.DS_Store
+.cursor
+
+# Environment variables
+.env
+
+# Generated images
+scripts/generated
+
+# Build outputs
+dist
+build
+out
+media
+.next
+
+# Logs
+*.log
+
+# Dependencies
+node_modules
+
+# AI stuff
+.playwright-cli
+
+# TS
+tsconfig.tsbuildinfo
+
+# Claude stuff
+/.playwright/
+/.claude/skills/
+/test-results/

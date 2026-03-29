@@ -1,0 +1,53 @@
+{
+  "id": "fixture-benefitsWithListBlock",
+  "blockType": "benefitsWithListBlock",
+  "title": "S kartou menších benefitů",
+  "description": "magna nisi consectetur non exercitation",
+  "cards": [
+    {
+      "title": "labore et amet",
+      "text": "sed",
+      "icon": {
+        "url": "/placeholder.jpg",
+        "alt": "card-icon-0",
+        "width": 56,
+        "height": 56
+      }
+    },
+    {
+      "title": "anim eu dolore sed eiusmod",
+      "text": "est",
+      "icon": {
+        "url": "/placeholder.jpg",
+        "alt": "card-icon-1",
+        "width": 56,
+        "height": 56
+      }
+    },
+    {
+      "title": "consectetur anim sed",
+      "text": "velit est deserunt",
+      "icon": {
+        "url": "/placeholder.jpg",
+        "alt": "card-icon-2",
+        "width": 56,
+        "height": 56
+      }
+    }
+  ],
+  "items": [
+    {
+      "text": "magna nisi consectetur non exercitation"
+    },
+    {
+      "text": "magna nisi consectetur non exercitation"
+    },
+    {
+      "text": "magna nisi consectetur non exercitation"
+    },
+    {
+      "text": "magna nisi consectetur non exercitation"
+    }
+  ],
+  "expanded": false
+}

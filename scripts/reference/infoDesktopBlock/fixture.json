@@ -1,0 +1,47 @@
+{
+  "id": "fixture-infoDesktopBlock",
+  "blockType": "infoDesktopBlock",
+  "title": "Obsah s obrázkem",
+  "description": {
+    "root": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "magna nisi consectetur non exercitation",
+              "version": 1
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "textFormat": 0,
+          "version": 1
+        }
+      ],
+      "direction": "ltr",
+      "format": "",
+      "indent": 0,
+      "version": 1
+    }
+  },
+  "imagePosition": "right",
+  "backgroundColor": "white",
+  "linkLabel": "Elit quis sit id Excepteur",
+  "linkUrl": "/",
+  "secondaryLinkLabel": "Dolor consequat aute sit dolore",
+  "secondaryLinkUrl": "/",
+  "image": {
+    "url": "/placeholder.jpg",
+    "alt": "Obsah s obrázkem",
+    "width": 800,
+    "height": 600
+  }
+}

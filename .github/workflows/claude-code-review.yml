@@ -1,0 +1,68 @@
+name: Claude Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+
+jobs:
+  claude-review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: read
+      id-token: write
+      actions: write
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Run Claude Code Review
+        id: claude-review
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
+
+            Please review this pull request and provide feedback on:
+            - Code quality and best practices
+            - Potential bugs or issues
+            - Performance considerations
+            - Security concerns
+            - Test coverage
+
+            Use the repository's CLAUDE.md for guidance on style and conventions. Be constructive and helpful in your feedback.
+
+            IMPORTANT: At the end of your review, if there are Critical or Major issues, add this exact line:
+            `<!-- NEEDS_FIX: true -->`
+
+            If there are no Critical or Major issues (only minor suggestions), add:
+            `<!-- NEEDS_FIX: false -->`
+
+            Use `gh pr comment` with your Bash tool to leave your review as a comment on the PR.
+
+          claude_args: '--allowed-tools "Bash(gh issue view:*),Bash(gh search:*),Bash(gh issue list:*),Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr list:*)"'
+
+      - name: Check if fixes needed and trigger fix workflow
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+        run: |
+          # Get the latest comment from Claude
+          COMMENT=$(gh pr view ${{ github.event.pull_request.number }} --comments --json comments --jq '.comments | map(select(.author.login == "claude" or .author.login == "claude[bot]")) | last | .body')
+
+          # Check for critical/major issues
+          if echo "$COMMENT" | grep -qiE "(Critical|Major|CRITICAL|MAJOR)" && ! echo "$COMMENT" | grep -q "NEEDS_FIX: false"; then
+            echo "Critical/Major issues found, triggering fix workflow..."
+            gh workflow run "Claude Fix Review Issues" \
+              -f pr_number=${{ github.event.pull_request.number }} \
+              -f pr_branch=${{ github.event.pull_request.head.ref }}
+            echo "Fix workflow triggered"
+          else
+            echo "No critical/major issues found, skipping fix workflow"
+          fi

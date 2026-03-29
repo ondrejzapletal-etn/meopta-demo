@@ -1,0 +1,498 @@
+name: Claude Auto-Implement
+
+on:
+  issues:
+    types: [labeled]
+
+# Prevent concurrent runs for the same issue
+concurrency:
+  group: claude-implement-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  # First job: Check if user has write permission
+  check-permission:
+    if: github.event.label.name == 'claude-implement' && github.event.sender.type == 'User'
+    runs-on: ubuntu-latest
+    outputs:
+      has_permission: ${{ steps.check.outputs.has_permission }}
+    steps:
+      - name: Check collaborator permission
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PERMISSION=$(gh api repos/${{ github.repository }}/collaborators/${{ github.actor }}/permission --jq '.permission' 2>/dev/null || echo "none")
+          echo "Permission level: $PERMISSION"
+          if [[ "$PERMISSION" == "admin" || "$PERMISSION" == "write" ]]; then
+            echo "has_permission=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_permission=false" >> $GITHUB_OUTPUT
+            echo "::error::User ${{ github.actor }} does not have write permission (has: $PERMISSION)"
+          fi
+
+  implement:
+    needs: check-permission
+    if: needs.check-permission.outputs.has_permission == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+
+    steps:
+      - name: Record start time
+        id: start
+        run: echo "time=$(date +%s)" >> $GITHUB_OUTPUT
+
+      - name: Set issue to In Progress
+        uses: actions/github-script@v7
+        env:
+          PROJECT_NUMBER: "1"
+          PROJECT_OWNER: "etnetera"
+        with:
+          github-token: ${{ secrets.PROJECT_TOKEN }}
+          script: |
+            const issueNumber = context.payload.issue.number;
+            const projectNumber = parseInt(process.env.PROJECT_NUMBER);
+            const projectOwner = process.env.PROJECT_OWNER;
+
+            const projectQuery = `
+              query($owner: String!, $number: Int!) {
+                organization(login: $owner) {
+                  projectV2(number: $number) {
+                    id
+                    fields(first: 20) {
+                      nodes {
+                        ... on ProjectV2SingleSelectField {
+                          id
+                          name
+                          options { id name }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            try {
+              const projectData = await github.graphql(projectQuery, {
+                owner: projectOwner,
+                number: projectNumber
+              });
+
+              const project = projectData.organization.projectV2;
+              if (!project) {
+                console.log('Project not found');
+                return;
+              }
+
+              const statusField = project.fields.nodes.find(f => f.name === 'Status');
+              if (!statusField) {
+                console.log('Status field not found');
+                return;
+              }
+
+              const inProgressOption = statusField.options.find(o =>
+                o.name === 'In Progress' || o.name === 'In progress'
+              );
+              if (!inProgressOption) {
+                console.log('In Progress option not found');
+                return;
+              }
+
+              const itemQuery = `
+                query($owner: String!, $repo: String!, $issueNumber: Int!) {
+                  repository(owner: $owner, name: $repo) {
+                    issue(number: $issueNumber) {
+                      projectItems(first: 10) {
+                        nodes {
+                          id
+                          project { id }
+                        }
+                      }
+                    }
+                  }
+                }
+              `;
+
+              const itemData = await github.graphql(itemQuery, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issueNumber: issueNumber
+              });
+
+              const projectItem = itemData.repository.issue.projectItems.nodes
+                .find(item => item.project.id === project.id);
+
+              if (!projectItem) {
+                console.log('Issue not in project');
+                return;
+              }
+
+              const mutation = `
+                mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+                  updateProjectV2ItemFieldValue(
+                    input: {
+                      projectId: $projectId
+                      itemId: $itemId
+                      fieldId: $fieldId
+                      value: { singleSelectOptionId: $optionId }
+                    }
+                  ) {
+                    projectV2Item { id }
+                  }
+                }
+              `;
+
+              await github.graphql(mutation, {
+                projectId: project.id,
+                itemId: projectItem.id,
+                fieldId: statusField.id,
+                optionId: inProgressOption.id
+              });
+
+              console.log('Set issue status to In Progress');
+            } catch (e) {
+              console.log('Failed to update status:', e.message);
+            }
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Implement Issue
+        id: implement
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.PROJECT_TOKEN }}
+          track_progress: true
+          # SECURITY: Use toJSON() to sanitize user input and prevent injection
+          prompt: |
+            REPO: ${{ github.repository }}
+            ISSUE NUMBER: ${{ github.event.issue.number }}
+            TITLE: ${{ toJSON(github.event.issue.title) }}
+            BODY: ${{ toJSON(github.event.issue.body) }}
+
+            ## CRITICAL INSTRUCTIONS - READ COMPLETELY BEFORE ACTING
+
+            You are implementing a feature/fix for the Airbank Demo project (Next.js + Payload CMS monorepo).
+
+            **YOU MUST follow these steps IN ORDER. Do NOT skip any step.**
+
+            ### STEP 1: UNDERSTAND (no coding yet!)
+
+            First, read and understand WITHOUT writing any code:
+
+            a) Read CLAUDE.md completely - this is the master instruction file
+            b) Read ALL files that might be affected by this issue
+            c) Understand existing patterns in similar code
+
+            Project structure:
+            - CMS: Payload CMS backend (apps/cms/) - port 3001
+            - Frontend: Next.js + Tailwind CSS v4 (apps/fe/) - port 3000
+            - Shared: Auto-generated Payload types (packages/shared/)
+            - Scripts: Content population utilities (scripts/)
+
+            **IMPORTANT:** If the issue requirements are unclear or ambiguous:
+            - Comment on the issue asking for clarification using `gh issue comment`
+            - List specific questions about what is expected
+            - DO NOT guess or make assumptions
+
+            ### STEP 2: PLAN (think hard)
+
+            Before writing code, create a mental plan:
+            - List every file you will modify
+            - Describe each specific change
+            - Identify potential risks
+
+            ### STEP 3: CREATE BRANCH
+            ```bash
+            git checkout -b feature/issue-${{ github.event.issue.number }}
+            ```
+
+            ### STEP 4: IMPLEMENT (small steps)
+
+            Make changes following these rules:
+            - One logical change at a time
+            - Follow existing patterns in the codebase
+            - Use TypeScript with strict types (no `any`)
+            - Use Tailwind CSS v4 with Air Bank design tokens (see CLAUDE.md)
+            - If adding a new block: CMS schema + Frontend component + type generation
+
+            After EACH change, verify:
+            ```bash
+            npm run tsc
+            npm run lint
+            ```
+
+            ### STEP 5: FINAL VERIFICATION
+
+            Before committing, verify:
+            - [ ] ALL requirements from the issue are addressed
+            - [ ] No unintended side effects
+            - [ ] Code follows existing patterns
+            - [ ] TypeScript and ESLint pass
+
+            ### STEP 6: COMMIT AND PUSH
+            ```bash
+            git add -A
+            git commit -m "feat: implement issue #${{ github.event.issue.number }}"
+            git push -u origin feature/issue-${{ github.event.issue.number }}
+            ```
+
+            ### STEP 7: CREATE PULL REQUEST (REQUIRED)
+
+            YOU MUST create a PR with a detailed description:
+            ```bash
+            gh pr create --base main --title "feat: ${{ github.event.issue.title }}" --body "Closes #${{ github.event.issue.number }}
+
+            ## Changes
+            - [List each specific change made]
+
+            ## Verification
+            - [x] TypeScript passes
+            - [x] ESLint passes
+            - [x] All issue requirements addressed"
+            ```
+
+          claude_args: '--model opus --allowed-tools "Bash(git:*),Bash(gh pr:*),Bash(gh issue comment:*),Bash(gh issue view:*),Bash(npm:*),Bash(npx:*),Read,Write,Edit,Glob,Grep"'
+
+      - name: Ensure PR exists
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: |
+          BRANCH=$(gh api repos/${{ github.repository }}/branches --jq '.[].name | select(startswith("claude/issue-${{ github.event.issue.number }}") or startswith("feature/issue-${{ github.event.issue.number }}"))' | head -1)
+
+          if [ -z "$BRANCH" ]; then
+            echo "No branch found for issue #${ISSUE_NUMBER}"
+            exit 0
+          fi
+
+          echo "Found branch: $BRANCH"
+
+          EXISTING_PR=$(gh pr list --head "$BRANCH" --json number --jq '.[0].number')
+
+          if [ -n "$EXISTING_PR" ]; then
+            echo "PR #${EXISTING_PR} already exists for branch $BRANCH"
+          else
+            echo "Creating PR for branch $BRANCH"
+            gh pr create \
+              --head "$BRANCH" \
+              --base main \
+              --title "feat: ${ISSUE_TITLE}" \
+              --body "Closes #${ISSUE_NUMBER}
+
+            Generated with [Claude Code](https://claude.ai/code)"
+          fi
+
+      - name: Log AI time
+        if: always()
+        id: log_time
+        uses: actions/github-script@v7
+        env:
+          START_TIME: ${{ steps.start.outputs.time }}
+        with:
+          script: |
+            const startTime = parseInt(process.env.START_TIME);
+            const endTime = Math.floor(Date.now() / 1000);
+            const durationSeconds = endTime - startTime;
+            const durationMinutes = Math.ceil(durationSeconds / 60);
+            const durationHours = (durationMinutes / 60).toFixed(1);
+
+            const body = `**AI Time logged:** ${durationHours}h (${durationMinutes} min)\n` +
+                        `**Workflow:** claude-implement\n` +
+                        `**Work Type:** ai\n\n` +
+                        `_Automaticky zaznamenano z GitHub Actions_`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: body
+            });
+
+            core.setOutput('minutes', durationMinutes);
+            console.log(`AI time logged: ${durationMinutes} minutes (${durationHours}h)`);
+
+      - name: Update Project Fields
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          PROJECT_NUMBER: "1"
+          PROJECT_OWNER: "etnetera"
+          MINUTES: ${{ steps.log_time.outputs.minutes }}
+        with:
+          github-token: ${{ secrets.PROJECT_TOKEN }}
+          script: |
+            const issueNumber = context.payload.issue.number;
+            const projectNumber = parseInt(process.env.PROJECT_NUMBER);
+            const projectOwner = process.env.PROJECT_OWNER;
+            const minutes = parseInt(process.env.MINUTES) || 0;
+
+            const projectQuery = `
+              query($owner: String!, $number: Int!) {
+                organization(login: $owner) {
+                  projectV2(number: $number) {
+                    id
+                    fields(first: 20) {
+                      nodes {
+                        ... on ProjectV2Field {
+                          id
+                          name
+                          dataType
+                        }
+                        ... on ProjectV2SingleSelectField {
+                          id
+                          name
+                          dataType
+                          options {
+                            id
+                            name
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            let projectData;
+            try {
+              projectData = await github.graphql(projectQuery, {
+                owner: projectOwner,
+                number: projectNumber
+              });
+            } catch (e) {
+              console.log('Failed to get project data:', e.message);
+              return;
+            }
+
+            const project = projectData.organization.projectV2;
+            if (!project) {
+              console.log('Project not found');
+              return;
+            }
+
+            const fields = project.fields.nodes;
+            const timeLoggedField = fields.find(f => f.name === 'Time Logged');
+            const workTypeField = fields.find(f => f.name === 'Work Type');
+
+            const itemQuery = `
+              query($owner: String!, $repo: String!, $issueNumber: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  issue(number: $issueNumber) {
+                    projectItems(first: 10) {
+                      nodes {
+                        id
+                        project { id }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            const itemData = await github.graphql(itemQuery, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issueNumber: issueNumber
+            });
+
+            const projectItems = itemData.repository.issue.projectItems.nodes;
+            const projectItem = projectItems.find(item => item.project.id === project.id);
+
+            if (!projectItem) {
+              console.log('Issue is not in the project yet');
+              return;
+            }
+
+            // Update Time Logged field (add to existing value)
+            if (timeLoggedField && minutes > 0) {
+              const currentQuery = `
+                query($itemId: ID!) {
+                  node(id: $itemId) {
+                    ... on ProjectV2Item {
+                      fieldValueByName(name: "Time Logged") {
+                        ... on ProjectV2ItemFieldNumberValue {
+                          number
+                        }
+                      }
+                    }
+                  }
+                }
+              `;
+
+              const currentResult = await github.graphql(currentQuery, { itemId: projectItem.id });
+              const currentValue = currentResult.node.fieldValueByName?.number || 0;
+              const hours = parseFloat((minutes / 60).toFixed(2));
+              const newValue = currentValue + hours;
+
+              const updateTimeLogged = `
+                mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Float!) {
+                  updateProjectV2ItemFieldValue(
+                    input: {
+                      projectId: $projectId
+                      itemId: $itemId
+                      fieldId: $fieldId
+                      value: { number: $value }
+                    }
+                  ) {
+                    projectV2Item { id }
+                  }
+                }
+              `;
+
+              await github.graphql(updateTimeLogged, {
+                projectId: project.id,
+                itemId: projectItem.id,
+                fieldId: timeLoggedField.id,
+                value: newValue
+              });
+              console.log(`Updated Time Logged: ${currentValue}h -> ${newValue}h`);
+            }
+
+            // Update Work Type field to "ai"
+            if (workTypeField && workTypeField.options) {
+              const aiOption = workTypeField.options.find(o => o.name === 'ai');
+              if (aiOption) {
+                const updateWorkType = `
+                  mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+                    updateProjectV2ItemFieldValue(
+                      input: {
+                        projectId: $projectId
+                        itemId: $itemId
+                        fieldId: $fieldId
+                        value: { singleSelectOptionId: $optionId }
+                      }
+                    ) {
+                      projectV2Item { id }
+                    }
+                  }
+                `;
+
+                await github.graphql(updateWorkType, {
+                  projectId: project.id,
+                  itemId: projectItem.id,
+                  fieldId: workTypeField.id,
+                  optionId: aiOption.id
+                });
+                console.log('Updated Work Type to ai');
+              }
+            }
+
+            console.log('Project fields updated successfully');

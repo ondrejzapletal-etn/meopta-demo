@@ -1,0 +1,266 @@
+name: Log Time
+
+on:
+  issue_comment:
+    types: [created]
+
+# Prevent concurrent runs for the same issue
+concurrency:
+  group: time-log-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  log-time:
+    # Only run on /time commands from authorized human users (not bots)
+    if: |
+      github.event.comment.user.type != 'Bot' &&
+      startsWith(github.event.comment.body, '/time') &&
+      contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Parse time command
+        id: parse
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = context.payload.comment.body;
+
+            // Parse: /time 2h 30m "optional description"
+            // Or: /time 45m
+            // Or: /time 1.5h
+            const match = comment.match(/\/time\s+(?:(\d+(?:\.\d+)?)\s*h(?:ours?)?)?\s*(?:(\d+)\s*m(?:in(?:utes?)?)?)?\s*(?:"([^"]*)")?/i);
+
+            if (!match || (!match[1] && !match[2])) {
+              core.setFailed('Invalid time format. Use: /time 2h 30m "description"');
+              return;
+            }
+
+            const hours = parseFloat(match[1]) || 0;
+            const mins = parseInt(match[2]) || 0;
+            const totalMins = Math.round(hours * 60 + mins);
+            const description = match[3] || '';
+
+            if (totalMins <= 0) {
+              core.setFailed('Time must be greater than 0');
+              return;
+            }
+
+            core.setOutput('minutes', totalMins);
+            core.setOutput('description', description);
+            core.setOutput('hours_display', (totalMins / 60).toFixed(1));
+
+            console.log(`Parsed: ${totalMins} minutes (${(totalMins / 60).toFixed(1)}h)`);
+            if (description) console.log(`Description: ${description}`);
+
+      - name: Update GitHub Project
+        if: steps.parse.outputs.minutes
+        uses: actions/github-script@v7
+        env:
+          MINUTES: ${{ steps.parse.outputs.minutes }}
+          DESCRIPTION: ${{ steps.parse.outputs.description }}
+          PROJECT_NUMBER: "1"
+          PROJECT_OWNER: "etnetera"
+        with:
+          github-token: ${{ secrets.PROJECT_TOKEN }}
+          script: |
+            const minutes = parseInt(process.env.MINUTES);
+            const description = process.env.DESCRIPTION;
+            const issueNumber = context.payload.issue.number;
+
+            const projectNumber = parseInt(process.env.PROJECT_NUMBER);
+            const projectOwner = process.env.PROJECT_OWNER;
+
+            // Get project and field IDs
+            const projectQuery = `
+              query($owner: String!, $number: Int!) {
+                organization(login: $owner) {
+                  projectV2(number: $number) {
+                    id
+                    title
+                    fields(first: 20) {
+                      nodes {
+                        ... on ProjectV2Field {
+                          id
+                          name
+                          dataType
+                        }
+                        ... on ProjectV2SingleSelectField {
+                          id
+                          name
+                          dataType
+                          options {
+                            id
+                            name
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            // Get project item ID for this issue
+            const query = `
+              query($owner: String!, $repo: String!, $issueNumber: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  issue(number: $issueNumber) {
+                    projectItems(first: 10) {
+                      nodes {
+                        id
+                        project {
+                          id
+                          title
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            try {
+              // Get project data first
+              const projectData = await github.graphql(projectQuery, {
+                owner: projectOwner,
+                number: projectNumber
+              });
+
+              const project = projectData.organization.projectV2;
+              if (!project) {
+                console.log('Project not found');
+                return;
+              }
+
+              const fields = project.fields.nodes;
+              const timeLoggedField = fields.find(f => f.name === 'Time Logged');
+              const workTypeField = fields.find(f => f.name === 'Work Type');
+
+              // Get issue's project items
+              const result = await github.graphql(query, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issueNumber: issueNumber
+              });
+
+              const projectItems = result.repository.issue.projectItems.nodes;
+              const projectItem = projectItems.find(item => item.project.id === project.id);
+
+              if (!projectItem) {
+                console.log('Issue is not in the project. Adding time to comment only.');
+                return;
+              }
+
+              // Update Time Logged field
+              if (timeLoggedField) {
+                const currentQuery = `
+                  query($itemId: ID!) {
+                    node(id: $itemId) {
+                      ... on ProjectV2Item {
+                        fieldValueByName(name: "Time Logged") {
+                          ... on ProjectV2ItemFieldNumberValue {
+                            number
+                          }
+                        }
+                      }
+                    }
+                  }
+                `;
+
+                const currentResult = await github.graphql(currentQuery, { itemId: projectItem.id });
+                const currentValue = currentResult.node.fieldValueByName?.number || 0;
+                const hours = parseFloat((minutes / 60).toFixed(2));
+                const newValue = currentValue + hours;
+
+                const mutation = `
+                  mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Float!) {
+                    updateProjectV2ItemFieldValue(
+                      input: {
+                        projectId: $projectId
+                        itemId: $itemId
+                        fieldId: $fieldId
+                        value: { number: $value }
+                      }
+                    ) {
+                      projectV2Item { id }
+                    }
+                  }
+                `;
+
+                await github.graphql(mutation, {
+                  projectId: project.id,
+                  itemId: projectItem.id,
+                  fieldId: timeLoggedField.id,
+                  value: newValue
+                });
+
+                console.log(`Updated Time Logged: ${currentValue}h -> ${newValue}h`);
+              }
+
+              // Update Work Type to "human" for manual time logging
+              if (workTypeField && workTypeField.options) {
+                const humanOption = workTypeField.options.find(o => o.name === 'human');
+                if (humanOption) {
+                  const updateWorkType = `
+                    mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+                      updateProjectV2ItemFieldValue(
+                        input: {
+                          projectId: $projectId
+                          itemId: $itemId
+                          fieldId: $fieldId
+                          value: { singleSelectOptionId: $optionId }
+                        }
+                      ) {
+                        projectV2Item { id }
+                      }
+                    }
+                  `;
+
+                  await github.graphql(updateWorkType, {
+                    projectId: project.id,
+                    itemId: projectItem.id,
+                    fieldId: workTypeField.id,
+                    optionId: humanOption.id
+                  });
+                  console.log('Updated Work Type to human');
+                }
+              }
+
+              console.log('Project fields updated successfully');
+            } catch (error) {
+              console.log('Note: Could not update project field. Error:', error.message);
+              console.log('Time will be recorded in comment only.');
+            }
+
+      - name: Add confirmation comment
+        if: steps.parse.outputs.minutes
+        uses: actions/github-script@v7
+        env:
+          MINUTES: ${{ steps.parse.outputs.minutes }}
+          HOURS_DISPLAY: ${{ steps.parse.outputs.hours_display }}
+          DESCRIPTION: ${{ steps.parse.outputs.description }}
+        with:
+          script: |
+            const minutes = process.env.MINUTES;
+            const hours = process.env.HOURS_DISPLAY;
+            const description = process.env.DESCRIPTION;
+            const user = context.payload.comment.user.login;
+
+            let body = `**Time logged:** ${hours}h (${minutes} min) by @${user}`;
+            if (description) {
+              body += `\n**Description:** ${description}`;
+            }
+            body += `\n\n_Work Type: human_`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: body
+            });

@@ -1,0 +1,1982 @@
+{
+  "input:focus, input, select:focus, select": {
+    "hover": [
+      "input:focus, input:hover, select:focus, select:hover { background: rgb(255, 255, 255); }"
+    ],
+    "transitions": []
+  },
+  ".dateinput input, .geosuggest__input, .input, .textarea": {
+    "hover": [
+      ".dateinput input:hover, .geosuggest__input:hover, .input:hover, .textarea:hover { border-color: rgba(199, 199, 199, 0.5); }"
+    ],
+    "transitions": []
+  },
+  ".select select": {
+    "hover": [
+      ".select select:hover { border-color: rgba(199, 199, 199, 0.5); }"
+    ],
+    "transitions": []
+  },
+  ".select::after": {
+    "hover": [
+      ".select:hover::after { border-color: rgb(136, 193, 21); }"
+    ],
+    "transitions": []
+  },
+  ".control.has-addons .button, .control.has-addons .input, .control.has-addons .select, .control.has-addons .textarea": {
+    "hover": [
+      ".control.has-addons .button:hover, .control.has-addons .input:hover, .control.has-addons .select:hover, .control.has-addons .textarea:hover { z-index: 2; }"
+    ],
+    "transitions": []
+  },
+  ".__react_component_tooltip": {
+    "hover": [],
+    "transitions": [
+      "transition: opacity 0.3s ease-out"
+    ]
+  },
+  ".link, .link:active, .link:focus, .link, .link:link, .link:visited": {
+    "hover": [
+      ".link, .link:active, .link:focus, .link:hover, .link:link, .link:visited { transition: color 0.15s ease-in; }"
+    ],
+    "transitions": []
+  },
+  ".link, .link:active, .link:focus, .link:hover, .link:link, .link:visited": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.15s ease-in"
+    ]
+  },
+  ".grow": {
+    "hover": [],
+    "transitions": [
+      "transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out"
+    ]
+  },
+  ".grow:focus, .grow": {
+    "hover": [
+      ".grow:focus, .grow:hover { transform: scale(1.05); }"
+    ],
+    "transitions": []
+  },
+  ".pointer": {
+    "hover": [
+      ".pointer:hover { cursor: pointer; }"
+    ],
+    "transitions": []
+  },
+  ".arrow-right svg": {
+    "hover": [
+      ".arrow-right:hover svg { transform: translateX(6px); }"
+    ],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".slider": {
+    "hover": [
+      ".slider:hover { cursor: grab; }"
+    ],
+    "transitions": []
+  },
+  ".carousel .slider-wrapper": {
+    "hover": [],
+    "transitions": [
+      "transition: height 0.15s ease-in"
+    ]
+  },
+  ".carousel .slider.animated": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.35s ease-in-out"
+    ]
+  },
+  ".carousel .control-dots .dot": {
+    "hover": [],
+    "transitions": [
+      "transition: opacity 0.25s ease-in"
+    ]
+  },
+  ".carousel .control-dots .dot.selected, .carousel .control-dots .dot": {
+    "hover": [
+      ".carousel .control-dots .dot.selected, .carousel .control-dots .dot:hover { background: rgb(211, 211, 211); }"
+    ],
+    "transitions": []
+  },
+  ".link": {
+    "hover": [
+      ".link:hover { color: rgb(129, 184, 20); }"
+    ],
+    "transitions": []
+  },
+  ".Feature_feature__link__3AspU:focus, .Feature_feature__link__3AspU": {
+    "hover": [
+      ".Feature_feature__link__3AspU:focus, .Feature_feature__link__3AspU:hover { color: rgb(255, 255, 255); }"
+    ],
+    "transitions": []
+  },
+  ".Radio_radio__RmtUH::before": {
+    "hover": [
+      ".Radio_radio__RmtUH:hover::before { border-color: rgb(153, 204, 51); }"
+    ],
+    "transitions": [
+      "transition: border-color 0.19s ease-in-out"
+    ]
+  },
+  "a:not([class])": {
+    "hover": [
+      "a:not([class]):hover { text-decoration: underline; color: rgb(153, 204, 51); }"
+    ],
+    "transitions": []
+  },
+  ".ReactCollapse--collapse": {
+    "hover": [],
+    "transitions": [
+      "transition: height 500ms"
+    ]
+  },
+  ".css-1rk5eus .menuButton": {
+    "hover": [
+      ".css-1rk5eus .menuButton:hover { background-color: rgb(217, 238, 168); }"
+    ],
+    "transitions": [
+      "transition: unset"
+    ]
+  },
+  ".css-1uxg2cz": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.2s ease-out"
+    ]
+  },
+  ".css-1uxg2cz:focus-visible": {
+    "hover": [],
+    "transitions": [
+      "transition: none"
+    ]
+  },
+  ".css-13rjfjf": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.2s ease-out"
+    ]
+  },
+  ".css-13rjfjf:focus-visible": {
+    "hover": [],
+    "transitions": [
+      "transition: none"
+    ]
+  },
+  ".css-1shzgem": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.2s ease-out"
+    ]
+  },
+  ".css-1shzgem:focus-visible": {
+    "hover": [],
+    "transitions": [
+      "transition: none"
+    ]
+  },
+  ".css-8psw52 .submenu, .css-8psw52:focus .submenu": {
+    "hover": [
+      ".css-8psw52:hover .submenu, .css-8psw52:focus .submenu { display: block; }"
+    ],
+    "transitions": []
+  },
+  ".css-uqd2sw:not(.active)::before": {
+    "hover": [
+      ".css-uqd2sw:not(.active):hover::before { width: 100%; left: 0px; }"
+    ],
+    "transitions": [
+      "transition: 190ms ease-in-out"
+    ]
+  },
+  ".css-uqd2sw": {
+    "hover": [
+      ".css-uqd2sw:hover { color: rgb(0, 0, 0); }"
+    ],
+    "transitions": []
+  },
+  ".css-10yy9ju::before": {
+    "hover": [
+      ".css-10yy9ju:hover::before { width: 100%; left: 0px; }"
+    ],
+    "transitions": [
+      "transition: 190ms ease-in-out"
+    ]
+  },
+  ".css-10yy9ju": {
+    "hover": [
+      ".css-10yy9ju:hover { color: rgb(0, 0, 0); }"
+    ],
+    "transitions": []
+  },
+  ".css-iqceu6 a, .css-iqceu6 a:focus": {
+    "hover": [
+      ".css-iqceu6 a:hover, .css-iqceu6 a:focus { color: rgb(255, 255, 255); }"
+    ],
+    "transitions": []
+  },
+  ".css-4kdv8c a, .css-4kdv8c a:focus": {
+    "hover": [
+      ".css-4kdv8c a:hover, .css-4kdv8c a:focus { color: rgb(255, 255, 255); }"
+    ],
+    "transitions": []
+  },
+  ".css-1acqf99 a, .css-1acqf99 a:focus": {
+    "hover": [
+      ".css-1acqf99 a:hover, .css-1acqf99 a:focus { color: rgb(255, 255, 255); }"
+    ],
+    "transitions": []
+  },
+  ".css-1d5iyna": {
+    "hover": [
+      ".css-1d5iyna:hover { color: rgb(32, 34, 36); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-1d5iyna .icon-wrapper": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-1rms6l4": {
+    "hover": [
+      ".css-1rms6l4:hover { color: rgb(32, 34, 36); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-1rms6l4 .icon-wrapper": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-1ef30ll": {
+    "hover": [
+      ".css-1ef30ll:hover { color: rgb(32, 34, 36); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-1ef30ll .icon-wrapper": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-879w7g a, .css-879w7g a:focus": {
+    "hover": [
+      ".css-879w7g a:hover, .css-879w7g a:focus { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": []
+  },
+  ".css-1egselr a, .css-1egselr a:focus": {
+    "hover": [
+      ".css-1egselr a:hover, .css-1egselr a:focus { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": []
+  },
+  ".css-1l22t2a a, .css-1l22t2a a:focus": {
+    "hover": [
+      ".css-1l22t2a a:hover, .css-1l22t2a a:focus { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": []
+  },
+  ".css-cqbk70": {
+    "hover": [
+      ".css-cqbk70:hover { color: rgb(32, 34, 36); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-cqbk70 .icon-wrapper": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-19nvf9x[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-19nvf9x[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-vqet0v[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-vqet0v[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1r2af5t[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1r2af5t[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-7swpvo[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-7swpvo[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1bissyz[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1bissyz[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-19ax8g8[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-19ax8g8[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1g6opr9[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1g6opr9[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1qfs899[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1qfs899[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1x0c37o[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1x0c37o[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-mb3x02[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-mb3x02[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-mb3x02[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-4ejajk[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-4ejajk[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-4ejajk[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-7atw3z[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-7atw3z[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-7atw3z[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-f0hm6t": {
+    "hover": [
+      ".css-f0hm6t:hover { color: rgb(32, 34, 36); }",
+      ".css-f0hm6t:hover { background-color: rgb(217, 238, 168); }"
+    ],
+    "transitions": [
+      "transition: 700ms"
+    ]
+  },
+  ".css-f0hm6t .icon-wrapper": {
+    "hover": [
+      ".css-f0hm6t:hover .icon-wrapper { animation: 1s ease-in-out 0s infinite normal none running animation-1jdbhf7; }"
+    ],
+    "transitions": [
+      "transition: 0.75s",
+      "transition: 0.75s"
+    ]
+  },
+  ".css-ag2u8g": {
+    "hover": [
+      ".css-ag2u8g:hover { color: rgb(32, 34, 36); }",
+      ".css-ag2u8g:hover { background-color: rgb(217, 238, 168); }"
+    ],
+    "transitions": [
+      "transition: 700ms"
+    ]
+  },
+  ".css-ag2u8g .icon-wrapper": {
+    "hover": [
+      ".css-ag2u8g:hover .icon-wrapper { animation: 1s ease-in-out 0s infinite normal none running animation-1jdbhf7; }"
+    ],
+    "transitions": [
+      "transition: 0.75s",
+      "transition: 0.75s"
+    ]
+  },
+  ".css-t7w3w0": {
+    "hover": [
+      ".css-t7w3w0:hover { color: rgb(32, 34, 36); }"
+    ],
+    "transitions": [
+      "transition: 700ms"
+    ]
+  },
+  ".css-t7w3w0 .icon-wrapper": {
+    "hover": [
+      ".css-t7w3w0:hover .icon-wrapper { animation: 1s ease-in-out 0s infinite normal none running animation-1jdbhf7; }"
+    ],
+    "transitions": [
+      "transition: 0.75s",
+      "transition: 0.75s"
+    ]
+  },
+  ".css-1m7o32v": {
+    "hover": [
+      ".css-1m7o32v:hover { color: rgb(32, 34, 36); }"
+    ],
+    "transitions": [
+      "transition: 700ms"
+    ]
+  },
+  ".css-1m7o32v .icon-wrapper": {
+    "hover": [
+      ".css-1m7o32v:hover .icon-wrapper { animation: 1s ease-in-out 0s infinite normal none running animation-1jdbhf7; }"
+    ],
+    "transitions": [
+      "transition: 0.75s",
+      "transition: 0.75s"
+    ]
+  },
+  ".css-1iw94ap": {
+    "hover": [],
+    "transitions": [
+      "transition: 250ms"
+    ]
+  },
+  ".css-ng0axz": {
+    "hover": [],
+    "transitions": [
+      "transition: 250ms"
+    ]
+  },
+  ".css-c9wb6f": {
+    "hover": [
+      ".css-c9wb6f:hover { font-weight: 500; }"
+    ],
+    "transitions": []
+  },
+  ".css-cim950": {
+    "hover": [
+      ".css-cim950:hover { font-weight: 500; }"
+    ],
+    "transitions": []
+  },
+  ".css-4h2xvf[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-4h2xvf[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-tra5dl[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-tra5dl[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-tra5dl[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1t9xfw0[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1t9xfw0[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-1t9xfw0[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-8hqqyq[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-8hqqyq[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-8hqqyq[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1090ffx": {
+    "hover": [
+      ".css-1090ffx:hover { color: rgb(32, 34, 36); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-1090ffx .icon-wrapper": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-uqeclg": {
+    "hover": [
+      ".css-uqeclg:hover { color: rgb(32, 34, 36); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-uqeclg .icon-wrapper": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-1wh1s5l[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1wh1s5l[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-3hp4nh[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-3hp4nh[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-qounhr[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-qounhr[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1vy4arr[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1vy4arr[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-1vy4arr[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1sf5svy[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1sf5svy[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-1sf5svy[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-tk3ghk[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-tk3ghk[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-tk3ghk[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1ezumj2": {
+    "hover": [
+      ".css-1ezumj2:hover { color: rgb(32, 34, 36); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-1ezumj2 .icon-wrapper": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-jc1orf": {
+    "hover": [
+      ".css-jc1orf:hover { color: rgb(73, 125, 0); cursor: pointer; }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1m2c9ev svg": {
+    "hover": [
+      ".css-1m2c9ev:hover svg { transform: scale(1.1); }"
+    ],
+    "transitions": [
+      "transition: transform 0.25s ease-out"
+    ]
+  },
+  ".css-6krm6y svg": {
+    "hover": [
+      ".css-6krm6y:hover svg { transform: scale(1.1); }"
+    ],
+    "transitions": [
+      "transition: transform 0.25s ease-out"
+    ]
+  },
+  ".css-1qf8edm[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1qf8edm[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-zoca9q[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-zoca9q[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-hm6uu5": {
+    "hover": [],
+    "transitions": [
+      "transition: 1.25s ease-in-out"
+    ]
+  },
+  ".css-psa3z1": {
+    "hover": [],
+    "transitions": [
+      "transition: 1.25s ease-in-out"
+    ]
+  },
+  ".css-1c5p1yb": {
+    "hover": [],
+    "transitions": [
+      "transition: 1.25s ease-in-out"
+    ]
+  },
+  ".css-15n5gq0": {
+    "hover": [],
+    "transitions": [
+      "transition: 1.25s ease-in-out"
+    ]
+  },
+  ".css-f3cump": {
+    "hover": [],
+    "transitions": [
+      "transition: 1.25s ease-in-out"
+    ]
+  },
+  ".css-bsc7ka": {
+    "hover": [],
+    "transitions": [
+      "transition: 1.25s ease-in-out"
+    ]
+  },
+  ".css-pix40p[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-pix40p[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-10y2slh[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-10y2slh[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1wqmxl0[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1wqmxl0[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-yscola[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-yscola[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-yscola[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1m8rsoz[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1m8rsoz[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-1m8rsoz[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-2gg4wf[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-2gg4wf[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-2gg4wf[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-116u3ql": {
+    "hover": [
+      ".css-116u3ql:hover { color: rgb(32, 34, 36); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-116u3ql .icon-wrapper": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-172dcv4": {
+    "hover": [
+      ".css-172dcv4:hover { color: unset; transform: scale3d(1.025, 1.025, 1.025); box-shadow: rgba(0, 0, 0, 0.23) 0px 6px 12px, rgba(0, 0, 0, 0.19) 0px 10px 40px; }"
+    ],
+    "transitions": [
+      "transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1)"
+    ]
+  },
+  ".css-s8196q": {
+    "hover": [
+      ".css-s8196q:hover { color: unset; transform: scale3d(1.025, 1.025, 1.025); box-shadow: rgba(0, 0, 0, 0.23) 0px 6px 12px, rgba(0, 0, 0, 0.19) 0px 10px 40px; }"
+    ],
+    "transitions": [
+      "transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1)"
+    ]
+  },
+  ".css-jpx6yw": {
+    "hover": [
+      ".css-jpx6yw:hover { color: unset; }"
+    ],
+    "transitions": []
+  },
+  ".css-bhv289": {
+    "hover": [
+      ".css-bhv289:hover { color: unset; }"
+    ],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-13lj8px": {
+    "hover": [
+      ".css-13lj8px:hover { color: unset; }"
+    ],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-a9ysdr[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-a9ysdr[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-dnxyqm[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-dnxyqm[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-xjht5n.animate .image": {
+    "hover": [
+      ".css-xjht5n.animate:hover .image { left: 0px; top: 0px; transform: rotate(2deg) scale(1.1); }"
+    ],
+    "transitions": []
+  },
+  ".css-1m02ma2.animate .image": {
+    "hover": [
+      ".css-1m02ma2.animate:hover .image { left: 0px; top: 0px; transform: rotate(2deg) scale(1.1); }"
+    ],
+    "transitions": []
+  },
+  ".css-17aryok.animate .image": {
+    "hover": [
+      ".css-17aryok.animate:hover .image { left: 0px; top: 0px; transform: rotate(2deg) scale(1.1); }"
+    ],
+    "transitions": []
+  },
+  ".css-yb1th8": {
+    "hover": [],
+    "transitions": [
+      "transition: 1.25s ease-in-out"
+    ]
+  },
+  ".css-12gx5iz": {
+    "hover": [],
+    "transitions": [
+      "transition: 1.25s ease-in-out"
+    ]
+  },
+  ".css-17i5hmh": {
+    "hover": [],
+    "transitions": [
+      "transition: 1.25s ease-in-out"
+    ]
+  },
+  ".css-1kjhn80": {
+    "hover": [],
+    "transitions": [
+      "transition: 1.25s ease-in-out"
+    ]
+  },
+  ".css-1bxd19z[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1bxd19z[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1lwt4ev[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1lwt4ev[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-5718zp[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-5718zp[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1ydoss5[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1ydoss5[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1x5af45": {
+    "hover": [],
+    "transitions": [
+      "transition: 1.25s ease-in-out"
+    ]
+  },
+  ".css-gar41t": {
+    "hover": [],
+    "transitions": [
+      "transition: 1.25s ease-in-out"
+    ]
+  },
+  ".css-z5bv5g": {
+    "hover": [],
+    "transitions": [
+      "transition: 1.25s ease-in-out"
+    ]
+  },
+  ".css-s4eaf4": {
+    "hover": [],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-s4eaf4 svg": {
+    "hover": [
+      ".css-s4eaf4:hover svg { transform: translateX(6px); fill: rgb(0, 0, 0); }"
+    ],
+    "transitions": [
+      "transition: transform 0.75s"
+    ]
+  },
+  ".css-s4eaf4 span": {
+    "hover": [
+      ".css-s4eaf4:hover span { color: rgb(0, 0, 0); text-decoration: none; }"
+    ],
+    "transitions": []
+  },
+  ".css-16hyb93": {
+    "hover": [],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-16hyb93 svg": {
+    "hover": [
+      ".css-16hyb93:hover svg { transform: translateX(6px); fill: rgb(0, 0, 0); }"
+    ],
+    "transitions": [
+      "transition: transform 0.75s"
+    ]
+  },
+  ".css-16hyb93 span": {
+    "hover": [
+      ".css-16hyb93:hover span { color: rgb(0, 0, 0); text-decoration: none; }"
+    ],
+    "transitions": []
+  },
+  ".css-1dtrhc8[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1dtrhc8[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-dfayz": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-1q04uwv": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-1wwczsi": {
+    "hover": [
+      ".css-1wwczsi:hover { transform: scale(1.1); }"
+    ],
+    "transitions": [
+      "transition: transform 0.75s"
+    ]
+  },
+  ".css-9x4xts": {
+    "hover": [
+      ".css-9x4xts:hover { transform: scale(1.1); }"
+    ],
+    "transitions": [
+      "transition: transform 0.75s"
+    ]
+  },
+  ".css-191ml9d": {
+    "hover": [
+      ".css-191ml9d:hover { transform: scale(1.1); }"
+    ],
+    "transitions": [
+      "transition: transform 0.75s"
+    ]
+  },
+  ".css-nfva6n": {
+    "hover": [
+      ".css-nfva6n:hover { transform: scale(1.1); }"
+    ],
+    "transitions": [
+      "transition: transform 0.75s"
+    ]
+  },
+  ".css-h5iie6": {
+    "hover": [
+      ".css-h5iie6:hover { transform: scale(1.1); }"
+    ],
+    "transitions": [
+      "transition: transform 0.75s"
+    ]
+  },
+  ".css-jl6wk": {
+    "hover": [
+      ".css-jl6wk:hover { transform: scale(1.1); }"
+    ],
+    "transitions": [
+      "transition: transform 0.75s"
+    ]
+  },
+  ".css-1fi8oqb": {
+    "hover": [
+      ".css-1fi8oqb:hover { min-width: 0px; background-image: none; border-color: rgba(74, 88, 107, 0.1); }"
+    ],
+    "transitions": []
+  },
+  ".css-1fi8oqb .icon-wrapper": {
+    "hover": [
+      ".css-1fi8oqb:hover .icon-wrapper { transform: translateX(0px); }"
+    ],
+    "transitions": []
+  },
+  ".css-wkuads": {
+    "hover": [
+      ".css-wkuads:hover { color: rgb(32, 34, 36); }",
+      ".css-wkuads:hover { min-width: 0px; background-image: none; border-color: rgba(74, 88, 107, 0.1); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-wkuads .icon-wrapper": {
+    "hover": [
+      ".css-wkuads:hover .icon-wrapper { transform: translateX(0px); }"
+    ],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-k2xwe1": {
+    "hover": [
+      ".css-k2xwe1:hover { color: rgb(32, 34, 36); }",
+      ".css-k2xwe1:hover { min-width: 0px; background-image: none; border-color: rgba(74, 88, 107, 0.1); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-k2xwe1 .icon-wrapper": {
+    "hover": [
+      ".css-k2xwe1:hover .icon-wrapper { transform: translateX(0px); }"
+    ],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-o3pibk label[for=\"\"], .css-o3pibk label": {
+    "hover": [
+      ".css-o3pibk label[for=\"\"], .css-o3pibk label:hover { border-color: rgb(153, 204, 51); }"
+    ],
+    "transitions": []
+  },
+  ".css-o3pibk label::before, .css-o3pibk label::before": {
+    "hover": [
+      ".css-o3pibk label::before, .css-o3pibk label:hover::before { border-color: rgba(122, 127, 130, 0.5); }"
+    ],
+    "transitions": []
+  },
+  ".css-o3pibk [type=\"radio\"]:checked + label::after, .css-o3pibk [type=\"radio\"]:not(:checked) + label::after": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.2s"
+    ]
+  },
+  ".css-r828vp label[for=\"\"], .css-r828vp label": {
+    "hover": [
+      ".css-r828vp label[for=\"\"], .css-r828vp label:hover { border-color: rgb(153, 204, 51); }"
+    ],
+    "transitions": []
+  },
+  ".css-r828vp label::before, .css-r828vp label::before": {
+    "hover": [
+      ".css-r828vp label::before, .css-r828vp label:hover::before { border-color: rgba(122, 127, 130, 0.5); }"
+    ],
+    "transitions": []
+  },
+  ".css-r828vp [type=\"radio\"]:checked + label::after, .css-r828vp [type=\"radio\"]:not(:checked) + label::after": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.2s"
+    ]
+  },
+  ".css-i2libc": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-pf6863": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-1jhoq89": {
+    "hover": [
+      ".css-1jhoq89:hover { cursor: pointer; }"
+    ],
+    "transitions": []
+  },
+  ".css-18o8yuk .control span": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.4s"
+    ]
+  },
+  ".css-18o8yuk .control span::before": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.4s"
+    ]
+  },
+  ".css-18jrimw .control span": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.4s"
+    ]
+  },
+  ".css-18jrimw .control span::before": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.4s"
+    ]
+  },
+  ".css-e4dti7[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-e4dti7[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-r3nten[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-r3nten[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1ucy9v3[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1ucy9v3[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-rts56p": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-8hc7yg": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-1wlc50o": {
+    "hover": [
+      ".css-1wlc50o:hover { color: rgb(153, 204, 51); text-decoration-color: rgb(153, 204, 51); }"
+    ],
+    "transitions": []
+  },
+  ".css-1gcf72": {
+    "hover": [
+      ".css-1gcf72:hover { color: rgb(32, 34, 36); }",
+      ".css-1gcf72:hover { color: rgb(153, 204, 51); text-decoration-color: rgb(153, 204, 51); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-1gcf72 .icon-wrapper": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-l1ow1a": {
+    "hover": [
+      ".css-l1ow1a:hover { color: rgb(32, 34, 36); }",
+      ".css-l1ow1a:hover { color: rgb(153, 204, 51); text-decoration-color: rgb(153, 204, 51); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-l1ow1a .icon-wrapper": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-kjl7vk": {
+    "hover": [],
+    "transitions": [
+      "transition: 250ms 0.25s"
+    ]
+  },
+  ".css-39ixt6": {
+    "hover": [],
+    "transitions": [
+      "transition: 250ms 0.25s"
+    ]
+  },
+  ".css-daqmc3": {
+    "hover": [
+      ".css-daqmc3:hover { color: rgb(32, 34, 36); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-daqmc3 .icon-wrapper": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-10vllzs": {
+    "hover": [
+      ".css-10vllzs:hover { color: rgb(32, 34, 36); }"
+    ],
+    "transitions": [
+      "transition: 190ms"
+    ]
+  },
+  ".css-10vllzs .icon-wrapper": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-1jrde08": {
+    "hover": [
+      ".css-1jrde08:hover { cursor: pointer; background-color: rgb(217, 238, 168); }"
+    ],
+    "transitions": [
+      "transition: 0.2s ease-out"
+    ]
+  },
+  ".css-xm99ec": {
+    "hover": [
+      ".css-xm99ec:hover { cursor: pointer; background-color: rgb(217, 238, 168); }"
+    ],
+    "transitions": [
+      "transition: 0.2s ease-out"
+    ]
+  },
+  ".css-1s62dbs svg": {
+    "hover": [
+      ".css-1s62dbs:hover svg { transform: scale(1.1); }"
+    ],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-95bbb1 svg": {
+    "hover": [
+      ".css-95bbb1:hover svg { transform: scale(1.1); }"
+    ],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-1dnakje": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-1dnakje svg": {
+    "hover": [
+      ".css-1dnakje:hover svg { transform: scale(1.1); }"
+    ],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-1dnakje a": {
+    "hover": [
+      ".css-1dnakje:hover a { color: rgb(153, 204, 51); font-weight: bold; }"
+    ],
+    "transitions": []
+  },
+  ".css-mkg8fs": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-mkg8fs svg": {
+    "hover": [
+      ".css-mkg8fs:hover svg { transform: scale(1.1); }"
+    ],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-mkg8fs a": {
+    "hover": [
+      ".css-mkg8fs:hover a { color: rgb(153, 204, 51); font-weight: bold; }"
+    ],
+    "transitions": []
+  },
+  ".css-48nm63": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-1er7pxp": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-l475a2 a, .css-l475a2 div, .css-l475a2 button": {
+    "hover": [
+      ".css-l475a2:hover a, .css-l475a2:hover div, .css-l475a2:hover button { color: rgb(153, 204, 51); }"
+    ],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-l475a2 svg": {
+    "hover": [
+      ".css-l475a2:hover svg { transform: translateX(6px); }"
+    ],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-jikugp a, .css-jikugp div, .css-jikugp button": {
+    "hover": [
+      ".css-jikugp:hover a, .css-jikugp:hover div, .css-jikugp:hover button { color: rgb(153, 204, 51); }"
+    ],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-jikugp svg": {
+    "hover": [
+      ".css-jikugp:hover svg { transform: translateX(6px); }"
+    ],
+    "transitions": [
+      "transition: 0.75s"
+    ]
+  },
+  ".css-29dhyq": {
+    "hover": [
+      ".css-29dhyq:hover { transform: scale(1.1); }"
+    ],
+    "transitions": [
+      "transition: transform 0.75s"
+    ]
+  },
+  ".css-lfu74y": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.5s",
+      "transition: 0.5s",
+      "transition: 0.5s",
+      "transition: 0.5s",
+      "transition: 0.5s",
+      "transition: 0.5s",
+      "transition: 0.5s",
+      "transition: 0.5s"
+    ]
+  },
+  ".img-thumbnail": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.2s ease-in-out"
+    ]
+  },
+  ".form-control": {
+    "hover": [],
+    "transitions": [
+      "transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out"
+    ]
+  },
+  "#onetrust-banner-sdk .onetrust-vendors-list-handler": {
+    "hover": [
+      "#onetrust-banner-sdk .onetrust-vendors-list-handler:hover { color: rgb(31, 150, 219); }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-banner-sdk .powered-by-logo, #onetrust-banner-sdk .ot-pc-footer-logo a, #onetrust-pc-sdk .powered-by-logo, #onetrust-pc-sdk .ot-pc-footer-logo a, #ot-sync-ntfy .powered-by-logo, #ot-sync-ntfy .ot-pc-footer-logo a": {
+    "hover": [
+      "#onetrust-banner-sdk .powered-by-logo:hover, #onetrust-banner-sdk .ot-pc-footer-logo a:hover, #onetrust-pc-sdk .powered-by-logo:hover, #onetrust-pc-sdk .ot-pc-footer-logo a:hover, #ot-sync-ntfy .powered-by-logo:hover, #ot-sync-ntfy .ot-pc-footer-logo a:hover { color: rgb(86, 86, 86); }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-banner-sdk button.ot-link-btn, #onetrust-pc-sdk button.ot-link-btn, #ot-sync-ntfy button.ot-link-btn": {
+    "hover": [
+      "#onetrust-banner-sdk button.ot-link-btn:hover, #onetrust-pc-sdk button.ot-link-btn:hover, #ot-sync-ntfy button.ot-link-btn:hover { text-decoration: underline; opacity: 1; }"
+    ],
+    "transitions": []
+  },
+  "#ot-sdk-btn.ot-sdk-show-settings, #ot-sdk-btn.optanon-show-settings": {
+    "hover": [
+      "#ot-sdk-btn.ot-sdk-show-settings:hover, #ot-sdk-btn.optanon-show-settings:hover { color: rgb(255, 255, 255); background-color: rgb(104, 182, 49); }"
+    ],
+    "transitions": [
+      "transition: 0.1s"
+    ]
+  },
+  "#onetrust-banner-sdk a, #onetrust-pc-sdk a, #ot-sdk-cookie-policy a": {
+    "hover": [
+      "#onetrust-banner-sdk a:hover, #onetrust-pc-sdk a:hover, #ot-sdk-cookie-policy a:hover { color: rgb(86, 86, 86); text-decoration: none; }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-banner-sdk .ot-sdk-button, #onetrust-banner-sdk :not(.ot-leg-btn-container) > button:not(.ot-link-btn), #onetrust-banner-sdk :not(.ot-leg-btn-container) > button:not(.ot-link-btn):focus, #onetrust-pc-sdk .ot-sdk-button, #onetrust-pc-sdk :not(.ot-leg-btn-container) > button:not(.ot-link-btn), #onetrust-pc-sdk :not(.ot-leg-btn-container) > button:not(.ot-link-btn):focus, #ot-sdk-cookie-policy .ot-sdk-button, #ot-sdk-cookie-policy :not(.ot-leg-btn-container) > button:not(.ot-link-btn), #ot-sdk-cookie-policy :not(.ot-leg-btn-container) > button:not(.ot-link-btn):focus": {
+    "hover": [
+      "#onetrust-banner-sdk .ot-sdk-button:hover, #onetrust-banner-sdk :not(.ot-leg-btn-container) > button:not(.ot-link-btn):hover, #onetrust-banner-sdk :not(.ot-leg-btn-container) > button:not(.ot-link-btn):focus, #onetrust-pc-sdk .ot-sdk-button:hover, #onetrust-pc-sdk :not(.ot-leg-btn-container) > button:not(.ot-link-btn):hover, #onetrust-pc-sdk :not(.ot-leg-btn-container) > button:not(.ot-link-btn):focus, #ot-sdk-cookie-policy .ot-sdk-button:hover, #ot-sdk-cookie-policy :not(.ot-leg-btn-container) > button:not(.ot-link-btn):hover, #ot-sdk-cookie-policy :not(.ot-leg-btn-container) > button:not(.ot-link-btn):focus { color: rgb(51, 51, 51); border-color: rgb(136, 136, 136); opacity: 0.7; }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-banner-sdk .ot-sdk-button.ot-sdk-button-primary, #onetrust-banner-sdk button.ot-sdk-button-primary, #onetrust-banner-sdk input[type=\"submit\"].ot-sdk-button-primary, #onetrust-banner-sdk input[type=\"reset\"].ot-sdk-button-primary, #onetrust-banner-sdk input[type=\"button\"].ot-sdk-button-primary, #onetrust-banner-sdk .ot-sdk-button.ot-sdk-button-primary:focus, #onetrust-banner-sdk button.ot-sdk-button-primary:focus, #onetrust-banner-sdk input[type=\"submit\"].ot-sdk-button-primary:focus, #onetrust-banner-sdk input[type=\"reset\"].ot-sdk-button-primary:focus, #onetrust-banner-sdk input[type=\"button\"].ot-sdk-button-primary:focus, #onetrust-pc-sdk .ot-sdk-button.ot-sdk-button-primary, #onetrust-pc-sdk button.ot-sdk-button-primary, #onetrust-pc-sdk input[type=\"submit\"].ot-sdk-button-primary, #onetrust-pc-sdk input[type=\"reset\"].ot-sdk-button-primary, #onetrust-pc-sdk input[type=\"button\"].ot-sdk-button-primary, #onetrust-pc-sdk .ot-sdk-button.ot-sdk-button-primary:focus, #onetrust-pc-sdk button.ot-sdk-button-primary:focus, #onetrust-pc-sdk input[type=\"submit\"].ot-sdk-button-primary:focus, #onetrust-pc-sdk input[type=\"reset\"].ot-sdk-button-primary:focus, #onetrust-pc-sdk input[type=\"button\"].ot-sdk-button-primary:focus, #ot-sdk-cookie-policy .ot-sdk-button.ot-sdk-button-primary, #ot-sdk-cookie-policy button.ot-sdk-button-primary, #ot-sdk-cookie-policy input[type=\"submit\"].ot-sdk-button-primary, #ot-sdk-cookie-policy input[type=\"reset\"].ot-sdk-button-primary, #ot-sdk-cookie-policy input[type=\"button\"].ot-sdk-button-primary, #ot-sdk-cookie-policy .ot-sdk-button.ot-sdk-button-primary:focus, #ot-sdk-cookie-policy button.ot-sdk-button-primary:focus, #ot-sdk-cookie-policy input[type=\"submit\"].ot-sdk-button-primary:focus, #ot-sdk-cookie-policy input[type=\"reset\"].ot-sdk-button-primary:focus, #ot-sdk-cookie-policy input[type=\"button\"].ot-sdk-button-primary:focus": {
+    "hover": [
+      "#onetrust-banner-sdk .ot-sdk-button.ot-sdk-button-primary:hover, #onetrust-banner-sdk button.ot-sdk-button-primary:hover, #onetrust-banner-sdk input[type=\"submit\"].ot-sdk-button-primary:hover, #onetrust-banner-sdk input[type=\"reset\"].ot-sdk-button-primary:hover, #onetrust-banner-sdk input[type=\"button\"].ot-sdk-button-primary:hover, #onetrust-banner-sdk .ot-sdk-button.ot-sdk-button-primary:focus, #onetrust-banner-sdk button.ot-sdk-button-primary:focus, #onetrust-banner-sdk input[type=\"submit\"].ot-sdk-button-primary:focus, #onetrust-banner-sdk input[type=\"reset\"].ot-sdk-button-primary:focus, #onetrust-banner-sdk input[type=\"button\"].ot-sdk-button-primary:focus, #onetrust-pc-sdk .ot-sdk-button.ot-sdk-button-primary:hover, #onetrust-pc-sdk button.ot-sdk-button-primary:hover, #onetrust-pc-sdk input[type=\"submit\"].ot-sdk-button-primary:hover, #onetrust-pc-sdk input[type=\"reset\"].ot-sdk-button-primary:hover, #onetrust-pc-sdk input[type=\"button\"].ot-sdk-button-primary:hover, #onetrust-pc-sdk .ot-sdk-button.ot-sdk-button-primary:focus, #onetrust-pc-sdk button.ot-sdk-button-primary:focus, #onetrust-pc-sdk input[type=\"submit\"].ot-sdk-button-primary:focus, #onetrust-pc-sdk input[type=\"reset\"].ot-sdk-button-primary:focus, #onetrust-pc-sdk input[type=\"button\"].ot-sdk-button-primary:focus, #ot-sdk-cookie-policy .ot-sdk-button.ot-sdk-button-primary:hover, #ot-sdk-cookie-policy button.ot-sdk-button-primary:hover, #ot-sdk-cookie-policy input[type=\"submit\"].ot-sdk-button-primary:hover, #ot-sdk-cookie-policy input[type=\"reset\"].ot-sdk-button-primary:hover, #ot-sdk-cookie-policy input[type=\"button\"].ot-sdk-button-primary:hover, #ot-sdk-cookie-policy .ot-sdk-button.ot-sdk-button-primary:focus, #ot-sdk-cookie-policy button.ot-sdk-button-primary:focus, #ot-sdk-cookie-policy input[type=\"submit\"].ot-sdk-button-primary:focus, #ot-sdk-cookie-policy input[type=\"reset\"].ot-sdk-button-primary:focus, #ot-sdk-cookie-policy input[type=\"button\"].ot-sdk-button-primary:focus { color: rgb(255, 255, 255); background-color: rgb(30, 174, 219); border-color: rgb(30, 174, 219); }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-banner-sdk .ot-arrow-container, #onetrust-banner-sdk .banner-option-details": {
+    "hover": [],
+    "transitions": [
+      "transition: 300ms ease-in"
+    ]
+  },
+  "#onetrust-pc-sdk .ot-host-expand, #onetrust-consent-sdk #onetrust-button-group #onetrust-pc-btn-handler.cookie-setting-link": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  "#onetrust-consent-sdk #onetrust-banner-sdk , #onetrust-consent-sdk #onetrust-pc-sdk , #onetrust-consent-sdk #onetrust-banner-sdk :focus, #onetrust-consent-sdk #onetrust-pc-sdk :focus": {
+    "hover": [
+      "#onetrust-consent-sdk #onetrust-banner-sdk :hover, #onetrust-consent-sdk #onetrust-pc-sdk :hover, #onetrust-consent-sdk #onetrust-banner-sdk :focus, #onetrust-consent-sdk #onetrust-pc-sdk :focus { opacity: 1 !important; }",
+      "#onetrust-consent-sdk #onetrust-banner-sdk :hover, #onetrust-consent-sdk #onetrust-pc-sdk :hover, #onetrust-consent-sdk #onetrust-banner-sdk :focus, #onetrust-consent-sdk #onetrust-pc-sdk :focus { opacity: 1 !important; }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-consent-sdk #onetrust-pc-sdk .category-switch-handler, #onetrust-consent-sdk #onetrust-pc-sdk .category-filter-handler": {
+    "hover": [
+      "#onetrust-consent-sdk #onetrust-pc-sdk .category-switch-handler:hover, #onetrust-consent-sdk #onetrust-pc-sdk .category-filter-handler:hover { opacity: 0 !important; }",
+      "#onetrust-consent-sdk #onetrust-pc-sdk .category-switch-handler:hover, #onetrust-consent-sdk #onetrust-pc-sdk .category-filter-handler:hover { opacity: 0 !important; }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-pc-sdk .ot-host-hdr > a, #onetrust-consent-sdk #onetrust-pc-sdk #clear-filters-handler": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s",
+      "transition: color 0.25s"
+    ]
+  },
+  "#onetrust-pc-sdk #ot-pc-desc .privacy-notice-link, #onetrust-consent-sdk #onetrust-pc-sdk .category-host-list-handler, #onetrust-pc-sdk .ot-host-hdr > a": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s",
+      "transition: color 0.25s"
+    ]
+  },
+  "#onetrust-pc-sdk #ot-pc-desc .privacy-notice-link, #onetrust-consent-sdk #onetrust-pc-sdk .category-host-list-handler, #onetrust-pc-sdk .ot-host-hdr > a, #onetrust-pc-sdk .ot-host-item .ot-host-expand": {
+    "hover": [
+      "#onetrust-pc-sdk #ot-pc-desc .privacy-notice-link:hover, #onetrust-consent-sdk #onetrust-pc-sdk .category-host-list-handler:hover, #onetrust-pc-sdk .ot-host-hdr > a:hover, #onetrust-pc-sdk .ot-host-item:hover .ot-host-expand { color: rgb(153, 204, 51) !important; }",
+      "#onetrust-pc-sdk #ot-pc-desc .privacy-notice-link:hover, #onetrust-consent-sdk #onetrust-pc-sdk .category-host-list-handler:hover, #onetrust-pc-sdk .ot-host-hdr > a:hover, #onetrust-pc-sdk .ot-host-item:hover .ot-host-expand { color: rgb(153, 204, 51) !important; }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-consent-sdk #onetrust-pc-sdk #filter-btn-handler, #onetrust-consent-sdk #onetrust-pc-sdk #filter-btn-handler:focus": {
+    "hover": [
+      "#onetrust-consent-sdk #onetrust-pc-sdk #filter-btn-handler:hover, #onetrust-consent-sdk #onetrust-pc-sdk #filter-btn-handler:focus { background-color: rgb(156, 156, 156); border-color: rgb(156, 156, 156); }",
+      "#onetrust-consent-sdk #onetrust-pc-sdk #filter-btn-handler:hover, #onetrust-consent-sdk #onetrust-pc-sdk #filter-btn-handler:focus { background-color: rgb(156, 156, 156); border-color: rgb(156, 156, 156); }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-consent-sdk #onetrust-pc-sdk .ot-switch-nob": {
+    "hover": [],
+    "transitions": [
+      "transition: outline 0.25s",
+      "transition: outline 0.25s"
+    ]
+  },
+  "#onetrust-consent-sdk #onetrust-button-group button:not(.cookie-setting-link), #onetrust-pc-sdk #accept-recommended-btn-handler, #onetrust-consent-sdk #onetrust-pc-sdk .ot-btn-container button, #filter-apply-handler, #filter-cancel-handler": {
+    "hover": [],
+    "transitions": [
+      "transition: 190ms",
+      "transition: 190ms"
+    ]
+  },
+  "#onetrust-consent-sdk #onetrust-accept-btn-handler, #onetrust-consent-sdk #onetrust-reject-all-handler, #onetrust-pc-sdk #accept-recommended-btn-handler, #onetrust-consent-sdk #onetrust-pc-sdk .ot-btn-container button, #filter-apply-handler, #filter-cancel-handler, #filter-btn-handler, #onetrust-consent-sdk #onetrust-button-group button:not(.cookie-setting-link)": {
+    "hover": [
+      "#onetrust-consent-sdk #onetrust-accept-btn-handler:hover, #onetrust-consent-sdk #onetrust-reject-all-handler:hover, #onetrust-pc-sdk #accept-recommended-btn-handler:hover, #onetrust-consent-sdk #onetrust-pc-sdk .ot-btn-container button:hover, #filter-apply-handler:hover, #filter-cancel-handler:hover, #filter-btn-handler:hover, #onetrust-consent-sdk #onetrust-button-group button:not(.cookie-setting-link):hover { box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 10px -2px inset, rgba(255, 255, 255, 0.1) -60px -60px 10px 0px inset !important; background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.05)) !important; }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-consent-sdk #onetrust-pc-sdk #clear-filters-handler": {
+    "hover": [
+      "#onetrust-consent-sdk #onetrust-pc-sdk #clear-filters-handler:hover { color: rgb(145, 193, 48) !important; }",
+      "#onetrust-consent-sdk #onetrust-pc-sdk #clear-filters-handler:hover { color: rgb(145, 193, 48) !important; }"
+    ],
+    "transitions": []
+  },
+  "#ot-back-arw, #ot-back-arw path": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s",
+      "transition: color 0.25s"
+    ]
+  },
+  "#ot-back-arw path": {
+    "hover": [
+      "#ot-back-arw:hover path { fill: rgb(153, 204, 51) !important; }",
+      "#ot-back-arw:hover path { fill: rgb(153, 204, 51) !important; }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-pc-sdk .ot-host-expand": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  "#onetrust-consent-sdk #onetrust-accept-btn-handler, #onetrust-consent-sdk #onetrust-reject-all-handler, #onetrust-consent-sdk #onetrust-button-group #onetrust-pc-btn-handler:not(.cookie-setting-link), #onetrust-pc-sdk #accept-recommended-btn-handler, #onetrust-consent-sdk #onetrust-pc-sdk .ot-btn-container button, #filter-apply-handler, #filter-cancel-handler, #filter-btn-handler": {
+    "hover": [
+      "#onetrust-consent-sdk #onetrust-accept-btn-handler:hover, #onetrust-consent-sdk #onetrust-reject-all-handler:hover, #onetrust-consent-sdk #onetrust-button-group #onetrust-pc-btn-handler:not(.cookie-setting-link):hover, #onetrust-pc-sdk #accept-recommended-btn-handler:hover, #onetrust-consent-sdk #onetrust-pc-sdk .ot-btn-container button:hover, #filter-apply-handler:hover, #filter-cancel-handler:hover, #filter-btn-handler:hover { box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 10px -2px inset, rgba(255, 255, 255, 0.1) -60px -60px 10px 0px inset !important; background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.05)) !important; }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-consent-sdk #onetrust-button-group #onetrust-pc-btn-handler.cookie-setting-link": {
+    "hover": [
+      "#onetrust-consent-sdk #onetrust-button-group #onetrust-pc-btn-handler.cookie-setting-link:hover { color: rgb(153, 204, 51) !important; }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-pc-sdk a": {
+    "hover": [
+      "#onetrust-pc-sdk a:hover { color: rgb(56, 96, 190); }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-pc-sdk .ot-switch-nob": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.2s ease-in"
+    ]
+  },
+  "#onetrust-pc-sdk .ot-switch-nob::before": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.4s"
+    ]
+  },
+  "#onetrust-pc-sdk .ot-arw-cntr .ot-arw": {
+    "hover": [],
+    "transitions": [
+      "transition: 150ms ease-in"
+    ]
+  },
+  "#onetrust-pc-sdk .ot-arw-cntr svg": {
+    "hover": [],
+    "transitions": [
+      "transition: 300ms ease-in"
+    ]
+  },
+  "#onetrust-pc-sdk .ot-arw": {
+    "hover": [],
+    "transitions": [
+      "transition: 300ms ease-in"
+    ]
+  },
+  "#onetrust-pc-sdk .category-vendors-list-handler, #onetrust-pc-sdk .category-vendors-list-handler + a, #onetrust-pc-sdk .category-host-list-handler": {
+    "hover": [
+      "#onetrust-pc-sdk .category-vendors-list-handler:hover, #onetrust-pc-sdk .category-vendors-list-handler + a:hover, #onetrust-pc-sdk .category-host-list-handler:hover { text-decoration-line: underline; }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-pc-sdk .back-btn-handler": {
+    "hover": [
+      "#onetrust-pc-sdk .back-btn-handler:hover { opacity: 0.6; }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-pc-sdk #filter-btn-handler": {
+    "hover": [
+      "#onetrust-pc-sdk #filter-btn-handler:hover { background-color: rgb(56, 96, 190); }"
+    ],
+    "transitions": [
+      "transition: 0.1s"
+    ]
+  },
+  "#onetrust-pc-sdk .ot-ven-link, #onetrust-pc-sdk .ot-ven-legclaim-link": {
+    "hover": [
+      "#onetrust-pc-sdk .ot-ven-link:hover, #onetrust-pc-sdk .ot-ven-legclaim-link:hover { text-decoration: underline; }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-pc-sdk #ot-fltr-modal": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.2s"
+    ]
+  },
+  "#onetrust-pc-sdk .ot-cat-item > button[aria-expanded=\"false\"] ~ .ot-acc-txt, #onetrust-pc-sdk .ot-acc-cntr > button[aria-expanded=\"false\"] ~ .ot-acc-txt, #onetrust-pc-sdk li > button[aria-expanded=\"false\"] ~ .ot-acc-txt": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.25s ease-out"
+    ]
+  },
+  "#onetrust-pc-sdk .ot-cat-item > button[aria-expanded=\"true\"] ~ .ot-acc-txt, #onetrust-pc-sdk .ot-acc-cntr > button[aria-expanded=\"true\"] ~ .ot-acc-txt, #onetrust-pc-sdk li > button[aria-expanded=\"true\"] ~ .ot-acc-txt": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.1s ease-in"
+    ]
+  },
+  "#onetrust-pc-sdk #clear-filters-handler": {
+    "hover": [
+      "#onetrust-pc-sdk #clear-filters-handler:hover { color: rgb(34, 133, 247); }"
+    ],
+    "transitions": []
+  },
+  "#onetrust-pc-sdk .ot-vnd-item > button[aria-expanded=\"false\"] ~ .ot-acc-txt": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.25s ease-out"
+    ]
+  },
+  "#onetrust-pc-sdk .ot-vnd-item > button[aria-expanded=\"true\"] ~ .ot-acc-txt": {
+    "hover": [],
+    "transitions": [
+      "transition: 0.1s ease-in"
+    ]
+  },
+  "#onetrust-consent-sdk #onetrust-pc-sdk .category-vendors-list-handler": {
+    "hover": [
+      "#onetrust-consent-sdk #onetrust-pc-sdk .category-vendors-list-handler:hover { text-decoration: underline; }"
+    ],
+    "transitions": []
+  },
+  ".ot-sdk-cookie-policy a, .ot-sdk-cookie-policy a": {
+    "hover": [
+      ".ot-sdk-cookie-policy a, .ot-sdk-cookie-policy a:hover { background: rgb(255, 255, 255); }"
+    ],
+    "transitions": []
+  },
+  "#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy a, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy a": {
+    "hover": [
+      "#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy a, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy a:hover { background: rgb(255, 255, 255); }"
+    ],
+    "transitions": []
+  },
+  "#ot-sdk-cookie-policy a": {
+    "hover": [
+      "#ot-sdk-cookie-policy a:hover { color: rgb(153, 204, 51); }"
+    ],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".rdtPicker td.rdtDay": {
+    "hover": [
+      ".rdtPicker td.rdtDay:hover { background: rgba(153, 204, 51, 0.25); cursor: pointer; }"
+    ],
+    "transitions": []
+  },
+  ".rdtPicker td.rdtActive, .rdtPicker td.rdtActive": {
+    "hover": [
+      ".rdtPicker td.rdtActive, .rdtPicker td.rdtActive:hover { background-color: rgb(73, 125, 0); color: rgb(255, 255, 255); font-weight: 500; text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px; }"
+    ],
+    "transitions": []
+  },
+  ".rdtPicker td.rdtDisabled, .rdtPicker td.rdtDisabled": {
+    "hover": [
+      ".rdtPicker td.rdtDisabled, .rdtPicker td.rdtDisabled:hover { background: none; color: rgb(234, 234, 234); cursor: not-allowed; }"
+    ],
+    "transitions": []
+  },
+  ".rdtPicker td span.rdtDisabled, .rdtPicker td span.rdtDisabled": {
+    "hover": [
+      ".rdtPicker td span.rdtDisabled, .rdtPicker td span.rdtDisabled:hover { background: none; color: rgb(234, 234, 234); cursor: not-allowed; }"
+    ],
+    "transitions": []
+  },
+  ".rdtPicker th.rdtDisabled, .rdtPicker th.rdtDisabled": {
+    "hover": [
+      ".rdtPicker th.rdtDisabled, .rdtPicker th.rdtDisabled:hover { background: none; color: rgb(200, 200, 200); cursor: not-allowed; }"
+    ],
+    "transitions": []
+  },
+  ".rdtPicker thead tr:first-child th": {
+    "hover": [
+      ".rdtPicker thead tr:first-child th:hover { background: rgba(153, 204, 51, 0.25); }"
+    ],
+    "transitions": []
+  },
+  ".rdtPicker button": {
+    "hover": [
+      ".rdtPicker button:hover { background-color: rgba(153, 204, 51, 0.25); }"
+    ],
+    "transitions": []
+  },
+  "td.rdtMonth, td.rdtYear": {
+    "hover": [
+      "td.rdtMonth:hover, td.rdtYear:hover { background: rgba(153, 204, 51, 0.25); }"
+    ],
+    "transitions": []
+  },
+  ".css-kjcfj6, .css-kjcfj6:focus": {
+    "hover": [
+      ".css-kjcfj6:hover, .css-kjcfj6:focus { background-color: transparent; }"
+    ],
+    "transitions": []
+  },
+  ".css-1j0af87 a, .css-1j0af87 a:focus": {
+    "hover": [
+      ".css-1j0af87 a:hover, .css-1j0af87 a:focus { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": []
+  },
+  ".css-r1czfj a, .css-r1czfj a:focus": {
+    "hover": [
+      ".css-r1czfj a:hover, .css-r1czfj a:focus { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": []
+  },
+  ".css-rf7cr8[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-rf7cr8[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-ua5b3r[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-ua5b3r[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-9nvdwd[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-9nvdwd[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-l8sufa[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-l8sufa[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-l8sufa[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-11incoi[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-11incoi[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-11incoi[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-3ta015[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-3ta015[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-3ta015[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1mx6btx[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1mx6btx[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1a2q9h3[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1a2q9h3[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-1a2q9h3[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1t3yn38[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1t3yn38[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-1t3yn38[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1b47jl[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1b47jl[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }",
+      ".css-1b47jl[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out",
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-o57yox": {
+    "hover": [],
+    "transitions": [
+      "transition: transform, visibility, opacity"
+    ]
+  },
+  ".css-1vwcvp0": {
+    "hover": [],
+    "transitions": [
+      "transition: transform, visibility, opacity"
+    ]
+  },
+  ".css-yk16xz-control": {
+    "hover": [
+      ".css-yk16xz-control:hover { border-color: rgb(179, 179, 179); }"
+    ],
+    "transitions": [
+      "transition: 100ms"
+    ]
+  },
+  ".css-tlfecz-indicatorContainer": {
+    "hover": [
+      ".css-tlfecz-indicatorContainer:hover { color: rgb(153, 153, 153); }"
+    ],
+    "transitions": [
+      "transition: color 150ms"
+    ]
+  },
+  ".css-qvpiit[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-qvpiit[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1egskhb": {
+    "hover": [],
+    "transitions": [
+      "transition: 190ms ease-in-out"
+    ]
+  },
+  ".css-dptsr3": {
+    "hover": [],
+    "transitions": [
+      "transition: 190ms ease-in-out"
+    ]
+  },
+  ".css-1ka75e8": {
+    "hover": [],
+    "transitions": [
+      "transition: 190ms ease-in-out"
+    ]
+  },
+  ".css-8xe1t1": {
+    "hover": [],
+    "transitions": [
+      "transition: 190ms ease-in-out"
+    ]
+  },
+  ".css-jzc5s6": {
+    "hover": [],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-kmf0d7[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-kmf0d7[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-1yhptfu[data-list-style-type=\"check\"] a": {
+    "hover": [
+      ".css-1yhptfu[data-list-style-type=\"check\"] a:hover { color: rgb(73, 125, 0); }"
+    ],
+    "transitions": [
+      "transition: color 0.2s ease-out"
+    ]
+  },
+  ".css-718jh6": {
+    "hover": [],
+    "transitions": [
+      "transition: transform 190ms ease-in-out"
+    ]
+  },
+  ".css-w1tuvx": {
+    "hover": [],
+    "transitions": [
+      "transition: transform 190ms ease-in-out"
+    ]
+  },
+  ".css-vw01bo > p > a": {
+    "hover": [
+      ".css-vw01bo > p > a:hover { text-decoration: none; }"
+    ],
+    "transitions": []
+  },
+  ".css-lubkoo > p > a": {
+    "hover": [
+      ".css-lubkoo > p > a:hover { text-decoration: none; }"
+    ],
+    "transitions": []
+  },
+  ".css-135dfwm > span a": {
+    "hover": [
+      ".css-135dfwm > span a:hover { color: rgb(153, 204, 51); }"
+    ],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  },
+  ".css-cow5q2 > span a": {
+    "hover": [
+      ".css-cow5q2 > span a:hover { color: rgb(153, 204, 51); }"
+    ],
+    "transitions": [
+      "transition: color 0.25s"
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "fixture-discountsBlock",
+  "blockType": "discountsBlock",
+  "itemsPerPage": 6,
+  "items": [
+    {
+      "title": "lastminute.com",
+      "description": "",
+      "discount": "Až 6 %",
+      "linkUrl": "/"
+    },
+    {
+      "title": "CCC",
+      "description": "",
+      "discount": "Až 7 %",
+      "linkUrl": "/"
+    },
+    {
+      "title": "Nejkufry.cz",
+      "description": "",
+      "discount": "Až 7 %",
+      "linkUrl": "/"
+    },
+    {
+      "title": "Optiscont",
+      "description": "",
+      "discount": "Až 10 %",
+      "linkUrl": "/"
+    }
+  ]
+}

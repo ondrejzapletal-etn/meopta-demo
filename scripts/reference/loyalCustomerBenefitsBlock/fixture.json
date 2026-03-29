@@ -1,0 +1,33 @@
+{
+  "id": "fixture-loyalCustomerBenefitsBlock",
+  "blockType": "loyalCustomerBenefitsBlock",
+  "title": "Můžete získat 2 různé balíčky výhod",
+  "beforeTitle": "Platím s Air Bank",
+  "afterTitle": "Žiju s Air Bank",
+  "items": [
+    {
+      "label": "Bonusová sazba na spořicím účtu 3 %",
+      "beforeValue": "do 500 tis. Kč",
+      "afterValue": "do 1 mil. Kč",
+      "highlight": false
+    },
+    {
+      "label": "1 % zpět z plateb naší kartou v zahraničí",
+      "beforeValue": "✓",
+      "afterValue": "✓",
+      "highlight": false
+    },
+    {
+      "label": "Sleva 0,1 % z úrokové sazby vaší hypotéky",
+      "beforeValue": "✓",
+      "afterValue": "✓",
+      "highlight": false
+    },
+    {
+      "label": "Výběry z bankomatů v zahraničí bez poplatků",
+      "beforeValue": "✓",
+      "afterValue": "✓",
+      "highlight": false
+    }
+  ]
+}

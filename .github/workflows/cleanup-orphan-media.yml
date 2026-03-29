@@ -1,0 +1,41 @@
+name: Cleanup Orphan Media
+
+on:
+  workflow_dispatch:
+    inputs:
+      cms_url:
+        description: "CMS URL (leave empty for production default)"
+        required: false
+        type: string
+
+env:
+  CMS_URL: ${{ inputs.cms_url || 'https://airbank-cms.victoriousground-e1ee141e.northeurope.azurecontainerapps.io' }}
+
+jobs:
+  cleanup:
+    name: Cleanup Orphan Media
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run cleanup
+        env:
+          CMS_EMAIL: ${{ secrets.CMS_ADMIN_EMAIL }}
+          CMS_PASSWORD: ${{ secrets.CMS_ADMIN_PASSWORD }}
+          HTTP_BASIC_USER: ${{ secrets.HTTP_BASIC_USER }}
+          HTTP_BASIC_PASSWORD: ${{ secrets.HTTP_BASIC_PASSWORD }}
+        run: npm run cleanup:orphan-media
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Cleanup Orphan Media" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Target:** ${{ env.CMS_URL }}" >> "$GITHUB_STEP_SUMMARY"

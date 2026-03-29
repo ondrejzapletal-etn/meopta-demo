@@ -1,0 +1,318 @@
+name: Deploy to Azure
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-azure
+  cancel-in-progress: true
+
+env:
+  REGISTRY: airbankwebacr.azurecr.io
+  RESOURCE_GROUP: etnc-airbankWeb-poc
+
+jobs:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # TIER 1: Hard Gates (blocking) — must pass before build/migrate/deploy
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  typecheck:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run tsc
+
+  lint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # TIER 2: Soft Gate (non-blocking) — informational schema drift detection
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  schema-validation:
+    name: Schema Validation
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+
+      - name: Run schema validation (soft mode)
+        id: validate
+        run: npx tsx scripts/validate-schemas.ts --soft
+
+      - name: Generate job summary
+        if: always()
+        run: |
+          REPORT="scripts/reference/validation-report.json"
+          if [ ! -f "$REPORT" ]; then
+            echo "No validation report generated." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          ERRORS=$(jq '[.[] | select(.status == "error")] | length' "$REPORT")
+          WARNINGS=$(jq '[.[] | select(.status == "warning")] | length' "$REPORT")
+          OK=$(jq '[.[] | select(.status == "ok")] | length' "$REPORT")
+          TOTAL=$(jq 'length' "$REPORT")
+
+          echo "## Schema Validation Report" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Status | Count |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|--------|-------|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Errors | $ERRORS |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Warnings | $WARNINGS |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| OK | $OK |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Total** | **$TOTAL** |" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "> Schema errors are **informational** — many come from scraping" >> "$GITHUB_STEP_SUMMARY"
+            echo "> heuristics and do not indicate real bugs. TypeScript compilation" >> "$GITHUB_STEP_SUMMARY"
+            echo "> catches actual contract breakages via shared \`payload-types.ts\`." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: schema-validation-report
+          path: scripts/reference/validation-report.json
+          retention-days: 30
+          if-no-files-found: warn
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # BUILD: Docker images (no Node.js needed — runs in parallel with migrate)
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  build:
+    name: Build Images
+    needs: [typecheck, lint]
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: ACR login
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Build and push CMS image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.azure
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/airbank-cms:${{ github.sha }}
+            ${{ env.REGISTRY }}/airbank-cms:latest
+          build-args: APP=cms
+          secrets: |
+            PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}
+          cache-from: type=gha,scope=cms
+          cache-to: type=gha,mode=max,scope=cms
+
+      - name: Get CMS FQDN for FE build
+        id: cms-url
+        run: |
+          FQDN=$(az containerapp show \
+            --name airbank-cms \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --query properties.configuration.ingress.fqdn \
+            --output tsv)
+          echo "url=https://$FQDN" >> "$GITHUB_OUTPUT"
+
+      - name: Build and push FE image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.azure
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/airbank-fe:${{ github.sha }}
+            ${{ env.REGISTRY }}/airbank-fe:latest
+          build-args: |
+            APP=fe
+            NEXT_PUBLIC_CMS_URL=${{ steps.cms-url.outputs.url }}
+          cache-from: type=gha,scope=fe
+          cache-to: type=gha,mode=max,scope=fe
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # MIGRATE: Database schema (runs in parallel with build)
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  migrate:
+    name: Database Migration
+    needs: [typecheck, lint]
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+
+      - name: Run Payload CMS migrations
+        env:
+          DATABASE_URI: ${{ secrets.DATABASE_URI }}
+          PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+        run: npx payload migrate
+        working-directory: apps/cms
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # DEPLOY: Container Apps + health verification (after build + migrate)
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  deploy:
+    name: Deploy & Verify
+    needs: [build, migrate]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy CMS
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          resourceGroup: ${{ env.RESOURCE_GROUP }}
+          containerAppName: airbank-cms
+          imageToDeploy: ${{ env.REGISTRY }}/airbank-cms:${{ github.sha }}
+
+      - name: Deploy FE
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          resourceGroup: ${{ env.RESOURCE_GROUP }}
+          containerAppName: airbank-fe
+          imageToDeploy: ${{ env.REGISTRY }}/airbank-fe:${{ github.sha }}
+
+      - name: Ensure scaling configuration
+        run: |
+          az containerapp update \
+            --name airbank-cms \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --min-replicas 1 --max-replicas 3
+          az containerapp update \
+            --name airbank-fe \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --min-replicas 1 --max-replicas 3
+
+      - name: Ensure HTTP Basic Auth env vars
+        run: |
+          az containerapp update \
+            --name airbank-cms \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --set-env-vars \
+              "HTTP_BASIC_USER=${{ secrets.HTTP_BASIC_USER }}" \
+              "HTTP_BASIC_PASSWORD=${{ secrets.HTTP_BASIC_PASSWORD }}"
+          az containerapp update \
+            --name airbank-fe \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --set-env-vars \
+              "HTTP_BASIC_USER=${{ secrets.HTTP_BASIC_USER }}" \
+              "HTTP_BASIC_PASSWORD=${{ secrets.HTTP_BASIC_PASSWORD }}"
+
+      - name: Get CMS FQDN
+        id: cms-fqdn
+        run: |
+          FQDN=$(az containerapp show \
+            --name airbank-cms \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --query properties.configuration.ingress.fqdn \
+            --output tsv)
+          echo "fqdn=$FQDN" >> "$GITHUB_OUTPUT"
+
+      - name: Get FE FQDN
+        id: fe-fqdn
+        run: |
+          FQDN=$(az containerapp show \
+            --name airbank-fe \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --query properties.configuration.ingress.fqdn \
+            --output tsv)
+          echo "fqdn=$FQDN" >> "$GITHUB_OUTPUT"
+
+      - name: Verify CMS health
+        run: |
+          for i in $(seq 1 30); do
+            if curl -sf "https://${{ steps.cms-fqdn.outputs.fqdn }}/api/health/live" > /dev/null 2>&1; then
+              echo "CMS is healthy"
+              exit 0
+            fi
+            echo "Waiting for CMS... ($i/30)"
+            sleep 10
+          done
+          echo "CMS health check failed"
+          exit 1
+
+      - name: Verify FE health
+        run: |
+          for i in $(seq 1 30); do
+            if curl -sf "https://${{ steps.fe-fqdn.outputs.fqdn }}/api/health/live" > /dev/null 2>&1; then
+              echo "FE is healthy"
+              exit 0
+            fi
+            echo "Waiting for FE... ($i/30)"
+            sleep 10
+          done
+          echo "FE health check failed"
+          exit 1
+
+      - name: Verify MCP endpoint
+        run: |
+          # MCP should return 401 without auth (not 500/404)
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X POST "https://${{ steps.cms-fqdn.outputs.fqdn }}/api/mcp" \
+            -H "Content-Type: application/json" \
+            -d '{"jsonrpc":"2.0","method":"tools/list","id":1}' \
+            2>/dev/null)
+          if [ "$STATUS" = "401" ]; then
+            echo "MCP endpoint responding correctly (401 without auth)"
+          else
+            echo "ERROR: MCP endpoint returned unexpected status: $STATUS (expected 401)"
+            exit 1
+          fi
+
+      - name: Deployment summary
+        run: |
+          echo "## Deployment Complete" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| App | URL |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|-----|-----|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| CMS Admin | https://${{ steps.cms-fqdn.outputs.fqdn }}/admin |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Frontend | https://${{ steps.fe-fqdn.outputs.fqdn }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| MCP Endpoint | https://${{ steps.cms-fqdn.outputs.fqdn }}/api/mcp |" >> "$GITHUB_STEP_SUMMARY"

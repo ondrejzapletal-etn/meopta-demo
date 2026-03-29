@@ -1,0 +1,43 @@
+{
+  "id": "fixture-infoCenterCardsBlock",
+  "blockType": "infoCenterCardsBlock",
+  "title": "est cupidatat laborum",
+  "items": [
+    {
+      "title": "Spárování mobilní aplikace",
+      "description": "",
+      "linkLabel": "Více informací",
+      "linkUrl": "/co-vas-nejvic-zajima/sparovani-mobilni-aplikace/"
+    },
+    {
+      "title": "Doručení karty",
+      "description": "",
+      "linkLabel": "Více informací",
+      "linkUrl": "/co-vas-nejvic-zajima/doruceni-karty/"
+    },
+    {
+      "title": "Špatně odeslaná platba",
+      "description": "",
+      "linkLabel": "Více informací",
+      "linkUrl": "/co-vas-nejvic-zajima/spatne-odeslana-platba/"
+    },
+    {
+      "title": "Storno karetní blokace",
+      "description": "",
+      "linkLabel": "Více informací",
+      "linkUrl": "/co-vas-nejvic-zajima/storno-karetni-blokace/"
+    },
+    {
+      "title": "Apple Pay",
+      "description": "",
+      "linkLabel": "Více informací",
+      "linkUrl": "/co-vas-nejvic-zajima/apple-pay/"
+    },
+    {
+      "title": "Google Pay",
+      "description": "",
+      "linkLabel": "Více informací",
+      "linkUrl": "/co-vas-nejvic-zajima/google-pay/"
+    }
+  ]
+}

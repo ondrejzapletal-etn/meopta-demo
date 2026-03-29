@@ -1,0 +1,18 @@
+{
+  "id": "fixture-jumbotronWithStickerBlock",
+  "blockType": "jumbotronWithStickerBlock",
+  "title": "Banner jumbotron s nálepkou",
+  "description": "magna nisi consectetur non exercitation",
+  "stickerText": "Nálepka",
+  "linkLabel": "Tempor",
+  "linkUrl": "/",
+  "secondaryLinkLabel": "Occaecat sed ea Lorem",
+  "secondaryLinkUrl": "/",
+  "backgroundColor": "green",
+  "image": {
+    "url": "/placeholder.jpg",
+    "alt": "placeholder",
+    "width": 800,
+    "height": 600
+  }
+}

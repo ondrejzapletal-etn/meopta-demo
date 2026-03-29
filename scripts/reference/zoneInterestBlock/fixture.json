@@ -1,0 +1,9 @@
+{
+  "id": "fixture-zoneInterestBlock",
+  "blockType": "zoneInterestBlock",
+  "title": "Graf spoření",
+  "monthlyDeposit": 5000,
+  "interestRate": 3,
+  "years": 10,
+  "description": "magna nisi consectetur non exercitation"
+}

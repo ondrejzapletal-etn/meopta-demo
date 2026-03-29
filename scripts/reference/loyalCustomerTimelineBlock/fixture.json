@@ -1,0 +1,48 @@
+{
+  "id": "fixture-loyalCustomerTimelineBlock",
+  "blockType": "loyalCustomerTimelineBlock",
+  "title": "Časová osa",
+  "description": "magna nisi consectetur non exercitation",
+  "items": [
+    {
+      "step": "1",
+      "title": "non",
+      "description": "",
+      "icon": {
+        "url": "/placeholder.jpg",
+        "width": 48,
+        "height": 48
+      }
+    },
+    {
+      "step": "2",
+      "title": "officia elit commodo Duis magna",
+      "description": "",
+      "icon": {
+        "url": "/placeholder.jpg",
+        "width": 48,
+        "height": 48
+      }
+    },
+    {
+      "step": "3",
+      "title": "magna nisi consectetur non exercitation",
+      "description": "",
+      "icon": {
+        "url": "/placeholder.jpg",
+        "width": 48,
+        "height": 48
+      }
+    },
+    {
+      "step": "4",
+      "title": "magna nisi consectetur non exercitation",
+      "description": "",
+      "icon": {
+        "url": "/placeholder.jpg",
+        "width": 48,
+        "height": 48
+      }
+    }
+  ]
+}

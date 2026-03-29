@@ -1,0 +1,23 @@
+{
+  "id": "fixture-stepsBlock",
+  "blockType": "stepsBlock",
+  "title": "Obsah s kroky",
+  "description": "magna nisi consectetur non exercitation",
+  "items": [
+    {
+      "stepNumber": 1,
+      "title": "nulla",
+      "description": "amet"
+    },
+    {
+      "stepNumber": 2,
+      "title": "Excepteur pariatur cupidatat velit veniam",
+      "description": "mollit"
+    },
+    {
+      "stepNumber": 3,
+      "title": "ut laborum proident ipsum",
+      "description": "nostrud nulla labore in occaecat"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+# Multi-stage Dockerfile for Azure Container Apps deployment.
+# Builds either CMS or FE workspace via the APP build arg.
+#
+# Pattern: deps → builder (inherits from deps) → runner (standalone output only)
+# See: https://nathanfries.com/posts/docker-npm-workspaces/
+#
+# Usage:
+#   docker build --build-arg APP=cms -f Dockerfile.azure .
+#   docker build --build-arg APP=fe  -f Dockerfile.azure .
+
+ARG NODE_VERSION=24
+
+# ─── Stage 1: Install dependencies ───────────────────────────────────────────
+FROM node:${NODE_VERSION}-alpine AS deps
+
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+# Copy package files first for optimal layer caching.
+# npm ci only re-runs when these files change, not on source code changes.
+COPY package.json package-lock.json ./
+COPY apps/cms/package.json ./apps/cms/
+COPY apps/fe/package.json ./apps/fe/
+COPY packages/shared/package.json ./packages/shared/
+COPY packages/eslint-config/package.json ./packages/eslint-config/
+COPY packages/typescript-config/package.json ./packages/typescript-config/
+
+# Required by postinstall hook (patch-package + patch-payload-bundle)
+COPY scripts/patch-payload-bundle.mjs ./scripts/
+
+RUN npm ci
+
+# ─── Stage 2: Build the selected workspace ───────────────────────────────────
+# Inherits from deps — no need to copy node_modules between stages.
+# npm workspaces hoist dependencies to root node_modules, so everything
+# is already in place after npm ci in the deps stage.
+FROM deps AS builder
+
+ARG APP
+
+# Copy source code on top of the installed dependencies
+COPY . .
+
+# PAYLOAD_SECRET is mounted as a BuildKit secret for CMS builds (Payload
+# requires it at config-load time even during compilation).
+# AZURE_STORAGE_CONNECTION_STRING placeholder ensures the Azure storage
+# plugin is included in the import map at build time (the real value
+# is provided at runtime via Container App env vars).
+# NEXT_PUBLIC_CMS_URL is required for the FE build so that client-side
+# components can resolve CMS media URLs (Next.js inlines NEXT_PUBLIC_*
+# at build time).
+ARG NEXT_PUBLIC_CMS_URL
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_PUBLIC_CMS_URL=${NEXT_PUBLIC_CMS_URL}
+RUN --mount=type=secret,id=PAYLOAD_SECRET \
+    if [ "$APP" = "cms" ] && [ -f /run/secrets/PAYLOAD_SECRET ]; then \
+      export PAYLOAD_SECRET=$(cat /run/secrets/PAYLOAD_SECRET); \
+      export AZURE_STORAGE_CONNECTION_STRING=build-placeholder; \
+    fi && \
+    npm run build --workspace=apps/${APP}
+
+# ─── Stage 3: Production runner ──────────────────────────────────────────────
+# Minimal image with only the standalone build output — no source code,
+# no node_modules, no build tools.
+FROM node:${NODE_VERSION}-alpine AS runner
+
+ARG APP
+
+ENV HOSTNAME="0.0.0.0"
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+ENV PORT=3000
+
+WORKDIR /app
+
+RUN apk add --no-cache libc6-compat
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# Copy only the standalone build output from the builder
+COPY --from=builder --chown=nextjs:nodejs /app/apps/${APP}/dist ./
+
+USER nextjs
+
+EXPOSE 3000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/api/health/live || exit 1
+
+CMD ["node", "server.js"]

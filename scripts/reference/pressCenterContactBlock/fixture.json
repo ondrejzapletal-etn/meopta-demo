@@ -1,0 +1,31 @@
+{
+  "id": "fixture-pressCenterContactBlock",
+  "blockType": "pressCenterContactBlock",
+  "title": "PR sekce",
+  "items": [
+    {
+      "name": "Jméno kontaktní osoby",
+      "role": "Pozice kontaktní osoby",
+      "email": "",
+      "phone": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Jméno kontaktní osoby",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Jméno kontaktní osoby",
+      "role": "anajPozice kontaktní osoby",
+      "email": "",
+      "phone": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Jméno kontaktní osoby",
+        "width": 800,
+        "height": 600
+      }
+    }
+  ]
+}

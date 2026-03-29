@@ -1,0 +1,12 @@
+{
+  "id": "fixture-loyalCustomerApplicationBlock",
+  "blockType": "loyalCustomerApplicationBlock",
+  "title": "Blok s tlačítky na aplikaci",
+  "rating": "4.8",
+  "image": {
+    "url": "/placeholder.jpg",
+    "alt": "culpa cupidatat ea irure proident",
+    "width": 800,
+    "height": 600
+  }
+}

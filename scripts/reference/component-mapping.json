@@ -1,0 +1,411 @@
+{
+  "_comment": "Mapping from Airbank original component IDs to our CMS block slugs",
+  "_selector": "main > div",
+  "_note": "Each top-level child of <main> wraps a component: <div><div id='ComponentName-_hash'>",
+  "mapping": {
+    "0": {
+      "abId": "HeroPlain",
+      "heading": "Hero bez obrázku",
+      "slug": "heroPlainBlock"
+    },
+    "1": {
+      "abId": "HeroWithImage",
+      "heading": "Hero s obrázkem",
+      "slug": "heroWithImageBlock"
+    },
+    "2": {
+      "abId": "HeroWithImageAndSearch",
+      "heading": "HERO s obrázkem a vyhledáváním",
+      "slug": "heroWithImageAndSearchBlock"
+    },
+    "3": {
+      "abId": "HeroWithImageLow",
+      "heading": "Hero s obrázkem nízké",
+      "slug": "heroWithImageCompactBlock"
+    },
+    "4": {
+      "abId": "HeroSlider",
+      "heading": "HERO s obrázkem ve slideru",
+      "slug": "heroSliderBlock"
+    },
+    "5": {
+      "abId": "Benefits",
+      "heading": "Benefity (1–3 bloky)",
+      "slug": "benefitsBlock"
+    },
+    "6": {
+      "abId": "BenefitsWithFourColumns",
+      "heading": "Benefity (1–4 bloky)",
+      "slug": "benefitsBlock"
+    },
+    "7": {
+      "abId": "BenefitsWithImage",
+      "heading": "Benefity s obrázky",
+      "slug": "benefitsWithImageBlock"
+    },
+    "8": {
+      "abId": "BenefitsWithList",
+      "heading": "S kartou menších benefitů",
+      "slug": "benefitsWithListBlock"
+    },
+    "9": {
+      "abId": "Callback",
+      "heading": "est cupidatat laborum",
+      "slug": "callbackBlock"
+    },
+    "10": {
+      "abId": "CallbackSimplified",
+      "heading": "est cupidatat laborum",
+      "slug": "callbackSimplifiedBlock"
+    },
+    "11": {
+      "abId": "CompareTable",
+      "heading": "Tabulka",
+      "slug": "compareTableBlock"
+    },
+    "12": {
+      "abId": "ExchangeTradedFundsTable",
+      "heading": "ETF tabulka",
+      "slug": "exchangeTradedFundsTableBlock"
+    },
+    "13": {
+      "abId": "LoyalCustomerBenefits",
+      "heading": "Můžete získat 2 různé balíčky výhod",
+      "slug": "loyalCustomerBenefitsBlock"
+    },
+    "14": {
+      "abId": "TableCardCollapsible",
+      "heading": "Tabulka s ceníkem",
+      "slug": "exchangeTradedFundsTableBlock"
+    },
+    "15": {
+      "abId": "Discounts",
+      "heading": "(no heading)",
+      "slug": "discountsBlock"
+    },
+    "16": {
+      "abId": "ExchangeRates",
+      "heading": "(no heading)",
+      "slug": "exchangeRatesBlock"
+    },
+    "17": {
+      "abId": "InvestmentAssistant",
+      "heading": "(no heading)",
+      "slug": null,
+      "_note": "Not in our CMS — investment assistant widget"
+    },
+    "18": {
+      "abId": "InvestmentCards",
+      "heading": "est cupidatat laborum",
+      "slug": "contentCardsBlock"
+    },
+    "19": {
+      "abId": "ContactStrip",
+      "heading": "est cupidatat laborum",
+      "slug": "contactStripBlock"
+    },
+    "20": {
+      "abId": "Conversions",
+      "heading": "CTA blok",
+      "slug": "callbackBlock"
+    },
+    "21": {
+      "abId": "FaqItems",
+      "heading": "est cupidatat laborum",
+      "slug": "faqItemsBlock"
+    },
+    "22": {
+      "abId": "DownloadSection",
+      "heading": "(no heading)",
+      "slug": "downloadSectionBlock"
+    },
+    "23": {
+      "abId": "Feature",
+      "heading": "est cupidatat laborum",
+      "slug": "featureBlock"
+    },
+    "24": {
+      "abId": "FeatureApplication",
+      "heading": "est cupidatat laborum",
+      "slug": "featureApplicationBlock"
+    },
+    "25": {
+      "abId": "FlashMessage",
+      "heading": "(no heading)",
+      "slug": "flashMessageBlock"
+    },
+    "26": {
+      "abId": "HomepageIntro",
+      "heading": "est cupidatat laborum",
+      "slug": "richTextBlock"
+    },
+    "27": {
+      "abId": "Image",
+      "heading": "est cupidatat laborum",
+      "slug": "featureBlock"
+    },
+    "28": {
+      "abId": "InfoCardNarrow",
+      "heading": "est cupidatat laborum",
+      "slug": "infoCardNarrowBlock"
+    },
+    "29": {
+      "abId": "JumbotronWithSticker",
+      "heading": "Banner jumbotron s nálepkou",
+      "slug": "callbackBlock"
+    },
+    "30": {
+      "abId": "InfoCenterCards",
+      "heading": "est cupidatat laborum",
+      "slug": "contentCardsBlock"
+    },
+    "31": {
+      "abId": "InfoCenterFaq",
+      "heading": "(no heading)",
+      "slug": "infoCenterFaqBlock"
+    },
+    "32": {
+      "abId": "InfoDesktop",
+      "heading": "Obsah s obrázkem",
+      "slug": "featureBlock"
+    },
+    "33": {
+      "abId": "InfoDoubleImage",
+      "heading": "Obsah s dvojobrázkem",
+      "slug": "infoDoubleImageBlock"
+    },
+    "34": {
+      "abId": "InfoImage",
+      "heading": "Obsah s obrázkem bez odsazení",
+      "slug": "featureBlock"
+    },
+    "35": {
+      "abId": "InfoImageBig",
+      "heading": "Obsah s velkým obrázkem",
+      "slug": "infoImageBigBlock"
+    },
+    "36": {
+      "abId": "InfoPlain",
+      "heading": "Obsah bez obrázku",
+      "slug": "richTextBlock"
+    },
+    "37": {
+      "abId": "InfoVideo",
+      "heading": "Obsah s videem",
+      "slug": "infoVideoBlock"
+    },
+    "38": {
+      "abId": "Jumbotron",
+      "heading": "est cupidatat laborum",
+      "slug": "callbackBlock"
+    },
+    "39": {
+      "abId": "myair-benefity",
+      "heading": "Jak účet pro dítě uvidíte v aplikaci",
+      "slug": null,
+      "_note": "Removed — no CMS block counterpart"
+    },
+    "40": {
+      "abId": "LinkCards",
+      "heading": "Obsah — karty s odkazem",
+      "slug": "contentCardsBlock"
+    },
+    "41": {
+      "abId": "LoyalCustomerApplication",
+      "heading": "Blok s tlačítky na aplikaci",
+      "slug": "featureApplicationBlock"
+    },
+    "42": {
+      "abId": "LoyalCustomerTimeline",
+      "heading": "Časová osa",
+      "slug": "timelineBlock"
+    },
+    "43": {
+      "abId": "OmnichannelBanner",
+      "heading": "(no heading)",
+      "slug": "contactStripBlock"
+    },
+    "44": {
+      "abId": "PressCenterContact",
+      "heading": "PR sekce",
+      "slug": "pressCenterContactBlock"
+    },
+    "45": {
+      "abId": "ProductCardHorizontal",
+      "heading": "Benefity — karta horizontální",
+      "slug": "productCardHorizontalBlock"
+    },
+    "46": {
+      "abId": "ProductCards",
+      "heading": "Benefity — karty",
+      "slug": "productCardsVerticalBlock"
+    },
+    "47": {
+      "abId": "ProductCardsHorizontal",
+      "heading": "Benefity — karty horizontální",
+      "slug": "productCardHorizontalBlock"
+    },
+    "48": {
+      "abId": "SocialMediaIcons",
+      "heading": "est cupidatat laborum",
+      "slug": null,
+      "_note": "Social media icons — not in our CMS"
+    },
+    "49": {
+      "abId": "SocialMediaShareIcons",
+      "heading": "est cupidatat laborum",
+      "slug": null,
+      "_note": "Social share icons — not in our CMS"
+    },
+    "50": {
+      "abId": "Steps",
+      "heading": "Obsah s kroky",
+      "slug": "timelineBlock"
+    },
+    "51": {
+      "abId": "Timeline",
+      "heading": "Timeline",
+      "slug": "timelineBlock"
+    },
+    "52": {
+      "abId": "TopManagementCards",
+      "heading": "Členové naší základní sestavy",
+      "slug": "topManagementCardsBlock"
+    },
+    "53": {
+      "abId": "VideoCards",
+      "heading": "Obsah — karty s videem",
+      "slug": "contentCardsBlock"
+    },
+    "54": {
+      "abId": "YouTube",
+      "heading": "(no heading)",
+      "slug": "youtubeVideoBlock"
+    },
+    "55": {
+      "abId": "ZoneInterest",
+      "heading": "Graf spoření",
+      "slug": "zoneInterestBlock"
+    },
+    "56": {
+      "abId": "kalkulacka",
+      "heading": "Zonky Rentiér",
+      "slug": "zonkyCalculatorBlock"
+    },
+    "57": {
+      "abId": "InflationCalculator",
+      "heading": "Inflační kalkulačka",
+      "slug": "inflationCalculatorBlock"
+    },
+    "58": {
+      "abId": "LoanCalculator",
+      "heading": "Půjčková kalkulačka",
+      "slug": "loanCalculatorBlock"
+    },
+    "59": {
+      "abId": "hypotecni-kalkulacka",
+      "heading": "Hypoteční kalkulačka",
+      "slug": "mortgageCalculatorBlock"
+    },
+    "60": {
+      "abId": "PortuCalculator",
+      "heading": "Portu kalkulačka",
+      "slug": "zonkyCalculatorBlock"
+    },
+    "61": {
+      "abId": "PortuCalculatorPension",
+      "heading": "Pordu DIP",
+      "slug": "zonkyCalculatorBlock"
+    },
+    "62": {
+      "abId": "SupplementaryPensionSavingsCalculatorEnhanced",
+      "heading": "DPS kalkulačka",
+      "slug": "zonkyCalculatorBlock"
+    },
+    "63": {
+      "abId": "CompareTableBonds",
+      "heading": "Termínované vklady",
+      "slug": "compareBondsTableBlock"
+    },
+    "64": {
+      "abId": "ExchangeCompareTable",
+      "heading": "est cupidatat laborum",
+      "slug": "compareTableBlock"
+    },
+    "65": {
+      "abId": "HeroReasonsSimplified",
+      "heading": "est cupidatat laborum",
+      "slug": "infoCardNarrowBlock"
+    },
+    "66": {
+      "abId": "LogoCarousel",
+      "heading": "est cupidatat laborum",
+      "slug": "logoCarouselBlock"
+    },
+    "67": {
+      "abId": "StepsVerticalCollapsible",
+      "heading": "est cupidatat laborum",
+      "slug": "faqItemsBlock"
+    }
+  },
+  "unmappedOriginals": [
+    {
+      "index": 17,
+      "abId": "InvestmentAssistant",
+      "reason": "Interactive investment widget — not a content block"
+    },
+    {
+      "index": 48,
+      "abId": "SocialMediaIcons",
+      "reason": "Social media icon links — handled by footer/header"
+    },
+    {
+      "index": 49,
+      "abId": "SocialMediaShareIcons",
+      "reason": "Social share buttons — not a content block"
+    }
+  ],
+  "primaryReferencePerSlug": {
+    "heroPlainBlock": 0,
+    "heroWithImageBlock": 1,
+    "heroWithImageAndSearchBlock": 2,
+    "heroWithImageCompactBlock": 3,
+    "heroSliderBlock": 4,
+    "benefitsBlock": 5,
+    "benefitsWithImageBlock": 7,
+    "benefitsWithListBlock": 8,
+    "callbackBlock": 20,
+    "callbackSimplifiedBlock": 10,
+    "compareTableBlock": 11,
+    "exchangeTradedFundsTableBlock": 14,
+    "loyalCustomerBenefitsBlock": 13,
+    "discountsBlock": 15,
+    "exchangeRatesBlock": 16,
+    "contentCardsBlock": 40,
+    "contactStripBlock": 19,
+    "faqItemsBlock": 21,
+    "downloadSectionBlock": 22,
+    "featureBlock": 32,
+    "featureApplicationBlock": 41,
+    "flashMessageBlock": 25,
+    "richTextBlock": 36,
+    "infoCardNarrowBlock": 65,
+    "infoCenterFaqBlock": 31,
+    "infoDoubleImageBlock": 33,
+    "infoImageBigBlock": 35,
+    "infoVideoBlock": 37,
+    "timelineBlock": 51,
+    "topManagementCardsBlock": 52,
+    "pressCenterContactBlock": 44,
+    "productCardsVerticalBlock": 46,
+    "productCardHorizontalBlock": 45,
+    "youtubeVideoBlock": 54,
+    "zoneInterestBlock": 55,
+    "zonkyCalculatorBlock": 56,
+    "inflationCalculatorBlock": 57,
+    "loanCalculatorBlock": 58,
+    "mortgageCalculatorBlock": 59,
+    "compareBondsTableBlock": 63,
+    "logoCarouselBlock": 66
+  }
+}

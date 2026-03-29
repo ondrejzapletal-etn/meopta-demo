@@ -1,0 +1,61 @@
+{
+  "id": "fixture-exchangeTradedFundsTableBlock",
+  "blockType": "exchangeTradedFundsTableBlock",
+  "title": "Tabulka s ceníkem",
+  "columns": [
+    {
+      "label": "evfefvefv"
+    },
+    {
+      "label": "ccc"
+    }
+  ],
+  "rows": [
+    {
+      "label": "Popisek řádku",
+      "values": [
+        {
+          "value": "100 Kč"
+        }
+      ]
+    },
+    {
+      "label": "Popisek řádku",
+      "values": [
+        {
+          "value": "100 Kč"
+        }
+      ]
+    },
+    {
+      "label": "Popisek řádku",
+      "values": [
+        {
+          "value": "100 Kč"
+        }
+      ]
+    },
+    {
+      "label": "Popisek řádku",
+      "values": [
+        {
+          "value": ""
+        },
+        {
+          "value": "100 Kč"
+        }
+      ]
+    },
+    {
+      "label": "Popisek řádku",
+      "values": [
+        {
+          "value": ""
+        },
+        {
+          "value": "100 Kč"
+        }
+      ]
+    }
+  ]
+}

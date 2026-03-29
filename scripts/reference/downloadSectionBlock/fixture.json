@@ -1,0 +1,13 @@
+{
+  "id": "fixture-downloadSectionBlock",
+  "blockType": "downloadSectionBlock",
+  "items": [
+    {
+      "title": "est cupidatat laborum",
+      "description": "magna nisi consectetur non exercitation",
+      "fileUrl": "https://apps.apple.com/app/apple-store/id593036778?pt=1337683&ct=web&mt=8",
+      "fileSize": "",
+      "category": ""
+    }
+  ]
+}

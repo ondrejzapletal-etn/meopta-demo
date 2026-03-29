@@ -1,0 +1,46 @@
+{
+  "id": "fixture-infoImageBlock",
+  "blockType": "infoImageBlock",
+  "title": "Obsah s obrázkem bez odsazení",
+  "description": {
+    "root": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "magna nisi consectetur non exercitation",
+              "version": 1
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "textFormat": 0,
+          "version": 1
+        }
+      ],
+      "direction": "ltr",
+      "format": "",
+      "indent": 0,
+      "version": 1
+    }
+  },
+  "imagePosition": "right",
+  "linkLabel": "Wvwv",
+  "linkUrl": "/",
+  "secondaryLinkLabel": "Consequat",
+  "secondaryLinkUrl": "/",
+  "image": {
+    "url": "/placeholder.jpg",
+    "alt": "Obsah s obrázkem bez odsazení",
+    "width": 800,
+    "height": 600
+  }
+}

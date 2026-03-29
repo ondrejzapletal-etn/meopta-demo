@@ -1,0 +1,13 @@
+{
+  "id": "fixture-imageBlock",
+  "blockType": "imageBlock",
+  "title": "est cupidatat laborum",
+  "description": "magna nisi consectetur non exercitation",
+  "imagePosition": "right",
+  "image": {
+    "url": "/placeholder.jpg",
+    "alt": "id esse laboris",
+    "width": 800,
+    "height": 600
+  }
+}

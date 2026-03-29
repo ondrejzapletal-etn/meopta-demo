@@ -1,0 +1,69 @@
+name: Populate CMS
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "What to run"
+        required: true
+        type: choice
+        options:
+          - globals
+          - all
+          - reset
+        default: globals
+      cms_url:
+        description: "CMS URL (leave empty for production default)"
+        required: false
+        type: string
+
+env:
+  CMS_URL: ${{ inputs.cms_url || 'https://airbank-cms.victoriousground-e1ee141e.northeurope.azurecontainerapps.io' }}
+
+jobs:
+  populate:
+    name: Populate CMS (${{ inputs.mode }})
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run populate
+        env:
+          CMS_EMAIL: ${{ secrets.CMS_ADMIN_EMAIL }}
+          CMS_PASSWORD: ${{ secrets.CMS_ADMIN_PASSWORD }}
+          HTTP_BASIC_USER: ${{ secrets.HTTP_BASIC_USER }}
+          HTTP_BASIC_PASSWORD: ${{ secrets.HTTP_BASIC_PASSWORD }}
+        run: |
+          if [ "${{ inputs.mode }}" = "globals" ]; then
+            npm run populate:header
+            npm run populate:footer
+          elif [ "${{ inputs.mode }}" = "reset" ]; then
+            npm run populate:homepage:reset
+            npm run populate:pujcka:reset
+            npm run populate:investice:reset
+            npm run populate:hypoteka:reset
+            # npm run populate:pobocky:reset  # skip — branch photos not in repo
+            npm run populate:pojisteni-hypoteky:reset
+          else
+            npm run populate:homepage
+            npm run populate:pujcka
+            npm run populate:investice
+            npm run populate:hypoteka
+            # npm run populate:pobocky  # skip — branch photos not in repo
+            npm run populate:pojisteni-hypoteky
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## CMS Populate (${{ inputs.mode }})" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Target:** ${{ env.CMS_URL }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Mode:** ${{ inputs.mode }}" >> "$GITHUB_STEP_SUMMARY"

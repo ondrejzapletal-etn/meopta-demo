@@ -1,0 +1,43 @@
+{
+  "id": "fixture-contentCardsBlock",
+  "blockType": "contentCardsBlock",
+  "title": "Obsah — karty s videem",
+  "items": [
+    {
+      "title": "in nulla in et ipsum",
+      "description": "Vero dignissimos id aut molestiae laborum facilis quis recusandae.",
+      "linkLabel": "Více",
+      "linkUrl": "/",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "in nulla in et ipsum",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "title": "sit velit ut",
+      "description": "Voluptate ex impedit temporibus et praesentium qui dignissimos ut.",
+      "linkLabel": "Více",
+      "linkUrl": "/",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "sit velit ut",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "title": "sed velit nostrud",
+      "description": "Cupiditate et et ad sunt ut quia. Qui amet at esse corrupti ea.",
+      "linkLabel": "Více",
+      "linkUrl": "/",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "sed velit nostrud",
+        "width": 800,
+        "height": 600
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "fixture-benefitsBlock",
+  "blockType": "benefitsBlock",
+  "title": "Benefity (1–3 bloky)",
+  "description": "magna nisi consectetur non exercitation",
+  "columns": "3",
+  "items": [
+    {
+      "title": "tempor",
+      "description": "tempornontempornonnon",
+      "icon": {
+        "url": "/placeholder.jpg",
+        "alt": "benefit-icon-0",
+        "width": 48,
+        "height": 48
+      }
+    },
+    {
+      "title": "nisi quis deserunt Excepteur",
+      "description": "nisi quis deserunt Excepteurofficia elit commodo Duis magnanisi quis deserunt Excepteurofficia elit commodo Duis magnaofficia elit commodo Duis magna",
+      "icon": {
+        "url": "/placeholder.jpg",
+        "alt": "benefit-icon-1",
+        "width": 48,
+        "height": 48
+      }
+    },
+    {
+      "title": "officia et dolore",
+      "description": "officia et dolorecupidatatofficia et dolorecupidatatcupidatat",
+      "icon": {
+        "url": "/placeholder.jpg",
+        "alt": "benefit-icon-2",
+        "width": 48,
+        "height": 48
+      }
+    }
+  ]
+}

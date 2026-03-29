@@ -1,0 +1,39 @@
+{
+  "id": "fixture-benefitsWithImageBlock",
+  "blockType": "benefitsWithImageBlock",
+  "title": "Benefity s obrázky",
+  "description": "magna nisi consectetur non exercitation",
+  "columns": "3",
+  "items": [
+    {
+      "title": "in nulla in et ipsum",
+      "description": "Vero dignissimos id aut molestiae laborum facilis quis recusandae. Voluptate ex impedit temporibus et praesentium qui dignissimos ut. Cupiditate et et ad sunt ut quia. Qui amet at esse corrupti ea.",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "in nulla in et ipsum",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "title": "sit velit ut",
+      "description": "Vero dignissimos id aut molestiae laborum facilis quis recusandae. Voluptate ex impedit temporibus et praesentium qui dignissimos ut. Cupiditate et et ad sunt ut quia. Qui amet at esse corrupti ea.",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "sit velit ut",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "title": "sed velit nostrud",
+      "description": "Vero dignissimos id aut molestiae laborum facilis quis recusandae. Voluptate ex impedit temporibus et praesentium qui dignissimos ut. Cupiditate et et ad sunt ut quia. Qui amet at esse corrupti ea.",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "sed velit nostrud",
+        "width": 800,
+        "height": 600
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "fixture-infoImageBigBlock",
+  "blockType": "infoImageBigBlock",
+  "title": "Obsah s velkým obrázkem",
+  "description": {
+    "root": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "magna nisi consectetur non exercitation",
+              "version": 1
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "textFormat": 0,
+          "version": 1
+        }
+      ],
+      "direction": "ltr",
+      "format": "",
+      "indent": 0,
+      "version": 1
+    }
+  },
+  "imagePosition": "left",
+  "linkLabel": "Elit culpa incididunt",
+  "linkUrl": "/",
+  "secondaryLinkLabel": "Consequat",
+  "secondaryLinkUrl": "/",
+  "image": {
+    "url": "/placeholder.jpg",
+    "alt": "Obsah s velkým obrázkem",
+    "width": 800,
+    "height": 600
+  }
+}

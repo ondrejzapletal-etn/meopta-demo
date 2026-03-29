@@ -1,0 +1,818 @@
+name: Claude Fix Review Issues
+
+on:
+  # Trigger on formal PR reviews
+  pull_request_review:
+    types: [submitted]
+  # Trigger on PR comments (Claude posts reviews as comments)
+  issue_comment:
+    types: [created]
+  # Allow manual trigger from other workflows (avoids bot approval requirement)
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to fix'
+        required: true
+        type: number
+      pr_branch:
+        description: 'PR branch name'
+        required: true
+        type: string
+
+# Prevent concurrent runs for the same PR
+concurrency:
+  group: claude-fix-review-${{ github.event.pull_request.number || github.event.issue.number || inputs.pr_number }}
+  cancel-in-progress: true
+
+jobs:
+  # Job for workflow_dispatch trigger (called from claude-code-review)
+  fix-from-dispatch:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+    steps:
+      - name: Record start time
+        id: start
+        run: echo "time=$(date +%s)" >> $GITHUB_OUTPUT
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.pr_branch }}
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Fix Review Issues
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ inputs.pr_number }}
+            PR BRANCH: ${{ inputs.pr_branch }}
+
+            ## Review Feedback to Address
+
+            Read the review from the latest Claude comment on PR #${{ inputs.pr_number }} using:
+            ```bash
+            gh pr view ${{ inputs.pr_number }} --comments --json comments --jq '.comments | map(select(.author.login == "claude" or .author.login == "claude[bot]")) | last | .body'
+            ```
+
+            ## CRITICAL INSTRUCTIONS
+
+            1. **Read CLAUDE.md** to understand the project
+            2. **Parse the review** - focus on Critical/Major issues only
+            3. **Fix each issue** with minimal changes
+            4. **Verify** - run lint and typecheck:
+               ```bash
+               npm run tsc && npm run lint
+               ```
+            5. **Commit and push**:
+               ```bash
+               git add -A
+               git commit -m "fix: address review feedback for PR #${{ inputs.pr_number }}"
+               git push
+               ```
+            6. **Comment on PR** with summary of fixes:
+               ```bash
+               gh pr comment ${{ inputs.pr_number }} --body "## Fixed Issues
+               - [list each issue fixed]
+
+               Ready for re-review."
+               ```
+
+          claude_args: '--model opus --allowed-tools "Bash(git:*),Bash(gh pr:*),Bash(npm:*),Read,Write,Edit,Glob,Grep"'
+
+      - name: Log AI time
+        if: always()
+        id: log_time
+        uses: actions/github-script@v7
+        env:
+          START_TIME: ${{ steps.start.outputs.time }}
+          PR_NUMBER: ${{ inputs.pr_number }}
+        with:
+          script: |
+            const startTime = parseInt(process.env.START_TIME);
+            const endTime = Math.floor(Date.now() / 1000);
+            const durationMinutes = Math.ceil((endTime - startTime) / 60);
+            const durationHours = (durationMinutes / 60).toFixed(1);
+
+            const body = `**AI Time logged:** ${durationHours}h (${durationMinutes} min)\n` +
+                        `**Workflow:** claude-fix-review (dispatch)\n` +
+                        `**Work Type:** ai\n\n` +
+                        `_Automatically recorded from GitHub Actions_`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: parseInt(process.env.PR_NUMBER),
+              body: body
+            });
+
+            core.setOutput('minutes', durationMinutes);
+
+  fix-from-review:
+    # Trigger on formal PR review with issues from authorized users
+    # Matches: Critical, Major, Medium, Important, and warning emoji
+    if: |
+      github.event_name == 'pull_request_review' &&
+      (contains(github.event.review.body, 'Critical') ||
+       contains(github.event.review.body, 'CRITICAL') ||
+       contains(github.event.review.body, 'Major') ||
+       contains(github.event.review.body, 'MAJOR') ||
+       contains(github.event.review.body, 'Medium') ||
+       contains(github.event.review.body, 'MEDIUM') ||
+       contains(github.event.review.body, 'Important') ||
+       contains(github.event.review.body, 'IMPORTANT') ||
+       contains(github.event.review.body, '⚠️')) &&
+      contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.review.author_association)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+    steps:
+      - name: Record start time
+        id: start
+        run: echo "time=$(date +%s)" >> $GITHUB_OUTPUT
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Fix Review Issues
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          allowed_bots: "claude[bot],github-actions[bot],dependabot[bot]"
+          track_progress: true
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
+            PR BRANCH: ${{ github.event.pull_request.head.ref }}
+
+            ## Review Feedback to Address
+
+            ${{ github.event.review.body }}
+
+            ## CRITICAL INSTRUCTIONS - READ COMPLETELY BEFORE ACTING
+
+            **YOU MUST follow these steps IN ORDER. Do NOT skip any step.**
+
+            ### STEP 1: UNDERSTAND (no coding yet!)
+
+            First, understand the review WITHOUT making any changes:
+
+            a) **Read CLAUDE.md** completely - this is the master instruction file for the Next.js + Payload CMS monorepo
+            b) **Parse the review** and create a list of all Critical/Major issues:
+               - Look for sections marked Critical, Major, Important, or ⚠️
+               - Focus on security issues and bugs first
+               - Ignore Minor issues, suggestions, and nice-to-haves
+            c) **Read ALL files** that will be modified to understand existing patterns
+
+            Project structure:
+            - CMS: Payload CMS backend (apps/cms/)
+            - Frontend: Next.js frontend (apps/fe/)
+            - Shared: Auto-generated types + shared TypeScript types (packages/shared/)
+
+            **IMPORTANT:** If a review comment is unclear or ambiguous:
+            - Comment on the PR asking for clarification
+            - DO NOT guess what the reviewer meant
+
+            ### STEP 2: PLAN (think hard)
+
+            Before making changes:
+            - List every file you will modify
+            - Describe each specific change you will make
+            - Identify potential risks or side effects
+
+            ### STEP 3: FIX (minimal changes)
+
+            For each Critical/Major issue:
+            - Make the minimal necessary changes to fix the issue
+            - Follow existing code patterns exactly
+            - Ensure security best practices (see CLAUDE.md)
+            - Run verification after EACH fix:
+              ```bash
+              npm run tsc && npm run lint
+              ```
+
+            ### STEP 4: VERIFY
+
+            Before committing, ensure:
+            - [ ] ALL Critical/Major issues from the review are addressed
+            - [ ] TypeScript and lint checks pass
+            - [ ] No unintended side effects introduced
+
+            ### STEP 5: COMMIT AND PUSH
+
+            ```bash
+            git add -A
+            git commit -m "fix: address review feedback for PR #${{ github.event.pull_request.number }}"
+            git push
+            ```
+
+            ### STEP 6: COMMENT ON PR
+
+            Summarize what was fixed:
+            ```bash
+            gh pr comment ${{ github.event.pull_request.number }} --body "## Fixed Issues
+
+            - [list each issue fixed with specific description]
+
+            ## Changes Made
+            - [list files modified and what changed]
+
+            Ready for re-review."
+            ```
+
+          claude_args: '--model opus --allowed-tools "Bash(git:*),Bash(gh pr:*),Bash(npm:*),Read,Write,Edit,Glob,Grep"'
+
+      - name: Log AI time
+        if: always()
+        id: log_time
+        uses: actions/github-script@v8
+        env:
+          START_TIME: ${{ steps.start.outputs.time }}
+        with:
+          script: |
+            const startTime = parseInt(process.env.START_TIME);
+            const endTime = Math.floor(Date.now() / 1000);
+            const durationSeconds = endTime - startTime;
+            const durationMinutes = Math.ceil(durationSeconds / 60);
+            const durationHours = (durationMinutes / 60).toFixed(1);
+
+            const body = `**AI Time logged:** ${durationHours}h (${durationMinutes} min)\n` +
+                        `**Workflow:** claude-fix-review\n` +
+                        `**Work Type:** ai\n\n` +
+                        `_Automatically recorded from GitHub Actions_`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: body
+            });
+
+            core.setOutput('minutes', durationMinutes);
+            console.log(`AI time logged: ${durationMinutes} minutes (${durationHours}h)`);
+
+      - name: Update Project Fields
+        if: always()
+        uses: actions/github-script@v8
+        env:
+          PROJECT_NUMBER: "1"
+          PROJECT_OWNER: "etnetera"
+          MINUTES: ${{ steps.log_time.outputs.minutes }}
+        with:
+          github-token: ${{ secrets.PROJECT_TOKEN }}
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const projectNumber = parseInt(process.env.PROJECT_NUMBER);
+            const projectOwner = process.env.PROJECT_OWNER;
+            const minutes = parseInt(process.env.MINUTES) || 0;
+
+            // Get linked issue from PR body (Closes #X)
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber
+            });
+
+            // Match: Closes #X, Fixes #X, Resolves #X, Part of #X
+            const issueMatch = pr.data.body?.match(/(?:Closes|Fixes|Resolves|Part of)\s+#(\d+)/i);
+            if (!issueMatch) {
+              console.log('No linked issue found in PR body (expected: Closes #X, Fixes #X, or Part of #X)');
+              return;
+            }
+            const issueNumber = parseInt(issueMatch[1]);
+
+            // Get project and field IDs
+            const projectQuery = `
+              query($owner: String!, $number: Int!) {
+                organization(login: $owner) {
+                  projectV2(number: $number) {
+                    id
+                    fields(first: 20) {
+                      nodes {
+                        ... on ProjectV2Field {
+                          id
+                          name
+                          dataType
+                        }
+                        ... on ProjectV2SingleSelectField {
+                          id
+                          name
+                          dataType
+                          options {
+                            id
+                            name
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            let projectData;
+            try {
+              projectData = await github.graphql(projectQuery, {
+                owner: projectOwner,
+                number: projectNumber
+              });
+            } catch (e) {
+              console.log('Failed to get project data:', e.message);
+              return;
+            }
+
+            const project = projectData.organization.projectV2;
+            if (!project) {
+              console.log('Project not found');
+              return;
+            }
+
+            const fields = project.fields.nodes;
+            const timeLoggedField = fields.find(f => f.name === 'Time Logged');
+            const workTypeField = fields.find(f => f.name === 'Work Type');
+
+            // Get the project item for the linked issue
+            const itemQuery = `
+              query($owner: String!, $repo: String!, $issueNumber: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  issue(number: $issueNumber) {
+                    projectItems(first: 10) {
+                      nodes {
+                        id
+                        project {
+                          id
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            const itemData = await github.graphql(itemQuery, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issueNumber: issueNumber
+            });
+
+            const projectItems = itemData.repository.issue.projectItems.nodes;
+            const projectItem = projectItems.find(item => item.project.id === project.id);
+
+            if (!projectItem) {
+              console.log('Issue is not in the project');
+              return;
+            }
+
+            // Update Time Logged field
+            if (timeLoggedField && minutes > 0) {
+              const currentQuery = `
+                query($itemId: ID!) {
+                  node(id: $itemId) {
+                    ... on ProjectV2Item {
+                      fieldValueByName(name: "Time Logged") {
+                        ... on ProjectV2ItemFieldNumberValue {
+                          number
+                        }
+                      }
+                    }
+                  }
+                }
+              `;
+
+              const currentResult = await github.graphql(currentQuery, { itemId: projectItem.id });
+              const currentValue = currentResult.node.fieldValueByName?.number || 0;
+              const hours = parseFloat((minutes / 60).toFixed(2));
+              const newValue = currentValue + hours;
+
+              const updateTimeLogged = `
+                mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Float!) {
+                  updateProjectV2ItemFieldValue(
+                    input: {
+                      projectId: $projectId
+                      itemId: $itemId
+                      fieldId: $fieldId
+                      value: { number: $value }
+                    }
+                  ) {
+                    projectV2Item { id }
+                  }
+                }
+              `;
+
+              await github.graphql(updateTimeLogged, {
+                projectId: project.id,
+                itemId: projectItem.id,
+                fieldId: timeLoggedField.id,
+                value: newValue
+              });
+              console.log(`Updated Time Logged: ${currentValue}h -> ${newValue}h`);
+            }
+
+            // Update Work Type to "ai"
+            if (workTypeField && workTypeField.options) {
+              const aiOption = workTypeField.options.find(o => o.name === 'ai');
+              if (aiOption) {
+                const updateWorkType = `
+                  mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+                    updateProjectV2ItemFieldValue(
+                      input: {
+                        projectId: $projectId
+                        itemId: $itemId
+                        fieldId: $fieldId
+                        value: { singleSelectOptionId: $optionId }
+                      }
+                    ) {
+                      projectV2Item { id }
+                    }
+                  }
+                `;
+
+                await github.graphql(updateWorkType, {
+                  projectId: project.id,
+                  itemId: projectItem.id,
+                  fieldId: workTypeField.id,
+                  optionId: aiOption.id
+                });
+                console.log('Updated Work Type to ai');
+              }
+            }
+
+            console.log('Project fields updated successfully');
+
+  fix-from-comment:
+    # Trigger on PR comment from Claude bot or GitHub Actions with issues to address
+    # Matches: Critical, Major, Medium, Important, and emoji indicators
+    if: |
+      github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request &&
+      (github.event.comment.user.login == 'claude[bot]' ||
+       github.event.comment.user.login == 'github-actions[bot]') &&
+      (contains(github.event.comment.body, 'Critical') ||
+       contains(github.event.comment.body, 'CRITICAL') ||
+       contains(github.event.comment.body, 'Major') ||
+       contains(github.event.comment.body, 'MAJOR') ||
+       contains(github.event.comment.body, 'Medium') ||
+       contains(github.event.comment.body, 'MEDIUM') ||
+       contains(github.event.comment.body, 'Important') ||
+       contains(github.event.comment.body, 'IMPORTANT') ||
+       contains(github.event.comment.body, '🔴') ||
+       contains(github.event.comment.body, '⚠️'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+    steps:
+      - name: Record start time
+        id: start
+        run: echo "time=$(date +%s)" >> $GITHUB_OUTPUT
+
+      - name: Get PR details
+        id: pr
+        run: |
+          PR_DATA=$(gh pr view ${{ github.event.issue.number }} --repo ${{ github.repository }} --json headRefName --jq '.headRefName')
+          echo "branch=$PR_DATA" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pr.outputs.branch }}
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Fix Review Issues
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          allowed_bots: "claude[bot],github-actions[bot],dependabot[bot]"
+          track_progress: true
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.issue.number }}
+            PR BRANCH: ${{ steps.pr.outputs.branch }}
+
+            ## Review Feedback to Address
+
+            ${{ github.event.comment.body }}
+
+            ## CRITICAL INSTRUCTIONS - READ COMPLETELY BEFORE ACTING
+
+            **YOU MUST follow these steps IN ORDER. Do NOT skip any step.**
+
+            ### STEP 1: UNDERSTAND (no coding yet!)
+
+            First, understand the review WITHOUT making any changes:
+
+            a) **Read CLAUDE.md** completely - this is the master instruction file for the Next.js + Payload CMS monorepo
+            b) **Parse the review** and create a list of all Critical/Major issues:
+               - Look for sections marked Critical, Major, Important, or ⚠️
+               - Focus on security issues and bugs first
+               - Ignore Minor issues, suggestions, and nice-to-haves
+            c) **Read ALL files** that will be modified to understand existing patterns
+
+            Project structure:
+            - CMS: Payload CMS backend (apps/cms/)
+            - Frontend: Next.js frontend (apps/fe/)
+            - Shared: Auto-generated types + shared TypeScript types (packages/shared/)
+
+            **IMPORTANT:** If a review comment is unclear or ambiguous:
+            - Comment on the PR asking for clarification
+            - DO NOT guess what the reviewer meant
+
+            ### STEP 2: PLAN (think hard)
+
+            Before making changes:
+            - List every file you will modify
+            - Describe each specific change you will make
+            - Identify potential risks or side effects
+
+            ### STEP 3: FIX (minimal changes)
+
+            For each Critical/Major issue:
+            - Make the minimal necessary changes to fix the issue
+            - Follow existing code patterns exactly
+            - Ensure security best practices (see CLAUDE.md)
+            - Run verification after EACH fix:
+              ```bash
+              npm run tsc && npm run lint
+              ```
+
+            ### STEP 4: VERIFY
+
+            Before committing, ensure:
+            - [ ] ALL Critical/Major issues from the review are addressed
+            - [ ] TypeScript and lint checks pass
+            - [ ] No unintended side effects introduced
+
+            ### STEP 5: COMMIT AND PUSH
+
+            ```bash
+            git add -A
+            git commit -m "fix: address review feedback for PR #${{ github.event.issue.number }}"
+            git push
+            ```
+
+            ### STEP 6: COMMENT ON PR
+
+            Summarize what was fixed:
+            ```bash
+            gh pr comment ${{ github.event.issue.number }} --body "## Fixed Issues
+
+            - [list each issue fixed with specific description]
+
+            ## Changes Made
+            - [list files modified and what changed]
+
+            Ready for re-review."
+            ```
+
+          claude_args: '--model opus --allowed-tools "Bash(git:*),Bash(gh pr:*),Bash(npm:*),Read,Write,Edit,Glob,Grep"'
+
+      - name: Log AI time
+        if: always()
+        id: log_time
+        uses: actions/github-script@v8
+        env:
+          START_TIME: ${{ steps.start.outputs.time }}
+        with:
+          script: |
+            const startTime = parseInt(process.env.START_TIME);
+            const endTime = Math.floor(Date.now() / 1000);
+            const durationSeconds = endTime - startTime;
+            const durationMinutes = Math.ceil(durationSeconds / 60);
+            const durationHours = (durationMinutes / 60).toFixed(1);
+
+            const body = `**AI Time logged:** ${durationHours}h (${durationMinutes} min)\n` +
+                        `**Workflow:** claude-fix-review (from comment)\n` +
+                        `**Work Type:** ai\n\n` +
+                        `_Automatically recorded from GitHub Actions_`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: body
+            });
+
+            core.setOutput('minutes', durationMinutes);
+            console.log(`AI time logged: ${durationMinutes} minutes (${durationHours}h)`);
+
+      - name: Update Project Fields
+        if: always()
+        uses: actions/github-script@v8
+        env:
+          PROJECT_NUMBER: "1"
+          PROJECT_OWNER: "etnetera"
+          MINUTES: ${{ steps.log_time.outputs.minutes }}
+        with:
+          github-token: ${{ secrets.PROJECT_TOKEN }}
+          script: |
+            const issueNumber = context.payload.issue.number;
+            const projectNumber = parseInt(process.env.PROJECT_NUMBER);
+            const projectOwner = process.env.PROJECT_OWNER;
+            const minutes = parseInt(process.env.MINUTES) || 0;
+
+            // Get project and field IDs
+            const projectQuery = `
+              query($owner: String!, $number: Int!) {
+                organization(login: $owner) {
+                  projectV2(number: $number) {
+                    id
+                    fields(first: 20) {
+                      nodes {
+                        ... on ProjectV2Field {
+                          id
+                          name
+                          dataType
+                        }
+                        ... on ProjectV2SingleSelectField {
+                          id
+                          name
+                          dataType
+                          options {
+                            id
+                            name
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            let projectData;
+            try {
+              projectData = await github.graphql(projectQuery, {
+                owner: projectOwner,
+                number: projectNumber
+              });
+            } catch (e) {
+              console.log('Failed to get project data:', e.message);
+              return;
+            }
+
+            const project = projectData.organization.projectV2;
+            if (!project) {
+              console.log('Project not found');
+              return;
+            }
+
+            const fields = project.fields.nodes;
+            const timeLoggedField = fields.find(f => f.name === 'Time Logged');
+            const workTypeField = fields.find(f => f.name === 'Work Type');
+
+            // Get the project item for this issue (which is the PR)
+            const itemQuery = `
+              query($owner: String!, $repo: String!, $issueNumber: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  issue(number: $issueNumber) {
+                    projectItems(first: 10) {
+                      nodes {
+                        id
+                        project {
+                          id
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            // Try to find linked issue from PR body
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: issueNumber
+            });
+
+            // Match: Closes #X, Fixes #X, Resolves #X, Part of #X
+            const issueMatch = pr.data.body?.match(/(?:Closes|Fixes|Resolves|Part of)\s+#(\d+)/i);
+            if (!issueMatch) {
+              console.log('No linked issue found in PR body (expected: Closes #X, Fixes #X, or Part of #X)');
+              return;
+            }
+            const targetIssue = parseInt(issueMatch[1]);
+
+            const itemData = await github.graphql(itemQuery, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issueNumber: targetIssue
+            });
+
+            const projectItems = itemData.repository.issue.projectItems.nodes;
+            const projectItem = projectItems.find(item => item.project.id === project.id);
+
+            if (!projectItem) {
+              console.log('Issue is not in the project');
+              return;
+            }
+
+            // Update Time Logged field
+            if (timeLoggedField && minutes > 0) {
+              const currentQuery = `
+                query($itemId: ID!) {
+                  node(id: $itemId) {
+                    ... on ProjectV2Item {
+                      fieldValueByName(name: "Time Logged") {
+                        ... on ProjectV2ItemFieldNumberValue {
+                          number
+                        }
+                      }
+                    }
+                  }
+                }
+              `;
+
+              const currentResult = await github.graphql(currentQuery, { itemId: projectItem.id });
+              const currentValue = currentResult.node.fieldValueByName?.number || 0;
+              const hours = parseFloat((minutes / 60).toFixed(2));
+              const newValue = currentValue + hours;
+
+              const updateTimeLogged = `
+                mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Float!) {
+                  updateProjectV2ItemFieldValue(
+                    input: {
+                      projectId: $projectId
+                      itemId: $itemId
+                      fieldId: $fieldId
+                      value: { number: $value }
+                    }
+                  ) {
+                    projectV2Item { id }
+                  }
+                }
+              `;
+
+              await github.graphql(updateTimeLogged, {
+                projectId: project.id,
+                itemId: projectItem.id,
+                fieldId: timeLoggedField.id,
+                value: newValue
+              });
+              console.log(`Updated Time Logged: ${currentValue}h -> ${newValue}h`);
+            }
+
+            // Update Work Type to "ai"
+            if (workTypeField && workTypeField.options) {
+              const aiOption = workTypeField.options.find(o => o.name === 'ai');
+              if (aiOption) {
+                const updateWorkType = `
+                  mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+                    updateProjectV2ItemFieldValue(
+                      input: {
+                        projectId: $projectId
+                        itemId: $itemId
+                        fieldId: $fieldId
+                        value: { singleSelectOptionId: $optionId }
+                      }
+                    ) {
+                      projectV2Item { id }
+                    }
+                  }
+                `;
+
+                await github.graphql(updateWorkType, {
+                  projectId: project.id,
+                  itemId: projectItem.id,
+                  fieldId: workTypeField.id,
+                  optionId: aiOption.id
+                });
+                console.log('Updated Work Type to ai');
+              }
+            }
+
+            console.log('Project fields updated successfully');

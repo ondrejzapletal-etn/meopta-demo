@@ -1,0 +1,78 @@
+{
+  "id": "fixture-logoCarouselBlock",
+  "blockType": "logoCarouselBlock",
+  "title": "est cupidatat laborum",
+  "description": "magna nisi consectetur non exercitation",
+  "logos": [
+    {
+      "name": "Logo 1",
+      "url": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Logo 1",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Logo 2",
+      "url": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Logo 2",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Logo 3",
+      "url": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Logo 3",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Logo 4",
+      "url": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Logo 4",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Logo 5",
+      "url": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Logo 5",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Logo 6",
+      "url": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Logo 6",
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "name": "Logo 7",
+      "url": "",
+      "image": {
+        "url": "/placeholder.jpg",
+        "alt": "Logo 7",
+        "width": 800,
+        "height": 600
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "id": "fixture-contactStripBlock",
+  "blockType": "contactStripBlock",
+  "text": "magna nisi consectetur non exercitation",
+  "linkLabel": "tlačítko",
+  "linkUrl": "/",
+  "backgroundColor": "lightGreen"
+}

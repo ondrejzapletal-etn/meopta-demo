@@ -1,0 +1,82 @@
+{
+  "name": "@etn-fe/nextjs-payload-template",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "A full-stack TypeScript monorepo template featuring Next.js for the frontend and Payload CMS for the backend. This template provides a solid foundation for new projects.",
+  "author": "Etnetera Core a.s.",
+  "license": "ISC",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "dev": "concurrently \"npm run cms:dev\" \"npm run fe:dev\"",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint-fix": "npm run lint-fix --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "tsc": "npm run tsc --workspaces --if-present",
+    "clean": "rm -rf node_modules && rm -rf ./**/node_modules && rm -rf ./**/.next",
+    "cms:dev": "npm run dev --workspace=apps/cms",
+    "fe:dev": "npm run dev --workspace=apps/fe",
+    "cms:generate": "npm run payload:generate --workspace=apps/cms",
+    "scrape": "npx tsx scripts/scrape-components.ts",
+    "scrape:recon": "npx tsx scripts/scrape-components.ts recon",
+    "scrape:full": "npx tsx scripts/scrape-components.ts full",
+    "validate": "npm run validate:schema && npm run tsc && npm run lint",
+    "validate:schema": "npx tsx scripts/validate-schemas.ts",
+    "compare": "npx tsx scripts/compare-screenshots.ts",
+    "scrape:missing": "npx tsx scripts/scrape-missing.ts",
+    "extract:styles": "npx tsx scripts/extract-block-styles.ts",
+    "generate:fixtures": "npx tsx scripts/generate-fixtures.ts",
+    "populate": "npx tsx scripts/populate-demo.ts",
+    "populate:reset": "npx tsx scripts/populate-demo.ts --reset",
+    "populate:all": "npx tsx scripts/populate-demo.ts --all",
+    "populate:homepage": "npx tsx scripts/populate-homepage.ts",
+    "populate:homepage:reset": "npx tsx scripts/populate-homepage.ts --reset",
+    "populate:pujcka": "npx tsx scripts/populate-pujcka.ts",
+    "populate:pujcka:reset": "npx tsx scripts/populate-pujcka.ts --reset",
+    "populate:investice": "npx tsx scripts/populate-investice.ts",
+    "populate:investice:reset": "npx tsx scripts/populate-investice.ts --reset",
+    "populate:hypoteka": "npx tsx scripts/populate-hypoteka.ts",
+    "populate:hypoteka:reset": "npx tsx scripts/populate-hypoteka.ts --reset",
+    "populate:pobocky": "npx tsx scripts/populate-pobocky.ts",
+    "populate:pobocky:reset": "npx tsx scripts/populate-pobocky.ts --reset",
+    "populate:pojisteni-hypoteky": "npx tsx scripts/populate-pojisteni-hypoteky.ts",
+    "populate:pojisteni-hypoteky:reset": "npx tsx scripts/populate-pojisteni-hypoteky.ts --reset",
+    "populate:header": "npx tsx scripts/populate-header.ts",
+    "populate:footer": "npx tsx scripts/populate-footer.ts",
+    "populate:meopta": "npx tsx scripts/populate-meopta.ts",
+    "populate:meopta:reset": "npx tsx scripts/populate-meopta.ts --reset",
+    "populate:meopta:dry-run": "npx tsx scripts/populate-meopta.ts --dry-run",
+    "cleanup:orphan-media": "npx tsx scripts/cleanup-orphan-media.ts",
+    "generate:image": "npx tsx scripts/generate-image.ts",
+    "postinstall": "patch-package && node scripts/patch-payload-bundle.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^24",
+    "@types/pngjs": "^6.0.5",
+    "cheerio": "^1.2.0",
+    "concurrently": "^9.2.1",
+    "patch-package": "^8.0.1",
+    "pngjs": "^7.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "os": [
+    "linux",
+    "darwin",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "dependencies": {
+    "graphql": "^16.12.0"
+  }
+}

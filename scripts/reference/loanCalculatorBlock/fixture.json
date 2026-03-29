@@ -1,0 +1,13 @@
+{
+  "id": "fixture-loanCalculatorBlock",
+  "blockType": "loanCalculatorBlock",
+  "title": "Půjčková kalkulačka",
+  "minAmount": 20000,
+  "maxAmount": 800000,
+  "defaultAmount": 200000,
+  "minMonths": 6,
+  "maxMonths": 96,
+  "defaultMonths": 36,
+  "interestRate": 4.9,
+  "description": "magna nisi consectetur non exercitation"
+}

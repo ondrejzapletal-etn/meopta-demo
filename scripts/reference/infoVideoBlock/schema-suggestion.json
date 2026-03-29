@@ -1,0 +1,21 @@
+{
+  "fields": [
+    {
+      "name": "title",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "textarea"
+    },
+    {
+      "name": "videoUrl",
+      "type": "text"
+    }
+  ],
+  "notes": [
+    "Found 2 inline SVGs — may need icon select field",
+    "Video embed detected"
+  ]
+}

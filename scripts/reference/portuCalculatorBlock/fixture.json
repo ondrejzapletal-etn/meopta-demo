@@ -1,0 +1,13 @@
+{
+  "id": "fixture-portuCalculatorBlock",
+  "blockType": "portuCalculatorBlock",
+  "title": "Portu kalkulačka",
+  "minAmount": 10000,
+  "maxAmount": 5000000,
+  "defaultAmount": 500000,
+  "minYears": 1,
+  "maxYears": 30,
+  "defaultYears": 10,
+  "expectedReturn": 6,
+  "description": "magna nisi consectetur non exercitation"
+}
