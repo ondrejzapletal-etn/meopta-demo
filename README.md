@@ -2,31 +2,33 @@
 
 A full-stack TypeScript monorepo template featuring Next.js for the frontend and Payload CMS for the backend.
 
+
 ## Features
 
-- **Next.js** with App Router and Turbopack
-- **Payload CMS** for headless content management
-- **TypeScript Monorepo** with npm workspaces
-- **Internationalization** (Czech & English)
-- **Tailwind CSS v4** for styling
-- **ESLint & Stylistic** for code quality
-- **PostgreSQL** database
-- **OpenTelemetry** instrumentation and metrics
-- **CI/CD** with GitLab templates
-- **Modern tooling** (Sharp for image processing, Lexical rich text editor)
+- **AI Chat Assistant** integrated in CMS admin for contextual help, content suggestions, and page creation
+- **Automated SEO & Metadata Generation** using AI agents for meta descriptions, titles, and content validation
+- **Business Context Injection** for brand-consistent AI outputs (customizable in admin)
+- **Content & SEO Validation**: AI-powered review and optimization of pages and articles
+- **Multi-agent Orchestration**: Specialized AI agents for SEO, LLM optimization, GEO, and CMS help
+
+---
 
 ## Architecture
 
 This monorepo uses npm workspaces and consists of:
 
+
 ### `apps/cms` (Port 3001)
 - Payload CMS backend and admin interface
-- Content management with collections: Articles, Pages, Media, Assets, Categories, Users
-- Global configurations: Header, Footer, Settings
+- AI Chat (contextual assistant) integrated in admin sidebar
+- AI-powered admin views: Content Generation, SEO Validation, LLM Optimization
+- Content management: Articles, Pages, Media, Assets, Categories, Users
+- Global configurations: Header, Footer, Settings, Business Context (for AI)
 - Multi-language admin interface
 - Rich text editing with Lexical
 - Live preview integration with frontend
-- Plugins: Nested docs, SEO, Search, Redirects
+- Plugins: Nested docs, SEO, Search, Redirects, Validation
+
 
 ### `apps/fe` (Port 3000)
 - Public-facing Next.js application
@@ -35,15 +37,19 @@ This monorepo uses npm workspaces and consists of:
 - Turbopack for fast development builds
 - REST API client for CMS integration with caching and draft mode support
 
+
 ### `packages/shared`
 - Shared TypeScript types
-- Auto-generated Payload types
+- Auto-generated Payload types (including AI-related types)
+
 
 ### `packages/eslint-config`
 - Shared ESLint configuration for all workspaces
 
+
 ### `packages/typescript-config`
 - Shared TypeScript configuration for all workspaces
+
 
 ## Prerequisites
 
@@ -51,12 +57,13 @@ This monorepo uses npm workspaces and consists of:
 - **Docker** (for PostgreSQL database)
 - **npm** or compatible package manager
 
+
 ## Quick Start
 
 1. **Clone the repository**
    ```bash
-   git clone https://git.etnetera.cz/vodrazka/airbank-demo.git
-   cd demo
+   git clone https://github.com/ondrejzapletal-etn/meopta-demo.git
+   cd meopta-demo
    ```
 
 2. **Install dependencies**
@@ -70,9 +77,9 @@ This monorepo uses npm workspaces and consists of:
    ```
 
 4. **Set up environment variables**
-  - Create `apps/cms/.env` file.
-  - Create `apps/fe/.env` file.
-  - See `.env.example` files in each app directory for all available options.
+   - Create `apps/cms/.env` file.
+   - Create `apps/fe/.env` file.
+   - See `.env.example` files in each app directory for all available options.
 
 5. **Start development servers**
    ```bash
