@@ -1,10 +1,23 @@
-# Airbank demo: Next.js + Payload CMS
+# Meopta demo: Next.js + Payload CMS + Open AI
 
 A full-stack TypeScript monorepo template featuring Next.js for the frontend and Payload CMS for the backend.
 
 
 ## Features
 
+### Core Features
+- **Next.js** with App Router and Turbopack
+- **Payload CMS** for headless content management
+- **TypeScript Monorepo** with npm workspaces
+- **Internationalization** (Czech & English)
+- **Tailwind CSS v4** for styling
+- **ESLint & Stylistic** for code quality
+- **PostgreSQL** database
+- **OpenTelemetry** instrumentation and metrics
+- **CI/CD** with GitLab templates
+- **Modern tooling** (Sharp for image processing, Lexical rich text editor)
+
+### AI Features
 - **AI Chat Assistant** integrated in CMS admin for contextual help, content suggestions, and page creation
 - **Automated SEO & Metadata Generation** using AI agents for meta descriptions, titles, and content validation
 - **Business Context Injection** for brand-consistent AI outputs (customizable in admin)
