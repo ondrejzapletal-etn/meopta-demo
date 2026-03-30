@@ -19,12 +19,14 @@ import { User } from './collections/User';
 import { Footer } from './globals/Footer';
 import { Header } from './globals/Header';
 import { Settings } from './globals/Settings';
+import { BusinessContext } from './globals/BusinessContext';
 import { mcpPlugin } from '@payloadcms/plugin-mcp';
 import { MCP_COLLECTIONS, MCP_GLOBALS } from './lib/mcp-config';
 import { nestedDocsPluginConfig } from './plugins/nested';
 import { redirectsPluginConfig } from './plugins/redirects';
 import { searchPluginConfig } from './plugins/search';
 import { seoPluginConfig } from './plugins/seo';
+import { validationPlugin } from './plugins/validation';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -81,6 +83,10 @@ export default buildConfig({
         {
           path: './components/AiNavSection',
           exportName: 'AiNavSection',
+        },
+        {
+          path: './components/AIChat/AIChatRoot',
+          exportName: 'AIChatRoot',
         },
       ],
       views: {
@@ -157,6 +163,7 @@ export default buildConfig({
     Header,
     Footer,
     Settings,
+    BusinessContext,
   ],
   i18n: {
     supportedLanguages: { cs, en },
@@ -181,6 +188,7 @@ export default buildConfig({
     nestedDocsPluginConfig,
     searchPluginConfig,
     seoPluginConfig,
+    validationPlugin,
     redirectsPluginConfig,
     // mcpPlugin creates the payload-mcp-api-keys collection and DB schema.
     // Its built-in HTTP adapter (mcp-handler) is broken, so we use a custom

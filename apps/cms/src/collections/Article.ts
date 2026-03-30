@@ -2,6 +2,7 @@ import React from 'react';
 import type { CollectionConfig } from 'payload';
 import { Slug } from '../fields/Slug';
 import { createAuditLogDelete, createAuditLogModify } from '../hooks/auditLogs';
+import { generateAISummary } from '../hooks/generateAISummary';
 import { versionsConfig } from '../utils/versions';
 
 /**
@@ -54,15 +55,38 @@ export const Article: CollectionConfig = {
             {
               name: 'validationTab',
               type: 'ui',
-              admin: {},
+              admin: {
+                components: {
+                  Field: {
+                    path: './components/PageAIValidation',
+                    exportName: 'PageAIValidationField',
+                  },
+                },
+              },
             },
           ],
         },
       ],
     },
+    // Hidden AI fields
+    {
+      name: 'aiSummary',
+      type: 'textarea',
+      admin: { hidden: true },
+    },
+    {
+      name: 'aiValidation',
+      type: 'group',
+      admin: { hidden: true },
+      fields: [
+        { name: 'seo', type: 'json' },
+        { name: 'geo', type: 'json' },
+        { name: 'updatedAt', type: 'date' },
+      ],
+    },
   ],
   hooks: {
-    afterChange: [createAuditLogModify],
+    afterChange: [createAuditLogModify, generateAISummary],
     afterDelete: [createAuditLogDelete],
   },
   versions: versionsConfig,

@@ -1,0 +1,30 @@
+AI Chat debug checklist:
+
+1. Vygeneruj importmapu:
+   cd apps/cms
+   npx payload generate:importmap
+
+2. Zkontroluj, že existuje apps/cms/importmap.json a obsahuje AIChatRoot.
+
+3. Restartuj CMS server:
+   npm run cms:dev
+
+4. Ověř, že v payload.config.ts je:
+   components: {
+     afterNavLinks: [
+       ...
+       { path: './components/AIChat/AIChatRoot', exportName: 'AIChatRoot' },
+     ],
+   }
+
+5. Zkontroluj, že soubor AIChatRoot.tsx je v apps/cms/src/components/AIChat/.
+
+6. Smaž cache:
+   rm -rf apps/cms/.next apps/cms/.payload
+
+7. Otevři admin v anonymním okně (nebo Ctrl+F5) a sleduj konzoli prohlížeče i terminál.
+
+Pokud stále nevidíš „AI Chat“ v menu, pošli:
+- výpis apps/cms/importmap.json
+- výpis sekce components.afterNavLinks z payload.config.ts
+- výpis složky apps/cms/src/components/AIChat/

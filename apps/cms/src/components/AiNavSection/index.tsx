@@ -9,11 +9,12 @@ import React from 'react';
 import icoChart from '../../img/ico-chart.webp';
 import icoGenerate from '../../img/ico-generate.webp';
 import icoUser from '../../img/ico-user.webp';
+import { AIChatTrigger } from '../AdminNav/AIChatTrigger';
 
 const navLinks = [
-  { href: '/admin/ai/generate-content', icon: icoGenerate, label: 'Generovat obsah' },
-  { href: '/admin/ai/increase-conversions', icon: icoUser, label: 'Zvýšit konverze' },
-  { href: '/admin/ai/get-more-visits', icon: icoChart, label: 'Získat více návštěv' },
+  { href: '/admin/ai/generate-content', icon: icoGenerate, label: 'Přehled funkcí' },
+  { href: '/admin/ai/increase-conversions', icon: icoChart, label: 'Validace webu' },
+  { href: '/admin/globals/business-context', icon: icoUser, label: 'Váš business context pro AI' },
 ];
 
 export const AiNavSection: React.FC = () => {
@@ -43,6 +44,7 @@ export const AiNavSection: React.FC = () => {
           </Link>
         );
       })}
+      <AIChatTrigger />
     </NavGroup>
   );
 };

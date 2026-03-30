@@ -22,6 +22,7 @@ import { StrikethroughFeatureClient as StrikethroughFeatureClient_e70f5e05f09f93
 import { UnderlineFeatureClient as UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
+import { PageAIValidationField as PageAIValidationField_acc650b6c9380bedf83bc56420a65caa } from '../../../components/PageAIValidation'
 import { OverviewComponent as OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { MetaTitleComponent as MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
@@ -30,6 +31,7 @@ import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 }
 import { LinkToDoc as LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { AiNavSection as AiNavSection_ae07de6612990e9f6f24db940492d354 } from '../../../components/AiNavSection'
+import { AIChatRoot as AIChatRoot_ed1bb8d6bddc783436ee8279b581b923 } from '../../../components/AIChat/AIChatRoot'
 import { GenerateContentView as GenerateContentView_fea3e88afb011a9616d5a8e1a778a058 } from '../../../components/ai-views/GenerateContent'
 import { IncreaseConversionsView as IncreaseConversionsView_3e5638a2436853316dbaf9f930ab57cd } from '../../../components/ai-views/IncreaseConversions'
 import { GetMoreVisitsView as GetMoreVisitsView_76b1cd80bc581f52ce3896a59d9e719e } from '../../../components/ai-views/GetMoreVisits'
@@ -60,6 +62,7 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#UnderlineFeatureClient": UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "./components/PageAIValidation#PageAIValidationField": PageAIValidationField_acc650b6c9380bedf83bc56420a65caa,
   "@payloadcms/plugin-seo/client#OverviewComponent": OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#MetaTitleComponent": MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#MetaDescriptionComponent": MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860,
@@ -68,6 +71,7 @@ export const importMap = {
   "@payloadcms/plugin-search/client#LinkToDoc": LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634,
   "@payloadcms/plugin-search/client#ReindexButton": ReindexButton_aead06e4cbf6b2620c5c51c9ab283634,
   "./components/AiNavSection#AiNavSection": AiNavSection_ae07de6612990e9f6f24db940492d354,
+  "./components/AIChat/AIChatRoot#AIChatRoot": AIChatRoot_ed1bb8d6bddc783436ee8279b581b923,
   "./components/ai-views/GenerateContent#GenerateContentView": GenerateContentView_fea3e88afb011a9616d5a8e1a778a058,
   "./components/ai-views/IncreaseConversions#IncreaseConversionsView": IncreaseConversionsView_3e5638a2436853316dbaf9f930ab57cd,
   "./components/ai-views/GetMoreVisits#GetMoreVisitsView": GetMoreVisitsView_76b1cd80bc581f52ce3896a59d9e719e,

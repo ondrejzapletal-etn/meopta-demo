@@ -78,7 +78,11 @@ import { CtaCardsBlock } from '../blocks/cards/CtaCardsBlock';
 import { ProductDetailCardsBlock } from '../blocks/cards/ProductDetailCardsBlock';
 import { Slug } from '../fields/Slug';
 import { createAuditLogDelete, createAuditLogModify } from '../hooks/auditLogs';
+import { generateAISummary } from '../hooks/generateAISummary';
 import { versionsConfig } from '../utils/versions';
+import { SeoFieldInfo } from '../components/SeoFieldInfo';
+
+const SeoTitleInfo = () => React.createElement(SeoFieldInfo, { field: 'title' });
 
 type BlockLike = { id?: string; [key: string]: unknown };
 
@@ -185,6 +189,9 @@ export const Page: CollectionConfig = {
     {
       admin: {
         description: 'Titulek stránky, zobrazuje se uživateli v tabu prohlížeče. Může být přepsán nastavením v SEO záložce.',
+        components: {
+          AfterInput: SeoTitleInfo,
+        },
       },
       name: 'title',
       type: 'text',
@@ -237,16 +244,24 @@ export const Page: CollectionConfig = {
             },
           ],
         },
-        {
-          label: 'Validace',
-          fields: [
-            {
-              name: 'validationTab',
-              type: 'ui',
-              admin: {},
-            },
-          ],
-        },
+        // Validace tab už bude přidána pluginem
+      ],
+    },
+    // Hidden AI fields (not shown in the main form, populated by hooks & API)
+    // Add Meta Image info to SEO tab via plugin customization if possible
+    {
+      name: 'aiSummary',
+      type: 'textarea',
+      admin: { hidden: true },
+    },
+    {
+      name: 'aiValidation',
+      type: 'group',
+      admin: { hidden: true },
+      fields: [
+        { name: 'seo', type: 'json' },
+        { name: 'geo', type: 'json' },
+        { name: 'updatedAt', type: 'date' },
       ],
     },
     // A/B testing fields
@@ -272,7 +287,7 @@ export const Page: CollectionConfig = {
         return data;
       },
     ],
-    afterChange: [createAuditLogModify],
+    afterChange: [createAuditLogModify, generateAISummary],
     afterDelete: [createAuditLogDelete],
   },
   versions: versionsConfig,

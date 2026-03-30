@@ -113,11 +113,13 @@ export interface Config {
     header: Header;
     footer: Footer;
     settings: Setting;
+    'business-context': BusinessContext;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     settings: SettingsSelect<false> | SettingsSelect<true>;
+    'business-context': BusinessContextSelect<false> | BusinessContextSelect<true>;
   };
   locale: null;
   user: User | ThirdPartyAccess | PayloadMcpApiKey;
@@ -221,6 +223,28 @@ export interface Article {
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
     image?: (number | null) | Media;
+  };
+  aiSummary?: string | null;
+  aiValidation?: {
+    seo?:
+      | {
+          [k: string]: unknown;
+        }
+      | unknown[]
+      | string
+      | number
+      | boolean
+      | null;
+    geo?:
+      | {
+          [k: string]: unknown;
+        }
+      | unknown[]
+      | string
+      | number
+      | boolean
+      | null;
+    updatedAt?: string | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -493,6 +517,28 @@ export interface Page {
         | ProductDetailCardsBlock
       )[]
     | null;
+  aiSummary?: string | null;
+  aiValidation?: {
+    seo?:
+      | {
+          [k: string]: unknown;
+        }
+      | unknown[]
+      | string
+      | number
+      | boolean
+      | null;
+    geo?:
+      | {
+          [k: string]: unknown;
+        }
+      | unknown[]
+      | string
+      | number
+      | boolean
+      | null;
+    updatedAt?: string | null;
+  };
   /**
    * Varianta B se zobrazí s parametrem ?ab=B v URL.
    */
@@ -2734,6 +2780,14 @@ export interface ArticlesSelect<T extends boolean = true> {
         description?: T;
         image?: T;
       };
+  aiSummary?: T;
+  aiValidation?:
+    | T
+    | {
+        seo?: T;
+        geo?: T;
+        updatedAt?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -2985,6 +3039,14 @@ export interface PagesSelect<T extends boolean = true> {
         benefitsColumnsBlock?: T | BenefitsColumnsBlockSelect<T>;
         ctaCardsBlock?: T | CtaCardsBlockSelect<T>;
         productDetailCardsBlock?: T | ProductDetailCardsBlockSelect<T>;
+      };
+  aiSummary?: T;
+  aiValidation?:
+    | T
+    | {
+        seo?: T;
+        geo?: T;
+        updatedAt?: T;
       };
   abEnabled?: T;
   parent?: T;
@@ -4728,6 +4790,26 @@ export interface Setting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "business-context".
+ */
+export interface BusinessContext {
+  id: number;
+  companyName?: string | null;
+  businessDescription?: string | null;
+  targetAudience?: string | null;
+  communicationStyle?: string | null;
+  services?: string | null;
+  seoPriorities?: string | null;
+  brandVoice?: string | null;
+  forbiddenPhrases?: string | null;
+  editorialRules?: string | null;
+  importantEntities?: string | null;
+  competitors?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -4830,6 +4912,26 @@ export interface SettingsSelect<T extends boolean = true> {
         type?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "business-context_select".
+ */
+export interface BusinessContextSelect<T extends boolean = true> {
+  companyName?: T;
+  businessDescription?: T;
+  targetAudience?: T;
+  communicationStyle?: T;
+  services?: T;
+  seoPriorities?: T;
+  brandVoice?: T;
+  forbiddenPhrases?: T;
+  editorialRules?: T;
+  importantEntities?: T;
+  competitors?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

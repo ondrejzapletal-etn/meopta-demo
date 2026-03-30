@@ -4,6 +4,8 @@ import { getPayload } from 'payload';
 import config from '@payload-config';
 import { prepareDocumentContext } from '../../../../lib/ai/extract-content';
 import { generateMetaDescription } from '../../../../lib/ai/generate-meta-description';
+import { runSeoAgent } from '../../../../ai/agents/seoAgent';
+import { runGeoAgent } from '../../../../ai/agents/geoAgent';
 import { RateLimiter, getClientIp, createRateLimitHeaders } from '../../../../lib/rate-limit';
 
 /**
@@ -31,12 +33,31 @@ type ActionHandler = (
   doc: Record<string, unknown>,
   collectionSlug: string,
   locale: string,
-) => Promise<string>;
+) => Promise<string | object>;
 
 const ACTION_HANDLERS: Record<string, ActionHandler> = {
   'generate-meta-description': async (doc, collectionSlug, locale) => {
     const textContent = prepareDocumentContext(doc, collectionSlug);
     return generateMetaDescription({ title: String(doc.title ?? ''), textContent, locale });
+  },
+  'run-seo-validation': async (doc, collectionSlug, locale) => {
+    const content = prepareDocumentContext(doc, collectionSlug);
+    const meta = doc.meta as Record<string, unknown> | undefined;
+    return runSeoAgent({
+      title: String(doc.title ?? ''),
+      content,
+      metaDescription: String(meta?.description ?? ''),
+      locale,
+    });
+  },
+  'run-geo-validation': async (doc, _collectionSlug, _locale) => {
+    const content = prepareDocumentContext(doc, _collectionSlug);
+    const meta = doc.meta as Record<string, unknown> | undefined;
+    return runGeoAgent({
+      title: String(doc.title ?? ''),
+      content,
+      metaDescription: String(meta?.description ?? ''),
+    });
   },
 };
 
@@ -123,6 +144,26 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   // --- Run AI action ---
   try {
     const result = await handler(doc, collectionSlug, String(locale));
+
+    // Pokud jde o validaci, ulož výsledek do dokumentu
+    if (action === 'run-seo-validation' || action === 'run-geo-validation') {
+      // Připrav nový aiValidation objekt
+      const now = new Date().toISOString();
+      let aiValidation = (doc.aiValidation && typeof doc.aiValidation === 'object') ? { ...doc.aiValidation } : {};
+      if (action === 'run-seo-validation') {
+        aiValidation = { ...aiValidation, seo: result, updatedAt: now };
+      } else if (action === 'run-geo-validation') {
+        aiValidation = { ...aiValidation, geo: result, updatedAt: now };
+      }
+      // Ulož do dokumentu (draft: true, aby se změna projevila hned v adminu)
+      await payload.update({
+        collection: collectionSlug,
+        id: docId,
+        data: { aiValidation },
+        draft: true,
+      });
+    }
+
     return NextResponse.json({ result }, { status: 200, headers: rlHeaders });
   } catch (err) {
     console.error(`[AI] Action "${action}" failed:`, err);
