@@ -58,7 +58,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
   const { title, slug, blocks = [] } = body as Record<string, unknown>;
 
-
   if (typeof title !== 'string' || !title.trim()) {
     return NextResponse.json({ error: '`title` is required.' }, { status: 400, headers: rlHeaders });
   }
@@ -112,25 +111,24 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ id: page.id, adminUrl }, { headers: rlHeaders });
   } catch (err: unknown) {
     console.error('[AI] create-page failed:', err);
+    type CmsError = {
+      errors?: Array<{ message?: string; field?: string }>;
+      message?: string;
+      status?: number;
+    };
+    const cmsErr = err as CmsError;
     let errorMsg = `Nepodařilo se vytvořit stránku. Slug: '${slug}'.`;
-    // Pokud je v err.errors detailní info, vypiš ji
-    if (err && typeof err === 'object' && 'errors' in err && Array.isArray((err as any).errors)) {
-      const slugError = (err as any).errors.find((e: unknown) => {
-        if (e && typeof e === 'object') {
-          const msg = 'message' in e && typeof (e as any).message === 'string' ? (e as any).message : '';
-          const field = 'field' in e && typeof (e as any).field === 'string' ? (e as any).field : '';
-          return msg.toLowerCase().includes('slug') || field.toLowerCase().includes('slug');
-        }
-        return false;
-      });
-      if (slugError && typeof slugError === 'object') {
-        const msg = 'message' in slugError && typeof (slugError as any).message === 'string' ? (slugError as any).message : '';
-        errorMsg = `Chyba slugu: '${slug}'. Detail: ${msg || JSON.stringify(slugError)}`;
+    if (cmsErr && typeof cmsErr === 'object' && Array.isArray(cmsErr.errors)) {
+      const slugError = cmsErr.errors.find((e) =>
+        (e?.message ?? '').toLowerCase().includes('slug') || (e?.field ?? '').toLowerCase().includes('slug'),
+      );
+      if (slugError) {
+        errorMsg = `Chyba slugu: '${slug}'. Detail: ${slugError.message ?? JSON.stringify(slugError)}`;
       }
-    } else if (err && typeof err === 'object' && 'message' in err && typeof (err as any).message === 'string' && ((err as any).message.toLowerCase().includes('duplicate') || (err as any).message.toLowerCase().includes('slug') || (err as any).message.toLowerCase().includes('unique')) {
-      errorMsg = `Duplicitní nebo neplatný slug: '${slug}'. Detail: ${(err as any).message}`;
-    } else if (err && typeof err === 'object' && 'status' in err && (err as any).status === 400) {
-      errorMsg = `Chyba validace (400) při vytváření stránky. Slug: '${slug}'. Detail: ${(err as any).message || JSON.stringify(err)}`;
+    } else if (cmsErr?.message && (cmsErr.message.toLowerCase().includes('duplicate') || cmsErr.message.toLowerCase().includes('slug') || cmsErr.message.toLowerCase().includes('unique'))) {
+      errorMsg = `Duplicitní nebo neplatný slug: '${slug}'. Detail: ${cmsErr.message}`;
+    } else if (cmsErr?.status === 400) {
+      errorMsg = `Chyba validace (400) při vytváření stránky. Slug: '${slug}'. Detail: ${cmsErr.message ?? JSON.stringify(cmsErr)}`;
     }
     return NextResponse.json(
       { error: errorMsg },

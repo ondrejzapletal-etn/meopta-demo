@@ -102,7 +102,10 @@ export const ExchangeRatesBlock = ({
                     {/* Currency info */}
                     <td
                       className={cn(
-                        'border-b border-meopta-border px-4 py-3 lg:px-6 lg:py-4',
+                        `
+                          border-b border-meopta-border px-4 py-3
+                          lg:px-6 lg:py-4
+                        `,
                         isLast && 'rounded-bl-lg border-b-0',
                       )}
                     >
@@ -125,8 +128,8 @@ export const ExchangeRatesBlock = ({
                     <td
                       className={cn(
                         `
-                          border-b border-meopta-border px-4 py-3 text-right text-14
-                          font-medium text-meopta-text-primary
+                          border-b border-meopta-border px-4 py-3 text-right
+                          text-14 font-medium text-meopta-text-primary
                           lg:px-6 lg:py-4 lg:text-16
                         `,
                         isLast && 'border-b-0',
@@ -139,8 +142,8 @@ export const ExchangeRatesBlock = ({
                     <td
                       className={cn(
                         `
-                          border-b border-meopta-border px-4 py-3 text-right text-14
-                          font-medium text-meopta-text-primary
+                          border-b border-meopta-border px-4 py-3 text-right
+                          text-14 font-medium text-meopta-text-primary
                           lg:px-6 lg:py-4 lg:text-16
                         `,
                         isLast && 'border-b-0',

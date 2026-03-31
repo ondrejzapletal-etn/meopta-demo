@@ -169,8 +169,8 @@ export const BenefitsWithListBlock = ({
                   key={item.id ?? i}
                   className={cn(
                     `
-                      relative rounded-xl border border-meopta-border bg-white px-5
-                      pt-7 pb-5 text-center
+                      relative rounded-xl border border-meopta-border bg-white
+                      px-5 pt-7 pb-5 text-center
                     `,
                     isGreyCards && 'rounded-md',
                     items.length === 4

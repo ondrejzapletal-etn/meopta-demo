@@ -95,7 +95,9 @@ export const CompareBondsTableBlock = ({
                           font-semibold text-meopta-text-primary
                           lg:px-6 lg:py-4 lg:text-16
                         `,
-                        row.highlighted && 'border-l-4 border-l-meopta-blue-dark',
+                        row.highlighted && `
+                          border-l-4 border-l-meopta-blue-dark
+                        `,
                         isLast && 'rounded-bl-lg border-b-0',
                       )}
                     >
@@ -106,7 +108,8 @@ export const CompareBondsTableBlock = ({
                     <td
                       className={cn(
                         `
-                          border-b border-meopta-border px-4 py-3 text-right text-14
+                          border-b border-meopta-border px-4 py-3 text-right
+                          text-14
                           lg:px-6 lg:py-4 lg:text-16
                         `,
                         row.highlighted

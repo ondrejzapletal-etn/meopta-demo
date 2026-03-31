@@ -1,4 +1,4 @@
-import { Config, CollectionConfig, Field } from 'payload';
+import { Config, CollectionConfig, Field, Tab } from 'payload';
 import { Page } from '../collections/Page';
 
 /**
@@ -27,7 +27,7 @@ export function validationPlugin(config: Config): Config {
                 },
               } as Field,
             ],
-          } as unknown as import('payload/dist/fields/config/types').Tab;
+          } as unknown as Tab;
           if (seoTabIndex !== -1) {
             tabsField.tabs.splice(seoTabIndex + 1, 0, validationTab);
           } else {

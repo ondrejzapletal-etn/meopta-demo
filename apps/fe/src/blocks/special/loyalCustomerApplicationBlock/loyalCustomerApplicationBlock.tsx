@@ -96,7 +96,10 @@ export const LoyalCustomerApplicationBlock = ({
         <div
           ref={ref}
           className={cn(
-            'overflow-hidden rounded-2xl bg-meopta-blue opacity-0 lg:rounded-3xl',
+            `
+              overflow-hidden rounded-2xl bg-meopta-blue opacity-0
+              lg:rounded-3xl
+            `,
             isVisible && 'animate-fade-in-up',
           )}
         >

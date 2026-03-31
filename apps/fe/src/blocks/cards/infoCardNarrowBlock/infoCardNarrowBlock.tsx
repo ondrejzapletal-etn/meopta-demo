@@ -50,7 +50,8 @@ export const InfoCardNarrowBlock = ({
               key={item.id ?? i}
               className={cn(
                 `
-                  flex-shrink-0 snap-start rounded-2xl bg-meopta-blue p-6 opacity-0
+                  flex-shrink-0 snap-start rounded-2xl bg-meopta-blue p-6
+                  opacity-0
                   lg:p-8
                 `,
                 'flex w-[280px] flex-col justify-between md:w-auto',

@@ -120,8 +120,8 @@ export const PageAIValidationField: React.FC = () => {
     date ? date.toLocaleString('cs-CZ', { dateStyle: 'short', timeStyle: 'short' }) : '-';
 
   // Helper: check if doc was changed after validation (tolerance 1s)
-  const changedAfterValidation =
-    docUpdatedAt && validationUpdatedAt && (docUpdatedAt.getTime() - validationUpdatedAt.getTime() > 1000);
+  const changedAfterValidation
+    = docUpdatedAt && validationUpdatedAt && (docUpdatedAt.getTime() - validationUpdatedAt.getTime() > 1000);
 
   return (
     <div style={{ padding: '24px 0' }}>
@@ -139,10 +139,14 @@ export const PageAIValidationField: React.FC = () => {
       {/* --- Validation meta info --- */}
       <div style={{ marginBottom: 16, fontSize: 13 }}>
         <div>
-          <b>Poslední validace:</b> {formatDate(validationUpdatedAt)}
+          <b>Poslední validace:</b>
+          {' '}
+          {formatDate(validationUpdatedAt)}
         </div>
         <div>
-          <b>Poslední úprava obsahu:</b> {formatDate(docUpdatedAt)}
+          <b>Poslední úprava obsahu:</b>
+          {' '}
+          {formatDate(docUpdatedAt)}
         </div>
         {changedAfterValidation && (
           <div style={{ color: '#ef4444', fontWeight: 500, marginTop: 4 }}>

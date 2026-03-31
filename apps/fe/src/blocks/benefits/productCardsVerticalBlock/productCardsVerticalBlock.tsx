@@ -55,8 +55,8 @@ export const ProductCardsVerticalBlock = ({
                 className={cn(
                   `
                     group flex flex-col items-center rounded-2xl border
-                    border-meopta-border bg-meopta-bg-light p-6 text-center opacity-0
-                    transition-shadow
+                    border-meopta-border bg-meopta-bg-light p-6 text-center
+                    opacity-0 transition-shadow
                     lg:p-8
                   `,
                   isVisible && 'animate-fade-in-up',

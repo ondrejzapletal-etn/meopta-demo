@@ -102,8 +102,8 @@ export const DiscountsBlock = ({
                     <span
                       className={cn(
                         `
-                          inline-flex items-center rounded-full bg-meopta-blue px-3
-                          py-1
+                          inline-flex items-center rounded-full bg-meopta-blue
+                          px-3 py-1
                         `,
                         'text-12 font-bold text-white lg:text-14',
                       )}

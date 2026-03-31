@@ -1,7 +1,7 @@
 import React from 'react';
-import Image from 'next/image';
 import { Container } from '../container/container';
-import { LinkCMS } from '../link/link';
+// import Image from 'next/image';
+// import { LinkCMS } from '../link/link';
 import { fetchFooter, fetchSettings } from '../../api/fetch';
 import { AnetaSection, ChatFloatingButton } from './anetaChat';
 import { FooterAccordionSection } from './footerAccordion';

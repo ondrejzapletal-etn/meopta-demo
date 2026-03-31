@@ -46,23 +46,27 @@ export const GenerateContentView: React.FC<AdminViewServerProps> = (props) => {
           <p>Najděte konkrétní stránku nebo článek, který chcete upravit, a zadejte klíčová slova nebo témata, která chcete zahrnout.</p>
           <h3 style={{ marginTop: '16px' }}>Validace celého webu</h3>
           <p>Přejděte na záložku SEO a vygenerujte z obsahu článku meta popis a vhodný titulek stránky.</p>
-            <button style={{ marginTop: '8px' }}>Validace webu pro SEO</button>
-            {' '} &nbsp;
+          <button style={{ marginTop: '8px' }}>Validace webu pro SEO</button>
+          {' '}
+          {' '}
+&nbsp;
         </div>
 
-          <h2 style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: '32px' }}>
-            <Image src={aiAgentImg} alt="AI agent" width={24} height={24} />
-            Specialista na LLM
-          </h2>
-          <p>Odborník na optimalizaci odpovědí LLM modelů. Zajistí, aby vaši značku zmiňovaly nástroje jako ChatGPT, Gemini, Copilot...</p>
-          <div style={{ marginLeft: '32px' }}>
-            <h3 style={{ marginTop: '16px' }}>Validace konkrétních stránek</h3>
-            <p>Najděte konkrétní stránku nebo článek, který chcete upravit, a zadejte klíčová slova nebo témata, která chcete zahrnout.</p>
-            <h3 style={{ marginTop: '16px' }}>Validace celého webu</h3>
-            <p>Přejděte na záložku SEO a vygenerujte z obsahu článku meta popis a vhodný titulek stránky.</p>
-            <button style={{ marginTop: '8px' }}>Validace webu pro LLM modely</button>
-            {' '} &nbsp;
-          </div>
+        <h2 style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: '32px' }}>
+          <Image src={aiAgentImg} alt="AI agent" width={24} height={24} />
+          Specialista na LLM
+        </h2>
+        <p>Odborník na optimalizaci odpovědí LLM modelů. Zajistí, aby vaši značku zmiňovaly nástroje jako ChatGPT, Gemini, Copilot...</p>
+        <div style={{ marginLeft: '32px' }}>
+          <h3 style={{ marginTop: '16px' }}>Validace konkrétních stránek</h3>
+          <p>Najděte konkrétní stránku nebo článek, který chcete upravit, a zadejte klíčová slova nebo témata, která chcete zahrnout.</p>
+          <h3 style={{ marginTop: '16px' }}>Validace celého webu</h3>
+          <p>Přejděte na záložku SEO a vygenerujte z obsahu článku meta popis a vhodný titulek stránky.</p>
+          <button style={{ marginTop: '8px' }}>Validace webu pro LLM modely</button>
+          {' '}
+          {' '}
+&nbsp;
+        </div>
 
         <div style={{ color: 'var(--theme-elevation-500)' }}>
           <h2 style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: '32px' }}>
@@ -72,9 +76,13 @@ export const GenerateContentView: React.FC<AdminViewServerProps> = (props) => {
           <p>Není součástí dema</p>
           <p>Specialista na tvorbu vašeho obsahu. Pracuje s pravidly specifickými pro váš web a váš business.</p>
           <button style={{ marginTop: '8px' }}>+ Nová stránka</button>
-          {' '} &nbsp;
+          {' '}
+          {' '}
+&nbsp;
           <button style={{ marginTop: '8px' }}>+ Nová pozice v kariéře</button>
-          {' '} &nbsp;
+          {' '}
+          {' '}
+&nbsp;
           <button style={{ marginTop: '8px' }}>+ Nová komponenta</button>
 
           <h2 style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: '32px' }}>
@@ -84,11 +92,12 @@ export const GenerateContentView: React.FC<AdminViewServerProps> = (props) => {
           <p>Není součástí dema</p>
           <p>Umělec, který přesně rozumí vaší značce a bude pro vás vytvářet obrázky na míru.</p>
           <button style={{ marginTop: '8px' }}>+ Nový ilustrační obrázek</button>
-          {' '} &nbsp;
+          {' '}
+          {' '}
+&nbsp;
         </div>
       </div>
 
-           
     </DefaultTemplate>
   );
 };

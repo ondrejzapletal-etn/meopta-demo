@@ -120,7 +120,10 @@ function GallerySlider({ gallery }: { gallery: Branch['gallery'] }) {
               `,
               activeIndex === 0
                 ? 'border-[#f4f4f6] text-[#828588]'
-                : 'border-meopta-blue text-meopta-text-primary hover:bg-meopta-bg-light',
+                : `
+                  border-meopta-blue text-meopta-text-primary
+                  hover:bg-meopta-bg-light
+                `,
             )}
             aria-label="Předchozí fotografie"
           >
@@ -150,7 +153,10 @@ function GallerySlider({ gallery }: { gallery: Branch['gallery'] }) {
               `,
               activeIndex === images.length - 1
                 ? 'border-[#f4f4f6] text-[#828588]'
-                : 'border-meopta-blue text-meopta-text-primary hover:bg-meopta-bg-light',
+                : `
+                  border-meopta-blue text-meopta-text-primary
+                  hover:bg-meopta-bg-light
+                `,
             )}
             aria-label="Další fotografie"
           >

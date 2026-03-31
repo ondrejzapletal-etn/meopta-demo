@@ -434,43 +434,44 @@ export const AIChatModal: React.FC = () => {
       >
         <div style={{ display: 'flex', gap: 4, marginBottom: 6, flexWrap: 'wrap' }}>
           <div>
-          {pageTitle && (
-            <div style={{ fontSize: 11, color: 'var(--theme-elevation-500)', marginBottom: 6 }}>
-              Stránka v kontextu:
-              <span
-                style={{
-                  border: '1px solid var(--theme-elevation-200)',
-                  borderRadius: 4,
-                  background: 'var(--theme-elevation-100)',
-                  padding: '0px 4px',
-                }}
-              >
-                {pageTitle}
-              </span>
+            {pageTitle && (
+              <div style={{ fontSize: 11, color: 'var(--theme-elevation-500)', marginBottom: 6 }}>
+                Stránka v kontextu:
+                <span
+                  style={{
+                    border: '1px solid var(--theme-elevation-200)',
+                    borderRadius: 4,
+                    background: 'var(--theme-elevation-100)',
+                    padding: '0px 4px',
+                  }}
+                >
+                  {pageTitle}
+                </span>
+              </div>
+            )}
+            <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 6 }}>
+              {(docCtx && (docCtx.collection === 'pages' || docCtx.collection === 'articles')
+                ? PAGE_ARTICLE_ACTIONS
+                : DEFAULT_ACTIONS
+              ).map((action) => (
+                <button
+                  key={action.label}
+                  onClick={() => void sendMessage(action.prompt)}
+                  style={{
+                    fontSize: 10,
+                    padding: '2px 7px',
+                    border: '1px solid var(--theme-elevation-300)',
+                    borderRadius: 12,
+                    background: 'transparent',
+                    cursor: 'pointer',
+                    color: 'var(--theme-elevation-600)',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {action.label}
+                </button>
+              ))}
             </div>
-          )}
-          <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 6 }}>
-          {(docCtx && (docCtx.collection === 'pages' || docCtx.collection === 'articles')
-            ? PAGE_ARTICLE_ACTIONS
-            : DEFAULT_ACTIONS
-          ).map((action) => (
-            <button
-              key={action.label}
-              onClick={() => void sendMessage(action.prompt)}
-              style={{
-                fontSize: 10,
-                padding: '2px 7px',
-                border: '1px solid var(--theme-elevation-300)',
-                borderRadius: 12,
-                background: 'transparent',
-                cursor: 'pointer',
-                color: 'var(--theme-elevation-600)',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {action.label}
-            </button>
-          ))}</div>
           </div>
         </div>
 

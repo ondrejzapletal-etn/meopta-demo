@@ -37,7 +37,9 @@ export const IncreaseConversionsView: React.FC<AdminViewServerProps> = (props) =
           </h2>
           <p>Není součástí dema</p>
           <button style={{ marginTop: '8px' }}>Validovat web pro SEO</button>
-          {' '} &nbsp;
+          {' '}
+          {' '}
+&nbsp;
 
           <h2 style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: '32px' }}>
             <Image src={aiAgentImg} alt="AI agent" width={24} height={24} />
@@ -45,7 +47,9 @@ export const IncreaseConversionsView: React.FC<AdminViewServerProps> = (props) =
           </h2>
           <p>Není součástí dema</p>
           <button style={{ marginTop: '8px' }}>Validovat web pro GEO</button>
-          {' '} &nbsp;
+          {' '}
+          {' '}
+&nbsp;
         </div>
       </div>
     </DefaultTemplate>

@@ -17,8 +17,8 @@ const ArrowRight = () => (
 
 // Vertical accent bar colour per slide backgroundColor value
 const accentColorClass: Record<string, string> = {
-  green: 'bg-meopta-blue',      // Industrial / Corporate – Meopta blue
-  white: 'bg-segment-sport',   // Sport / Hunting – olive green
+  green: 'bg-meopta-blue', // Industrial / Corporate – Meopta blue
+  white: 'bg-segment-sport', // Sport / Hunting – olive green
   lightGrey: 'bg-segment-defence', // Military / Defence – steel grey
 };
 
@@ -55,7 +55,7 @@ export const HeroSliderBlock2 = ({ slides }: HeroSliderBlock2Type) => {
             }}
             style={{ flex: isActive ? '2 2 0%' : '1 1 0%' }}
             className={cn(
-              'group relative overflow-hidden transition-[flex] duration-500 ease-in-out',
+              'group relative overflow-hidden transition-[flex] duration-500',
               !isActive && 'cursor-pointer',
             )}
           >
@@ -83,7 +83,10 @@ export const HeroSliderBlock2 = ({ slides }: HeroSliderBlock2Type) => {
               {/* Vertical accent bar */}
               <div
                 className={cn(
-                  'w-[3px] shrink-0 self-stretch rounded-full transition-all duration-500',
+                  `
+                    w-[3px] shrink-0 self-stretch rounded-full transition-all
+                    duration-500
+                  `,
                   accentColorClass[bg] ?? accentColorClass['green'],
                   isActive ? 'min-h-[80px]' : 'min-h-[40px]',
                 )}
@@ -98,8 +101,10 @@ export const HeroSliderBlock2 = ({ slides }: HeroSliderBlock2Type) => {
               >
                 <h2
                   className={cn(
-                    'font-bold transition-all duration-500 !text-white',
-                    isActive ? 'mb-3 text-24 lg:text-30' : 'mb-0 text-18 lg:text-24',
+                    'font-bold !text-white transition-all duration-500',
+                    isActive
+                      ? 'mb-3 text-24 lg:text-30'
+                      : 'mb-0 text-18 lg:text-24',
                   )}
                 >
                   {slide.title}

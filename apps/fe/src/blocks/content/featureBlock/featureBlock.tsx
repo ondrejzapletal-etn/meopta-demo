@@ -107,7 +107,8 @@ export const FeatureBlock = ({
                       `,
                       link.appearance === 'outline'
                         ? `
-                          border border-meopta-blue-dark text-meopta-text-primary
+                          border border-meopta-blue-dark
+                          text-meopta-text-primary
                           hover:bg-meopta-blue-light
                         `
                         : isGreen

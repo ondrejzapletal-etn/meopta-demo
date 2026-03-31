@@ -77,7 +77,7 @@ function AccordionItem({ item, onNavigate }: { item: NavItemData; onNavigate: ()
         aria-expanded={open}
         aria-controls={regionId}
       >
-        {item.labelEn}
+        {item.label}
         <ChevronIcon open={open} />
       </button>
       <div
@@ -89,7 +89,7 @@ function AccordionItem({ item, onNavigate }: { item: NavItemData; onNavigate: ()
           ref={contentRef}
           id={regionId}
           role="region"
-          aria-label={item.labelEn}
+          aria-label={item.label}
           className="pb-2 pl-6 pt-1"
         >
           {item.children?.map((child, j) => {
@@ -102,7 +102,7 @@ function AccordionItem({ item, onNavigate }: { item: NavItemData; onNavigate: ()
                 className="block py-2 text-[0.9375rem] text-black no-underline hover:text-meopta-blue-dark"
                 tabIndex={open ? 0 : -1}
               >
-                {child.labelEn}
+                {child.label}
               </LinkCMS>
             );
           })}
@@ -161,7 +161,7 @@ export const HeaderDropdown = ({ items }: HeaderDropdownProps) => {
                           url={item.url}
                           className="block border-b border-meopta-border py-3 text-[0.9375rem] text-black no-underline last:border-0 hover:text-meopta-blue-dark"
                         >
-                          {item.labelEn}
+                          {item.label}
                         </LinkCMS>
                       </li>
                     ),

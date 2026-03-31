@@ -41,8 +41,8 @@ export const OmnichannelBannerBlock = ({
           ref={ref}
           className={cn(
             `
-              flex flex-col items-center gap-6 rounded-3xl bg-meopta-blue px-6 py-8
-              text-center opacity-0
+              flex flex-col items-center gap-6 rounded-3xl bg-meopta-blue px-6
+              py-8 text-center opacity-0
               md:flex-row md:justify-between md:gap-0 md:rounded-full md:py-5
               md:text-left
               lg:px-8

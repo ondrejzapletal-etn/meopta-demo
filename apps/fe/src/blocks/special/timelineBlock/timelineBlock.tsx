@@ -26,9 +26,10 @@ const SliderArrow = ({
     className={cn(
       `
         flex h-10 w-10 items-center justify-center rounded-full border
-        border-meopta-border bg-white transition-colors
+        border-meopta-border bg-meopta-bg-light text-meopta-text-secondary
+        transition-colors
+        hover:bg-meopta-border
       `,
-      disabled ? 'cursor-default opacity-30' : 'hover:bg-meopta-bg-light',
     )}
   >
     <svg
@@ -49,12 +50,10 @@ const SliderArrow = ({
   </button>
 );
 
-export const TimelineBlock = ({ title, items }: TimelineBlockType) => {
+export const TimelineBlock = ({ items }: TimelineBlockType) => {
   const { ref, isVisible } = useScrollAnimation();
   const [activeIndex, setActiveIndex] = useState(0);
-
   const itemCount = items?.length ?? 0;
-
   const goTo = useCallback(
     (index: number) => {
       if (index >= 0 && index < itemCount) {
@@ -76,12 +75,6 @@ export const TimelineBlock = ({ title, items }: TimelineBlockType) => {
           'pb-12 lg:pb-20',
         )}
       >
-        {title && (
-          <Typography variant="h2" className="mb-10 text-center text-meopta-text-primary lg:mb-14">
-            {title}
-          </Typography>
-        )}
-
         <div
           ref={ref}
           className={cn('relative opacity-0', isVisible && 'animate-fade-in-up')}
@@ -97,7 +90,10 @@ export const TimelineBlock = ({ title, items }: TimelineBlockType) => {
                   'rounded-full px-5 py-2 text-16 font-bold transition-colors',
                   i === activeIndex
                     ? 'bg-meopta-blue text-white'
-                    : 'bg-meopta-bg-light text-meopta-text-secondary hover:bg-meopta-border',
+                    : `
+                      bg-meopta-bg-light text-meopta-text-secondary
+                      hover:bg-meopta-border
+                    `,
                 )}
               >
                 {item.year}

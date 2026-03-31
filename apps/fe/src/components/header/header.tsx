@@ -4,29 +4,33 @@ import React from 'react';
 import { HeaderDropdown } from './headerDropdown';
 import { NavItems } from './navItems';
 import { fetchHeader } from '../../api/fetch';
+import type { Media } from '@repo/shared/payload-types';
 
-
-interface NavItemData {
-  label: string;
-  url: string;
-  id: string;
-  children?: NavChildData[];
+// Raw CMS types (from API)
+interface CmsNavLink {
+  type?: string | null;
+  url?: string | null;
+  label?: string | null;
+  reference?: { value: string | { slug?: string } } | null;
 }
 
-interface NavChildData {
-  label: string;
-  link?: {
-    type?: string | null;
-    url?: string | null;
-    label?: string | null;
-    reference?: { value: string | { slug?: string } } | null;
-  } | null;
+interface CmsNavChild {
+  labelEn: string;
+  labelCs?: string;
+  link?: CmsNavLink | null;
   description?: string | null;
   id?: string | null;
 }
 
-import type { Media } from '@repo/shared/payload-types';
-interface CtaButton {
+interface CmsNavItem {
+  labelEn: string;
+  labelCs?: string;
+  link?: CmsNavLink | null;
+  children?: CmsNavChild[];
+  id?: string | null;
+}
+
+interface CmsCtaButton {
   labelEn: string;
   labelCs?: string;
   url: string;
@@ -35,7 +39,7 @@ interface CtaButton {
   id?: string | null;
 }
 
-function getNavUrl(link: NavItem['link']): string {
+function getNavUrl(link: CmsNavLink | null | undefined): string {
   if (!link) return '#';
   if (link.type === 'custom' && link.url) return link.url;
   if (link.type === 'reference' && link.reference?.value) {
@@ -56,7 +60,7 @@ const SearchIcon = () => (
 );
 
 export const Header = async () => {
-  let headerData: { navigation?: NavItem[]; ctaButtons?: CtaButton[] } = {};
+  let headerData: { navigation?: CmsNavItem[]; ctaButtons?: CmsCtaButton[] } = {};
 
   try {
     headerData = await fetchHeader();
@@ -64,15 +68,14 @@ export const Header = async () => {
     // Fallback to defaults if CMS is unavailable
   }
 
-  const cmsNavigation = headerData.navigation ?? [];
-  const cmsCtaButtons = headerData.ctaButtons ?? [];
+  const cmsNavigation: CmsNavItem[] = headerData.navigation ?? [];
+  const cmsCtaButtons: CmsCtaButton[] = headerData.ctaButtons ?? [];
 
-
-  const navItems: NavItemData[] = cmsNavigation.map((item, i) => ({
+  const navItems = cmsNavigation.map((item, i) => ({
     label: item.labelEn,
     url: getNavUrl(item.link),
     id: item.id ?? String(i),
-    children: item.children?.map((child) => ({
+    children: item.children?.map((child: CmsNavChild) => ({
       label: child.labelEn,
       link: child.link,
       description: child.description,
@@ -80,8 +83,7 @@ export const Header = async () => {
     })),
   }));
 
-
-  const ctaButtons = cmsCtaButtons.map((cta) => ({
+  const ctaButtons = cmsCtaButtons.map((cta: CmsCtaButton) => ({
     ...cta,
     label: cta.labelEn,
   }));

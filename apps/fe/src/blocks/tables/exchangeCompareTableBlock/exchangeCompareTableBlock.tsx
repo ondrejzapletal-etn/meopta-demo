@@ -51,7 +51,10 @@ export const ExchangeCompareTableBlock = ({
                     <th
                       key={provider.id ?? idx}
                       className={cn(
-                        'bg-meopta-bg-light px-4 py-4 text-center lg:px-6 lg:py-5',
+                        `
+                          bg-meopta-bg-light px-4 py-4 text-center
+                          lg:px-6 lg:py-5
+                        `,
                         idx === 0 && 'bg-meopta-blue-light',
                       )}
                     >

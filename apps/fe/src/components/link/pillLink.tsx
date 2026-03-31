@@ -29,8 +29,14 @@ export const PillLink = ({ href, children, variant = 'dark', className }: PillLi
         font-medium tracking-[0.5px] no-underline transition-colors
       `,
       variant === 'dark'
-        ? 'border-meopta-blue-dark text-meopta-text-primary hover:bg-meopta-blue-light'
-        : 'border-meopta-blue-dark text-meopta-blue-dark hover:bg-meopta-blue-light',
+        ? `
+          border-meopta-blue-dark text-meopta-text-primary
+          hover:bg-meopta-blue-light
+        `
+        : `
+          border-meopta-blue-dark text-meopta-blue-dark
+          hover:bg-meopta-blue-light
+        `,
       className,
     )}
   >

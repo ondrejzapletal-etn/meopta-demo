@@ -434,7 +434,10 @@ export const MortgageCalculatorBlock = ({
                   `,
                   activeTab === tab.id
                     ? 'bg-white text-meopta-text-secondary'
-                    : 'bg-[#dadada] text-meopta-text-secondary hover:bg-[#e5e5e5]',
+                    : `
+                      bg-[#dadada] text-meopta-text-secondary
+                      hover:bg-[#e5e5e5]
+                    `,
                 )}
               >
                 {tab.label}
@@ -642,7 +645,9 @@ export const MortgageCalculatorBlock = ({
             {/* ═══ Right: Results panel ═══ */}
             <div className={cn(
               'rounded-xl p-5 lg:p-6',
-              activeTab === 'nova' ? 'bg-[#41454B] text-white' : 'bg-meopta-blue',
+              activeTab === 'nova'
+                ? 'bg-[#41454B] text-white'
+                : 'bg-meopta-blue',
             )}
             >
               {activeTab === 'nova'
