@@ -1,15 +1,16 @@
+import { Config, CollectionConfig, Field } from 'payload';
 import { Page } from '../collections/Page';
 
 /**
  * Payload plugin: Adds Validace tab to Page collection, right after SEO tab.
  */
-export function validationPlugin(config) {
+export function validationPlugin(config: Config): Config {
   if (config.collections) {
-    config.collections = config.collections.map((col) => {
+    config.collections = config.collections.map((col: CollectionConfig) => {
       if (col.slug === Page.slug) {
-        const tabsField = col.fields.find(f => f.type === 'tabs');
-        if (tabsField && Array.isArray(tabsField.tabs)) {
-          const seoTabIndex = tabsField.tabs.findIndex(tab => tab.label === 'SEO');
+        const tabsField = col.fields.find((f: Field) => f.type === 'tabs');
+        if (tabsField && tabsField.type === 'tabs' && Array.isArray(tabsField.tabs)) {
+          const seoTabIndex = tabsField.tabs.findIndex((tab) => 'label' in tab && tab.label === 'SEO');
           const validationTab = {
             label: 'Validace',
             fields: [

@@ -10,3 +10,7 @@ export function SeoFieldInfo({ field }: { field: 'title' | 'metaImage' }) {
   }
   return null;
 }
+
+export function SeoTitleInfo() {
+  return React.createElement(SeoFieldInfo, { field: 'title' });
+}

@@ -21,24 +21,6 @@ import { RateLimiter, getClientIp, createRateLimitHeaders } from '../../../../..
 const createPageRateLimiter = new RateLimiter({ limit: 5, windowMs: 60 * 1000 });
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-    // --- AI layout validation: kontrola povinných polí v blocích ---
-    if (Array.isArray(blocks)) {
-      for (let i = 0; i < blocks.length; i++) {
-        const block = blocks[i];
-        if (block && typeof block === 'object' && 'blockType' in block) {
-          // Hero Plain Block: vyžaduje title
-          if (block.blockType === 'heroPlainBlock') {
-            if (!('title' in block) || typeof block.title !== 'string' || !block.title.trim()) {
-              return NextResponse.json(
-                { error: `Chybí povinné pole 'title' v bloku Hero Plain Block (blok #${i + 1}).` },
-                { status: 400, headers: rlHeaders },
-              );
-            }
-          }
-          // Zde lze přidat další validace pro jiné bloky...
-        }
-      }
-    }
   const ip = getClientIp(req);
   const rl = createPageRateLimiter.check(ip);
   const rlHeaders = createRateLimitHeaders(rl);
@@ -91,6 +73,25 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     .replace(/\s+/g, '-')
     .replace(/[^a-z0-9-]/g, '')
     .slice(0, 100);
+
+  // --- AI layout validation: kontrola povinných polí v blocích ---
+  if (Array.isArray(blocks)) {
+    for (let i = 0; i < blocks.length; i++) {
+      const block = blocks[i];
+      if (block && typeof block === 'object' && 'blockType' in block) {
+        // Hero Plain Block: vyžaduje title
+        if (block.blockType === 'heroPlainBlock') {
+          if (!('title' in block) || typeof block.title !== 'string' || !block.title.trim()) {
+            return NextResponse.json(
+              { error: `Chybí povinné pole 'title' v bloku Hero Plain Block (blok #${i + 1}).` },
+              { status: 400, headers: rlHeaders },
+            );
+          }
+        }
+        // Zde lze přidat další validace pro jiné bloky...
+      }
+    }
+  }
 
   try {
     const page = await payload.create({

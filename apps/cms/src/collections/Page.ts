@@ -1,4 +1,3 @@
-import React from 'react';
 import { CollectionConfig } from 'payload';
 import { HeroPlainBlock } from '../blocks/hero/HeroPlainBlock';
 import { RichTextBlock } from '../blocks/RichTextBlock';
@@ -80,9 +79,7 @@ import { Slug } from '../fields/Slug';
 import { createAuditLogDelete, createAuditLogModify } from '../hooks/auditLogs';
 import { generateAISummary } from '../hooks/generateAISummary';
 import { versionsConfig } from '../utils/versions';
-import { SeoFieldInfo } from '../components/SeoFieldInfo';
 
-const SeoTitleInfo = () => React.createElement(SeoFieldInfo, { field: 'title' });
 
 type BlockLike = { id?: string; [key: string]: unknown };
 
@@ -190,7 +187,7 @@ export const Page: CollectionConfig = {
       admin: {
         description: 'Titulek stránky, zobrazuje se uživateli v tabu prohlížeče. Může být přepsán nastavením v SEO záložce.',
         components: {
-          AfterInput: SeoTitleInfo,
+          afterInput: [{ path: './components/SeoFieldInfo', exportName: 'SeoTitleInfo' }],
         },
       },
       name: 'title',
