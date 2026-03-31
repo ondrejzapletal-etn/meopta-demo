@@ -12,7 +12,7 @@ A full-stack TypeScript monorepo template featuring Next.js for the frontend and
 - **Internationalization** (Czech & English)
 - **Tailwind CSS v4** for styling
 - **ESLint & Stylistic** for code quality
-- **PostgreSQL** database
+- **PostgreSQL** database postgresql
 - **OpenTelemetry** instrumentation and metrics
 - **CI/CD** with GitLab templates
 - **Modern tooling** (Sharp for image processing, Lexical rich text editor)
