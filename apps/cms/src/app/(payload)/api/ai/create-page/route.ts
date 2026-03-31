@@ -110,19 +110,27 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const adminUrl = `${cmsUrl}/admin/collections/pages/${page.id}`;
 
     return NextResponse.json({ id: page.id, adminUrl }, { headers: rlHeaders });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('[AI] create-page failed:', err);
     let errorMsg = `Nepodařilo se vytvořit stránku. Slug: '${slug}'.`;
     // Pokud je v err.errors detailní info, vypiš ji
-    if (err?.errors && Array.isArray(err.errors)) {
-      const slugError = err.errors.find((e: any) => (e?.message || '').toLowerCase().includes('slug') || (e?.field || '').toLowerCase().includes('slug'));
-      if (slugError) {
-        errorMsg = `Chyba slugu: '${slug}'. Detail: ${slugError.message || JSON.stringify(slugError)}`;
+    if (err && typeof err === 'object' && 'errors' in err && Array.isArray((err as any).errors)) {
+      const slugError = (err as any).errors.find((e: unknown) => {
+        if (e && typeof e === 'object') {
+          const msg = 'message' in e && typeof (e as any).message === 'string' ? (e as any).message : '';
+          const field = 'field' in e && typeof (e as any).field === 'string' ? (e as any).field : '';
+          return msg.toLowerCase().includes('slug') || field.toLowerCase().includes('slug');
+        }
+        return false;
+      });
+      if (slugError && typeof slugError === 'object') {
+        const msg = 'message' in slugError && typeof (slugError as any).message === 'string' ? (slugError as any).message : '';
+        errorMsg = `Chyba slugu: '${slug}'. Detail: ${msg || JSON.stringify(slugError)}`;
       }
-    } else if (err?.message && (err.message.toLowerCase().includes('duplicate') || err.message.toLowerCase().includes('slug') || err.message.toLowerCase().includes('unique'))) {
-      errorMsg = `Duplicitní nebo neplatný slug: '${slug}'. Detail: ${err.message}`;
-    } else if (err?.status === 400) {
-      errorMsg = `Chyba validace (400) při vytváření stránky. Slug: '${slug}'. Detail: ${err.message || JSON.stringify(err)}`;
+    } else if (err && typeof err === 'object' && 'message' in err && typeof (err as any).message === 'string' && ((err as any).message.toLowerCase().includes('duplicate') || (err as any).message.toLowerCase().includes('slug') || (err as any).message.toLowerCase().includes('unique')) {
+      errorMsg = `Duplicitní nebo neplatný slug: '${slug}'. Detail: ${(err as any).message}`;
+    } else if (err && typeof err === 'object' && 'status' in err && (err as any).status === 400) {
+      errorMsg = `Chyba validace (400) při vytváření stránky. Slug: '${slug}'. Detail: ${(err as any).message || JSON.stringify(err)}`;
     }
     return NextResponse.json(
       { error: errorMsg },

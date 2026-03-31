@@ -436,7 +436,17 @@ export const AIChatModal: React.FC = () => {
           <div>
           {pageTitle && (
             <div style={{ fontSize: 11, color: 'var(--theme-elevation-500)', marginBottom: 6 }}>
-              Stránka v kontextu: <span style={{ border: '1px solid var(--theme-elevation-200)', borderRadius: 4, background: 'var(--theme-elevation-100)', padding: '0px 4px' }}>{pageTitle}</span>
+              Stránka v kontextu:
+              <span
+                style={{
+                  border: '1px solid var(--theme-elevation-200)',
+                  borderRadius: 4,
+                  background: 'var(--theme-elevation-100)',
+                  padding: '0px 4px',
+                }}
+              >
+                {pageTitle}
+              </span>
             </div>
           )}
           <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 6 }}>

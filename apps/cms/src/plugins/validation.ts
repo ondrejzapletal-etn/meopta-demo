@@ -25,9 +25,9 @@ export function validationPlugin(config: Config): Config {
                     },
                   },
                 },
-              },
+              } as Field,
             ],
-          };
+          } as unknown as import('payload/dist/fields/config/types').Tab;
           if (seoTabIndex !== -1) {
             tabsField.tabs.splice(seoTabIndex + 1, 0, validationTab);
           } else {

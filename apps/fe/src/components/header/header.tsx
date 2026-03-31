@@ -5,22 +5,16 @@ import { HeaderDropdown } from './headerDropdown';
 import { NavItems } from './navItems';
 import { fetchHeader } from '../../api/fetch';
 
-interface NavItem {
-  labelEn: string;
-  labelCs?: string;
-  link?: {
-    type?: string | null;
-    url?: string | null;
-    label?: string | null;
-    reference?: { value: string | { slug?: string } } | null;
-  } | null;
-  children?: NavChild[];
-  id?: string | null;
+
+interface NavItemData {
+  label: string;
+  url: string;
+  id: string;
+  children?: NavChildData[];
 }
 
-interface NavChild {
-  labelEn: string;
-  labelCs?: string;
+interface NavChildData {
+  label: string;
   link?: {
     type?: string | null;
     url?: string | null;
@@ -73,15 +67,19 @@ export const Header = async () => {
   const cmsNavigation = headerData.navigation ?? [];
   const cmsCtaButtons = headerData.ctaButtons ?? [];
 
-  const navItems = cmsNavigation.map((item, i) => ({
+
+  const navItems: NavItemData[] = cmsNavigation.map((item, i) => ({
     label: item.labelEn,
     url: getNavUrl(item.link),
     id: item.id ?? String(i),
     children: item.children?.map((child) => ({
-      ...child,
       label: child.labelEn,
+      link: child.link,
+      description: child.description,
+      id: child.id ?? undefined,
     })),
   }));
+
 
   const ctaButtons = cmsCtaButtons.map((cta) => ({
     ...cta,

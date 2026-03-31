@@ -80,7 +80,6 @@ import { createAuditLogDelete, createAuditLogModify } from '../hooks/auditLogs';
 import { generateAISummary } from '../hooks/generateAISummary';
 import { versionsConfig } from '../utils/versions';
 
-
 type BlockLike = { id?: string; [key: string]: unknown };
 
 const stripIds = (items: BlockLike[]): BlockLike[] =>
