@@ -10,8 +10,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  REGISTRY: airbankwebacr.azurecr.io
-  RESOURCE_GROUP: etnc-airbankWeb-poc
+  REGISTRY: meopta.azurecr.io
+  RESOURCE_GROUP: etnc-meopta-poc
 
 jobs:
   # ═══════════════════════════════════════════════════════════════════════════
@@ -135,8 +135,8 @@ jobs:
           file: Dockerfile.azure
           push: true
           tags: |
-            ${{ env.REGISTRY }}/airbank-cms:${{ github.sha }}
-            ${{ env.REGISTRY }}/airbank-cms:latest
+            ${{ env.REGISTRY }}/meopta-cms:${{ github.sha }}
+            ${{ env.REGISTRY }}/meopta-cms:latest
           build-args: APP=cms
           secrets: |
             PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}
@@ -147,7 +147,7 @@ jobs:
         id: cms-url
         run: |
           FQDN=$(az containerapp show \
-            --name airbank-cms \
+            --name meopta-cms \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --query properties.configuration.ingress.fqdn \
             --output tsv)
@@ -160,8 +160,8 @@ jobs:
           file: Dockerfile.azure
           push: true
           tags: |
-            ${{ env.REGISTRY }}/airbank-fe:${{ github.sha }}
-            ${{ env.REGISTRY }}/airbank-fe:latest
+            ${{ env.REGISTRY }}/meopta-fe:${{ github.sha }}
+            ${{ env.REGISTRY }}/meopta-fe:latest
           build-args: |
             APP=fe
             NEXT_PUBLIC_CMS_URL=${{ steps.cms-url.outputs.url }}
@@ -210,37 +210,37 @@ jobs:
         uses: azure/container-apps-deploy-action@v2
         with:
           resourceGroup: ${{ env.RESOURCE_GROUP }}
-          containerAppName: airbank-cms
-          imageToDeploy: ${{ env.REGISTRY }}/airbank-cms:${{ github.sha }}
+          containerAppName: meopta-cms
+          imageToDeploy: ${{ env.REGISTRY }}/meopta-cms:${{ github.sha }}
 
       - name: Deploy FE
         uses: azure/container-apps-deploy-action@v2
         with:
           resourceGroup: ${{ env.RESOURCE_GROUP }}
-          containerAppName: airbank-fe
-          imageToDeploy: ${{ env.REGISTRY }}/airbank-fe:${{ github.sha }}
+          containerAppName: meopta-fe
+          imageToDeploy: ${{ env.REGISTRY }}/meopta-fe:${{ github.sha }}
 
       - name: Ensure scaling configuration
         run: |
           az containerapp update \
-            --name airbank-cms \
+            --name meopta-cms \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --min-replicas 1 --max-replicas 3
           az containerapp update \
-            --name airbank-fe \
+            --name meopta-fe \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --min-replicas 1 --max-replicas 3
 
       - name: Ensure HTTP Basic Auth env vars
         run: |
           az containerapp update \
-            --name airbank-cms \
+            --name meopta-cms \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --set-env-vars \
               "HTTP_BASIC_USER=${{ secrets.HTTP_BASIC_USER }}" \
               "HTTP_BASIC_PASSWORD=${{ secrets.HTTP_BASIC_PASSWORD }}"
           az containerapp update \
-            --name airbank-fe \
+            --name meopta-fe \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --set-env-vars \
               "HTTP_BASIC_USER=${{ secrets.HTTP_BASIC_USER }}" \
@@ -250,7 +250,7 @@ jobs:
         id: cms-fqdn
         run: |
           FQDN=$(az containerapp show \
-            --name airbank-cms \
+            --name meopta-cms \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --query properties.configuration.ingress.fqdn \
             --output tsv)
@@ -260,7 +260,7 @@ jobs:
         id: fe-fqdn
         run: |
           FQDN=$(az containerapp show \
-            --name airbank-fe \
+            --name meopta-fe \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --query properties.configuration.ingress.fqdn \
             --output tsv)
